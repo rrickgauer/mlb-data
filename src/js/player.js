@@ -20,7 +20,9 @@ $(document).ready(function() {
   // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
   // getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
   // getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
-  getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
+  // getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
+  // getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
+  // getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
 
 
 });
@@ -220,6 +222,63 @@ function getFieldingOfSplitRowHtml(data) {
       <td>${data.SB}</td>
       <td>${data.CS}</td>
       <td>${data.ZR}</td>
+    </tr>`;
+
+  return html;
+}
+
+
+function loadAppearancesTable(data) {
+  let html = '';
+
+  for (var count = 0; count < data.length; count++)
+    html += getAppearancesRowHtml(data[count]);
+
+  $('.table-appearances tbody').html(html);
+}
+
+function getAppearancesRowHtml(data) {
+  let html = `
+    <tr class="table-appearances-row">
+      <td>${data.yearID}</td>
+      <td>${data.name}</td>
+      <td>${data.G_all}</td>
+      <td>${data.GS}</td>
+      <td>${data.G_batting}</td>
+      <td>${data.G_defense}</td>
+      <td>${data.G_p}</td>
+      <td>${data.G_c}</td>
+      <td>${data.G_1b}</td>
+      <td>${data.G_2b}</td>
+      <td>${data.G_3b}</td>
+      <td>${data.G_ss}</td>
+      <td>${data.G_lf}</td>
+      <td>${data.G_cf}</td>
+      <td>${data.G_rf}</td>
+      <td>${data.G_of}</td>
+      <td>${data.G_dh}</td>
+      <td>${data.G_ph}</td>
+      <td>${data.G_pr}</td>
+    </tr>`;
+
+  return html;
+}
+
+function loadSalariesTable(data) {
+  let html = '';
+
+  for (var count = 0; count < data.length; count++)
+    html += getSalariesRowHtml(data[count]);
+
+  $('.table-salaries tbody').html(html);
+}
+
+function getSalariesRowHtml(data) {
+  let html = `
+    <tr class="table-salaries-row">
+      <td>${data.yearID}</td>
+      <td>${data.teamName}</td>
+      <td>${data.salary}</td>
     </tr>`;
 
   return html;

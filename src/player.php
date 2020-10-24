@@ -11,6 +11,15 @@
 
     <h1 class="mt-5 mb-5 text-center">Player Data</h1>
 
+
+    <div id="player-bio">
+
+      
+      
+
+    </div>
+
+
     <div class="row">
 
       <!-- sidebar links -->
@@ -19,8 +28,8 @@
         <b>Modules</b>
 
         <ul class="nav nav-pills flex-column mt-3">
-          <li class="nav-item"><a class="nav-link active" href="#player-bio" data-toggle="tab">Biography</a></li>
-          <li class="nav-item"><a class="nav-link" href="#player-batting" data-toggle="tab">Batting</a></li>
+          <!-- <li class="nav-item"><a class="nav-link active" href="#player-bio" data-toggle="tab">Biography</a></li> -->
+          <li class="nav-item"><a class="nav-link active" href="#player-batting" data-toggle="tab">Batting</a></li>
           <li class="nav-item"><a class="nav-link" href="#player-pitching" data-toggle="tab">Pitching</a></li>
           <li class="nav-item"><a class="nav-link" href="#player-fielding" data-toggle="tab">Fielding</a></li>
           <li class="nav-item"><a class="nav-link" href="#player-fielding-of" data-toggle="tab">Fielding OF</a></li>
@@ -35,13 +44,8 @@
       <div class="col-sm-10">
         <div class="tab-content" id="player-panels">
 
-          <!-- bio -->
-          <div class="tab-pane fade show active" id="player-bio" role="tabpanel"> 
-            <h4>Bio</h4>
-          </div>
-
           <!-- batting -->
-          <div class="tab-pane fade" id="player-batting" role="tabpanel"> 
+          <div class="tab-pane fade show active" id="player-batting" role="tabpanel"> 
             <h4 class="mb-4">Batting</h4>
 
             <!-- seasonal batting stats -->
