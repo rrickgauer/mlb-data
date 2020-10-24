@@ -16,8 +16,11 @@ const API_BIO               = API + '/people/' + playerID
 $(document).ready(function() {
 
   // getPlayerBatting(playerID, console.log);
-  getPlayerData(API_BATTING, loadBattingTable, 'batting');
-  getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
+  // getPlayerData(API_BATTING, loadBattingTable, 'batting');
+  // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
+  getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');
+  // getPlayerData(API_FIELDING, console.log, 'fielding');
+
 
 
 });
@@ -135,4 +138,36 @@ function getPitchingRowHtml(pitching) {
   </tr>`;
 
   return html;
+}
+
+
+function loadFieldingTable(data) {
+  let html = '';
+  for (var count = 0; count < data.length; count++)
+    html += getFieldingRowHtml(data[count]);
+
+  $('.table-fielding tbody').html(html);
+}
+
+function getFieldingRowHtml(data) {
+  let html = `
+    <tr class="table-fielding-row">
+    <td>${data.yearID}</td>
+    <td>${data.teamName}</td>
+    <td>${data.POS}</td>
+    <td>${data.G}</td>
+    <td>${data.GS}</td>
+    <td>${data.InnOuts}</td>
+    <td>${data.PO}</td>
+    <td>${data.A}</td>
+    <td>${data.E}</td>
+    <td>${data.DP}</td>
+    <td>${data.PB}</td>
+    <td>${data.WP}</td>
+    <td>${data.SB}</td>
+    <td>${data.CS}</td>
+    <td>${data.ZR}</td>
+    </tr>`;
+
+    return html;
 }
