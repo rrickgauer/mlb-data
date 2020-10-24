@@ -19,7 +19,8 @@ $(document).ready(function() {
   // getPlayerData(API_BATTING, loadBattingTable, 'batting');
   // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
   // getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
-  getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
+  // getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
+  getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
 
 
 });
@@ -187,6 +188,38 @@ function getFieldingOfRowHtml(data) {
       <td>${data.Glf}</td>
       <td>${data.Gcf}</td>
       <td>${data.Grf}</td>
+    </tr>`;
+
+  return html;
+}
+
+
+function loadFieldingOfSplitTable(data) {
+  let html = '';
+  for (var count = 0; count < data.length; count++)
+    html += getFieldingOfSplitRowHtml(data[count]);
+
+  $('.table-fielding-of-split tbody').html(html);
+}
+
+function getFieldingOfSplitRowHtml(data) {
+  let html = `
+    <tr class="table-fielding-of-split">
+      <td>${data.yearID}</td>
+      <td>${data.name}</td>
+      <td>${data.POS}</td>
+      <td>${data.G}</td>
+      <td>${data.GS}</td>
+      <td>${data.InnOuts}</td>
+      <td>${data.PO}</td>
+      <td>${data.A}</td>
+      <td>${data.E}</td>
+      <td>${data.DP}</td>
+      <td>${data.PB}</td>
+      <td>${data.WP}</td>
+      <td>${data.SB}</td>
+      <td>${data.CS}</td>
+      <td>${data.ZR}</td>
     </tr>`;
 
   return html;
