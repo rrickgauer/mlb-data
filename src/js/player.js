@@ -5,8 +5,8 @@ const API       = 'http://api.mlb-data.ryanrickgauer.com/main.php/batting/' + pl
 
 $(document).ready(function() {
 
-  getPlayerBatting(playerID, console.log);
-  getPlayerBatting(playerID, loadBattingTable);
+  // getPlayerBatting(playerID, console.log);
+  // getPlayerBatting(playerID, loadBattingTable);
 
 
 });
