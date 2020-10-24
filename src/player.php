@@ -125,8 +125,8 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-pitching">
                 <thead><tr>
-                  <th data-tablesort-type="int">year</th>
-                  <th data-tablesort-type="string">teamName</th>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
                   <th data-tablesort-type="int">W</th>
                   <th data-tablesort-type="int">L</th>
                   <th data-tablesort-type="int">G</th>
@@ -166,8 +166,8 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-fielding">
                 <thead><tr>
-                  <th data-tablesort-type="int">year</th>
-                  <th data-tablesort-type="string">teamName</th>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
                   <th data-tablesort-type="string">POS</th>
                   <th data-tablesort-type="int">G</th>
                   <th data-tablesort-type="int">GS</th>
@@ -194,7 +194,7 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-fielding-of">
                 <thead><tr>
-                  <th data-tablesort-type="int">year</th>
+                  <th data-tablesort-type="int">Year</th>
                   <th data-tablesort-type="int">Glf</th>
                   <th data-tablesort-type="int">Gcf</th>
                   <th data-tablesort-type="int">Grf</th>
@@ -211,8 +211,8 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-fielding-of-split">
                 <thead><tr>
-                  <th data-tablesort-type="int">yearID</th>
-                  <th data-tablesort-type="string">team name</th>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
                   <th data-tablesort-type="string">POS</th>
                   <th data-tablesort-type="int">G</th>
                   <th data-tablesort-type="int">GS</th>
@@ -239,8 +239,8 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-appearances">
                 <thead><tr>
-                  <th data-tablesort-type="int">yearID</th>
-                  <th data-tablesort-type="string">name</th>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
                   <th data-tablesort-type="int">G_all</th>
                   <th data-tablesort-type="int">GS</th>
                   <th data-tablesort-type="int">G_batting</th>
@@ -272,9 +272,9 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-salaries">
                 <thead><tr>
-                  <th data-tablesort-type="int">yearID</th>
-                  <th data-tablesort-type="string">teamName</th>
-                  <th data-tablesort-type="int">salary</th>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
+                  <th data-tablesort-type="int">Salary</th>
                 </tr></thead>
                 <tbody></tbody>
               </table>

@@ -1,32 +1,31 @@
-const urlParams = new URLSearchParams(window.location.search);
-const playerID  = urlParams.get('playerID');  
+const urlParams             = new URLSearchParams(window.location.search);
+const playerID              = urlParams.get('playerID');  
+const API                   = 'http://api.mlb-data.ryanrickgauer.com/main.php';
+const API_BATTING           = API + '/batting/' + playerID;
+const API_PITCHING          = API + '/pitching/' + playerID;
+const API_FIELDING          = API + '/fielding/' + playerID;
+const API_FIELDING_OF       = API + '/fielding-of/' + playerID;
+const API_FIELDING_OF_SPLIT = API + '/fielding-of-split/' + playerID;
+const API_APPEARANCES       = API + '/appearances/' + playerID;
+const API_SALARIES          = API + '/salaries/' + playerID;
+const API_BIO               = API + '/people/' + playerID;
 
-const API = 'http://api.mlb-data.ryanrickgauer.com/main.php';
-
-const API_BATTING           = API + '/batting/' + playerID
-const API_PITCHING          = API + '/pitching/' + playerID
-const API_FIELDING          = API + '/fielding/' + playerID
-const API_FIELDING_OF       = API + '/fielding-of/' + playerID
-const API_FIELDING_OF_SPLIT = API + '/fielding-of-split/' + playerID
-const API_APPEARANCES       = API + '/appearances/' + playerID
-const API_SALARIES          = API + '/salaries/' + playerID
-const API_BIO               = API + '/people/' + playerID
-
-
+// main function
 $(document).ready(function() {
-
-  // getPlayerBatting(playerID, console.log);
-  // getPlayerData(API_BATTING, loadBattingTable, 'batting');
-  // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
-  // getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
-  // getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
-  // getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
-  // getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
-  // getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
-
-  getPlayerData(API_BIO, loadBioData, 'bio');
-
+  loadAllPlayerData();
 });
+
+
+function loadAllPlayerData() {
+  getPlayerData(API_BIO, loadBioData, 'bio');
+  getPlayerData(API_BATTING, loadBattingTable, 'batting');
+  getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
+  getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
+  getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
+  getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
+  getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
+  getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
+}
 
 // displays an alert on the screen
 function displayAlert(text) {
@@ -231,7 +230,6 @@ function getFieldingOfSplitRowHtml(data) {
 
 function loadAppearancesTable(data) {
   let html = '';
-
   for (var count = 0; count < data.length; count++)
     html += getAppearancesRowHtml(data[count]);
 
@@ -267,7 +265,6 @@ function getAppearancesRowHtml(data) {
 
 function loadSalariesTable(data) {
   let html = '';
-
   for (var count = 0; count < data.length; count++)
     html += getSalariesRowHtml(data[count]);
 
@@ -275,11 +272,14 @@ function loadSalariesTable(data) {
 }
 
 function getSalariesRowHtml(data) {
+
+  let salaryDisplay = formatCurrency(data.salary);
+
   let html = `
     <tr class="table-salaries-row">
       <td>${data.yearID}</td>
       <td>${data.teamName}</td>
-      <td>${data.salary}</td>
+      <td>${salaryDisplay}</td>
     </tr>`;
 
   return html;
@@ -288,13 +288,12 @@ function getSalariesRowHtml(data) {
 function loadBioData(data) {
   data = data[0];
 
-  let height = inchesToFeet(data.height);
-  let heightDisplay = height.feet + '-' + height.inches;
+  let height           = inchesToFeet(data.height);
+  let heightDisplay    = height.feet + '-' + height.inches;
   let birthDateDisplay = getDisplayDate(data.birthDate);
   let debutDateDisplay = getDisplayDate(data.debuteDate);
-  let birthCityState = data.birthCity + ', ' + data.birthState;
-  let nameDisplay = data.nameFirst + ' ' + data.nameLast;
-
+  let birthCityState   = data.birthCity + ', ' + data.birthState;
+  let nameDisplay      = data.nameFirst + ' ' + data.nameLast;
 
   $('.player-bio .player-bio-item-data.name').text(nameDisplay);
   $('.player-bio .player-bio-item-data.bats').text(data.bats);
@@ -313,7 +312,6 @@ function inchesToFeet(inches) {
     feet: 0,
     inches: 0,
   }
-
 
   if (inches <= 12) {
     result.inches = inches;
@@ -339,4 +337,17 @@ function getDisplayDate(date) {
   dateData = date.split("-");
   let result = dateData[1] + '/' + dateData[2] + '/' + dateData[0];
   return result;
+}
+
+function formatCurrency(currency) {
+  var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+
+    // These options are needed to round to whole numbers if that's what you want.
+    //minimumFractionDigits: 0,
+    //maximumFractionDigits: 0,
+  });
+
+  return formatter.format(currency);
 }
