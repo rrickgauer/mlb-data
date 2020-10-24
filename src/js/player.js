@@ -18,9 +18,8 @@ $(document).ready(function() {
   // getPlayerBatting(playerID, console.log);
   // getPlayerData(API_BATTING, loadBattingTable, 'batting');
   // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
-  getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');
-  // getPlayerData(API_FIELDING, console.log, 'fielding');
-
+  // getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
+  getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
 
 
 });
@@ -170,4 +169,25 @@ function getFieldingRowHtml(data) {
     </tr>`;
 
     return html;
+}
+
+
+function loadFieldingOfTable(data) {
+  let html = '';
+  for (var count = 0; count < data.length; count++)
+    html += getFieldingOfRowHtml(data[count]);
+
+  $('.table-fielding-of tbody').html(html);
+}
+
+function getFieldingOfRowHtml(data) {
+  let html = `
+    <tr class="table-fielding-of-row">
+      <td>${data.yearID}</td>
+      <td>${data.Glf}</td>
+      <td>${data.Gcf}</td>
+      <td>${data.Grf}</td>
+    </tr>`;
+
+  return html;
 }
