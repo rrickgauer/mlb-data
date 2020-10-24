@@ -9,13 +9,58 @@
 
   <div class="container">
 
-    <h1 class="mt-5 mb-5 text-center">Player Data</h1>
+    <div class="player-bio mt-5 mb-5">
 
+      <!-- name -->
+      <h2 class="player-bio-item-data name"></h2>
 
-    <div id="player-bio">
+      <!-- bats and throws -->
+      <div class="d-flex">
+        <!-- bats -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Bats</span>
+          <span class="player-bio-item-data bats"></span>
+        </div>
 
-      
-      
+        <span>&nbsp;&bull;&nbsp;</span>
+
+        <!-- throws -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Throws</span>
+          <span class="player-bio-item-data throws"></span>
+        </div>
+      </div>
+
+      <!-- height -->
+      <div class="player-bio-item">
+        <span class="player-bio-item-label">Height</span>
+        <span class="player-bio-item-data height"></span>
+      </div>
+
+      <!-- weight -->
+      <div class="player-bio-item">
+        <span class="player-bio-item-label">Weight</span>
+        <span class="player-bio-item-data weight"></span>
+      </div>
+
+      <!-- birth date -->
+      <div class="player-bio-item">
+        <span class="player-bio-item-label">Born </span>
+        <span class="player-bio-item-data birth-date"></span>
+        <span>in</span>
+        <span class="player-bio-item-data birth-city-state"></span>
+      </div>
+
+      <!-- debut date -->
+      <div class="player-bio-item">
+        <span class="player-bio-item-label">Debut date</span>
+        <span class="player-bio-item-data debut-date"></span>
+      </div>
+
+      <!-- baseball reference -->
+      <div class="player-bio-item">
+        <a href="#" class="player-bio-item-data bbref-link" target="_blank">Baseball Reference Profile <i class='bx bx-link-external'></i></a>
+      </div>
 
     </div>
 
@@ -24,11 +69,8 @@
 
       <!-- sidebar links -->
       <div class="col-sm-2">
-
-        <b>Modules</b>
-
+        <b>Menus</b>
         <ul class="nav nav-pills flex-column mt-3">
-          <!-- <li class="nav-item"><a class="nav-link active" href="#player-bio" data-toggle="tab">Biography</a></li> -->
           <li class="nav-item"><a class="nav-link active" href="#player-batting" data-toggle="tab">Batting</a></li>
           <li class="nav-item"><a class="nav-link" href="#player-pitching" data-toggle="tab">Pitching</a></li>
           <li class="nav-item"><a class="nav-link" href="#player-fielding" data-toggle="tab">Fielding</a></li>

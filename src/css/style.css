@@ -1,4 +1,8 @@
 
 table {
-    white-space: nowrap;
+  white-space: nowrap;
+}
+
+.player-bio-item-label {
+  font-weight: bold;
 }

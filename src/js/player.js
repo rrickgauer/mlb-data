@@ -24,6 +24,7 @@ $(document).ready(function() {
   // getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
   // getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
 
+  getPlayerData(API_BIO, loadBioData, 'bio');
 
 });
 
@@ -282,4 +283,60 @@ function getSalariesRowHtml(data) {
     </tr>`;
 
   return html;
+}
+
+function loadBioData(data) {
+  data = data[0];
+
+  let height = inchesToFeet(data.height);
+  let heightDisplay = height.feet + '-' + height.inches;
+  let birthDateDisplay = getDisplayDate(data.birthDate);
+  let debutDateDisplay = getDisplayDate(data.debuteDate);
+  let birthCityState = data.birthCity + ', ' + data.birthState;
+  let nameDisplay = data.nameFirst + ' ' + data.nameLast;
+
+
+  $('.player-bio .player-bio-item-data.name').text(nameDisplay);
+  $('.player-bio .player-bio-item-data.bats').text(data.bats);
+  $('.player-bio .player-bio-item-data.throws').text(data.throws);
+  $('.player-bio .player-bio-item-data.height').text(heightDisplay);
+  $('.player-bio .player-bio-item-data.weight').text(data.weight + 'lb');
+  $('.player-bio .player-bio-item-data.birth-date').text(birthDateDisplay );
+  $('.player-bio .player-bio-item-data.birth-city-state').text(birthCityState);
+  $('.player-bio .player-bio-item-data.debut-date').text(debutDateDisplay);
+  $('.player-bio .player-bio-item-data.bbref-link').attr("href", data.baseballReferenceLink);
+
+}
+
+function inchesToFeet(inches) {
+  let result = {
+    feet: 0,
+    inches: 0,
+  }
+
+
+  if (inches <= 12) {
+    result.inches = inches;
+    return result;
+  }
+
+  let feet = 0;
+  let divisor = inches;
+
+  while (divisor > 12) {
+    feet++;
+    divisor += -12;
+  }
+
+  result.feet = feet;
+  result.inches = divisor;
+
+  return result;
+}
+
+
+function getDisplayDate(date) {
+  dateData = date.split("-");
+  let result = dateData[1] + '/' + dateData[2] + '/' + dateData[0];
+  return result;
 }
