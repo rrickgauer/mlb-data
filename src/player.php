@@ -1,13 +1,3 @@
-<?php
-
-include_once('Player-Class.php');
-
-$player = new Player($_GET['playerID']);
-
-var_dump($player->getBatting());
-
-?>
-
 <!DOCTYPE html>
 <html>
 <head>
