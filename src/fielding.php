@@ -21,5 +21,6 @@
   </div>
 
 <?php include('footer.php'); ?>
+<script src="js/fielding.js"></script>
 </body>
 </html>

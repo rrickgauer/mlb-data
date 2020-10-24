@@ -21,5 +21,6 @@
   </div>
 
 <?php include('footer.php'); ?>
+<script src="js/pitching.js"></script>
 </body>
 </html>

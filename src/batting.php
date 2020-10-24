@@ -18,6 +18,8 @@
 
   </div>
 
-<?php include('footer.php'); ?>
+  <?php include('footer.php'); ?>
+
+  <script src="js/batting.js"></script>
 </body>
 </html>
