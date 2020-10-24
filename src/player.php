@@ -9,18 +9,69 @@
 
   <div class="container">
 
-    <h1 class="mt-5 mb-5 text-center">Player Data</h1>
+    <div class="player-bio mt-5 mb-5">
+
+      <!-- name -->
+      <h2 class="player-bio-item-data name"></h2>
+
+      <!-- bats and throws -->
+      <div class="d-flex">
+        <!-- bats -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Bats</span>
+          <span class="player-bio-item-data bats"></span>
+        </div>
+
+        <span>&nbsp;&bull;&nbsp;</span>
+
+        <!-- throws -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Throws</span>
+          <span class="player-bio-item-data throws"></span>
+        </div>
+      </div>
+
+      <!-- height -->
+      <div class="player-bio-item">
+        <span class="player-bio-item-label">Height</span>
+        <span class="player-bio-item-data height"></span>
+      </div>
+
+      <!-- weight -->
+      <div class="player-bio-item">
+        <span class="player-bio-item-label">Weight</span>
+        <span class="player-bio-item-data weight"></span>
+      </div>
+
+      <!-- birth date -->
+      <div class="player-bio-item">
+        <span class="player-bio-item-label">Born </span>
+        <span class="player-bio-item-data birth-date"></span>
+        <span>in</span>
+        <span class="player-bio-item-data birth-city-state"></span>
+      </div>
+
+      <!-- debut date -->
+      <div class="player-bio-item">
+        <span class="player-bio-item-label">Debut date</span>
+        <span class="player-bio-item-data debut-date"></span>
+      </div>
+
+      <!-- baseball reference -->
+      <div class="player-bio-item">
+        <a href="#" class="player-bio-item-data bbref-link" target="_blank">Baseball Reference Profile <i class='bx bx-link-external'></i></a>
+      </div>
+
+    </div>
+
 
     <div class="row">
 
       <!-- sidebar links -->
       <div class="col-sm-2">
-
-        <b>Modules</b>
-
+        <b>Menus</b>
         <ul class="nav nav-pills flex-column mt-3">
-          <li class="nav-item"><a class="nav-link active" href="#player-bio" data-toggle="tab">Biography</a></li>
-          <li class="nav-item"><a class="nav-link" href="#player-batting" data-toggle="tab">Batting</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#player-batting" data-toggle="tab">Batting</a></li>
           <li class="nav-item"><a class="nav-link" href="#player-pitching" data-toggle="tab">Pitching</a></li>
           <li class="nav-item"><a class="nav-link" href="#player-fielding" data-toggle="tab">Fielding</a></li>
           <li class="nav-item"><a class="nav-link" href="#player-fielding-of" data-toggle="tab">Fielding OF</a></li>
@@ -35,13 +86,8 @@
       <div class="col-sm-10">
         <div class="tab-content" id="player-panels">
 
-          <!-- bio -->
-          <div class="tab-pane fade show active" id="player-bio" role="tabpanel"> 
-            <h4>Bio</h4>
-          </div>
-
           <!-- batting -->
-          <div class="tab-pane fade" id="player-batting" role="tabpanel"> 
+          <div class="tab-pane fade show active" id="player-batting" role="tabpanel"> 
             <h4 class="mb-4">Batting</h4>
 
             <!-- seasonal batting stats -->
@@ -79,8 +125,8 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-pitching">
                 <thead><tr>
-                  <th data-tablesort-type="int">year</th>
-                  <th data-tablesort-type="string">teamName</th>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
                   <th data-tablesort-type="int">W</th>
                   <th data-tablesort-type="int">L</th>
                   <th data-tablesort-type="int">G</th>
@@ -120,8 +166,8 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-fielding">
                 <thead><tr>
-                  <th data-tablesort-type="int">year</th>
-                  <th data-tablesort-type="string">teamName</th>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
                   <th data-tablesort-type="string">POS</th>
                   <th data-tablesort-type="int">G</th>
                   <th data-tablesort-type="int">GS</th>
@@ -148,7 +194,7 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-fielding-of">
                 <thead><tr>
-                  <th data-tablesort-type="int">year</th>
+                  <th data-tablesort-type="int">Year</th>
                   <th data-tablesort-type="int">Glf</th>
                   <th data-tablesort-type="int">Gcf</th>
                   <th data-tablesort-type="int">Grf</th>
@@ -165,8 +211,8 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-fielding-of-split">
                 <thead><tr>
-                  <th data-tablesort-type="int">yearID</th>
-                  <th data-tablesort-type="string">team name</th>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
                   <th data-tablesort-type="string">POS</th>
                   <th data-tablesort-type="int">G</th>
                   <th data-tablesort-type="int">GS</th>
@@ -193,8 +239,8 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-appearances">
                 <thead><tr>
-                  <th data-tablesort-type="int">yearID</th>
-                  <th data-tablesort-type="string">name</th>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
                   <th data-tablesort-type="int">G_all</th>
                   <th data-tablesort-type="int">GS</th>
                   <th data-tablesort-type="int">G_batting</th>
@@ -226,9 +272,9 @@
             <div class="table-responsive">
               <table class="table table-sm tablesort table-salaries">
                 <thead><tr>
-                  <th data-tablesort-type="int">yearID</th>
-                  <th data-tablesort-type="string">teamName</th>
-                  <th data-tablesort-type="int">salary</th>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
+                  <th data-tablesort-type="int">Salary</th>
                 </tr></thead>
                 <tbody></tbody>
               </table>
