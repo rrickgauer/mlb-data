@@ -34,10 +34,7 @@
         </form>
 
         <!-- search results menu -->
-        <div class="navbar-search-menu">
-          <a class="navbar-search-menu-item" href="#">first one</a>
-          <a class="navbar-search-menu-item" href="#">second one</a>
-          <a class="navbar-search-menu-item" href="#">third one</a>
+        <div class="navbar-search-menu d-none">
         </div>
       </div>
 
