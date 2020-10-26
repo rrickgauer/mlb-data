@@ -29,9 +29,16 @@
             <div class="input-group-prepend">
               <span class="input-group-text"><i class='bx bx-search'></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="Search...">
+            <input type="text" class="form-control navbar-search-input" placeholder="Search...">
           </div>
         </form>
+
+        <!-- search results menu -->
+        <div class="navbar-search-menu">
+          <a class="navbar-search-menu-item" href="#">first one</a>
+          <a class="navbar-search-menu-item" href="#">second one</a>
+          <a class="navbar-search-menu-item" href="#">third one</a>
+        </div>
       </div>
 
     </div>

@@ -10,3 +10,9 @@ table {
 body {
   margin-bottom: 40px;
 }
+
+.navbar-search-menu {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+}
