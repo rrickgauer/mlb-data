@@ -12,3 +12,6 @@
 
 <!-- autotables -->
 <script src="js/external/auto-tables.js"></script>
+
+<!-- navbar js -->
+<script src="js/navbar.js"></script>
