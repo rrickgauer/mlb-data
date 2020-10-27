@@ -1,0 +1,35 @@
+table {
+  white-space: nowrap;
+}
+
+.player-bio-item-label {
+  font-weight: bold;
+}
+
+body {
+  margin-bottom: 40px;
+}
+
+.navbar-search {
+  position: relative;
+
+  .navbar-search-menu {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+  }
+}
+
+.player-summary {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  
+  .player-summary-card {
+    margin: 10px;
+    width: 170px;
+  }
+}
+

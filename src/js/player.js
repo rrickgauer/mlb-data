@@ -18,6 +18,10 @@ $(document).ready(function() {
 
 function loadAllPlayerData() {
   getPlayerData(API_BIO, loadBioData, 'bio');
+
+  let urlBattingAggregate = API_BATTING + '?aggregate=true';
+  getPlayerData(urlBattingAggregate, loadBattingAggregateData, 'batting aggregate');
+
   getPlayerData(API_BATTING, loadBattingTable, 'batting');
   getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
   getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
@@ -350,4 +354,20 @@ function formatCurrency(currency) {
   });
 
   return formatter.format(currency);
+}
+
+
+function loadBattingAggregateData(data) {
+  data = data[0];
+  const BA = data.H / data.AB;
+  // const OBP = (data.H + data.BB + data.HBP) / (data.AB + data.BB + data.HBP + data.SF);
+
+  let battingSummary = $('.player-summary.batting');
+  $(battingSummary).find('.player-summary-card.ab .data').text(data.AB);
+  $(battingSummary).find('.player-summary-card.h .data').text(data.H);
+  $(battingSummary).find('.player-summary-card.hr .data').text(data.HR);
+  $(battingSummary).find('.player-summary-card.ba .data').text(BA.toFixed(3));
+  $(battingSummary).find('.player-summary-card.r .data').text(data.R);
+  $(battingSummary).find('.player-summary-card.rbi .data').text(data.RBI);
+
 }

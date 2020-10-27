@@ -79,8 +79,59 @@
     <div class="tab-content" id="player-panels">
 
       <!-- batting -->
-      <div class="tab-pane fade show active" id="player-batting" role="tabpanel"> 
-        <h4 class="mb-4">Batting</h4>
+      <div class="tab-pane fade show active" id="player-batting" role="tabpanel">
+
+        <h5>Career</h5> 
+        <div class="player-summary batting">
+          <!-- AB -->
+          <div class="card player-summary-card ab">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">At bats</span>
+            </div>
+          </div>
+
+          <!-- H -->
+          <div class="card player-summary-card h">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">Hits</span>
+            </div>
+          </div>
+
+          <!-- BA -->
+          <div class="card player-summary-card ba">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">Batting average</span>
+            </div>
+          </div>
+
+          <!-- HR -->
+          <div class="card player-summary-card hr">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">Home runs</span>
+            </div>
+          </div>
+
+          <!-- R -->
+          <div class="card player-summary-card r">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">Runs</span>
+            </div>
+          </div>
+
+          <!-- RBI -->
+          <div class="card player-summary-card rbi">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">Runs batted in</span>
+            </div>
+          </div>
+        </div>
+
 
         <!-- seasonal batting stats -->
         <div class="table-responsive">
