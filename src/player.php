@@ -1,3 +1,6 @@
+<?php require_once('HTML-Generator.php'); ?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,7 +89,9 @@
           <!-- AB -->
           <div class="card player-summary-card ab">
             <div class="card-body">
-              <h4 class="card-title data"></h4>
+              <h4 class="card-title data">
+                <?php echo Html::getSpinner(); ?>
+              </h4>
               <span class="label">At bats</span>
             </div>
           </div>
@@ -94,7 +99,9 @@
           <!-- H -->
           <div class="card player-summary-card h">
             <div class="card-body">
-              <h4 class="card-title data"></h4>
+              <h4 class="card-title data">
+                <?php echo Html::getSpinner(); ?>
+              </h4>
               <span class="label">Hits</span>
             </div>
           </div>
@@ -102,7 +109,9 @@
           <!-- BA -->
           <div class="card player-summary-card ba">
             <div class="card-body">
-              <h4 class="card-title data"></h4>
+              <h4 class="card-title data">
+                <?php echo Html::getSpinner(); ?>
+              </h4>
               <span class="label">Batting average</span>
             </div>
           </div>
@@ -110,7 +119,9 @@
           <!-- HR -->
           <div class="card player-summary-card hr">
             <div class="card-body">
-              <h4 class="card-title data"></h4>
+              <h4 class="card-title data">
+                <?php echo Html::getSpinner(); ?>
+              </h4>
               <span class="label">Home runs</span>
             </div>
           </div>
@@ -118,7 +129,9 @@
           <!-- R -->
           <div class="card player-summary-card r">
             <div class="card-body">
-              <h4 class="card-title data"></h4>
+              <h4 class="card-title data">
+                <?php echo Html::getSpinner(); ?>
+              </h4>
               <span class="label">Runs</span>
             </div>
           </div>
@@ -126,7 +139,9 @@
           <!-- RBI -->
           <div class="card player-summary-card rbi">
             <div class="card-body">
-              <h4 class="card-title data"></h4>
+              <h4 class="card-title data">
+                <?php echo Html::getSpinner(); ?>
+              </h4>
               <span class="label">Runs batted in</span>
             </div>
           </div>
@@ -137,7 +152,13 @@
         <!-- chart -->
         <div class="card card-chart mb-5">
           <div class="card-body">
-            <canvas id="chart-player-batting"></canvas>
+
+            <!-- loading spinner -->
+            <div class="text-center">
+              <?php echo Html::getSpinner(); ?>
+            </div>
+
+            <canvas id="chart-player-batting" class="d-none"></canvas>
           </div>
         </div>
 
@@ -166,7 +187,16 @@
                   <th data-tablesort-type="int">SF</th>
                   <th data-tablesort-type="int">GIDP</th>
                 </tr></thead>
-                <tbody></tbody>
+                <tbody>
+                  
+                  <!-- inital spinner -->
+                  <tr><td colspan="27">
+                    <div class="text-center mt-5">
+                      <?php echo Html::getSpinner(); ?>
+                    </div>
+                  </td></tr>
+
+                </tbody>
               </table>
             </div>
           </div>

@@ -420,6 +420,10 @@ function loadBattingChartData(data) {
       datasets: chartData.datasets,
     },
   });
+
+  $('#chart-player-batting').removeClass('d-none');
+
+  $('#chart-player-batting').closest('.card-body').find('.spinner-border').remove();
 }
 
 function getBattingChartDataset(label, data, color) {
