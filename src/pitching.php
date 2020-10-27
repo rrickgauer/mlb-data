@@ -75,11 +75,9 @@ $data = $pitching->getDataset();
     <div class="card card-table mt-5">
       <div class="card-body">
         <div class="table-responsive">
-          <table class="table table-sm">
+          <table class="table table-sm table-pitching">
             <thead><tr>
-              <th>Player ID</th>
-              <th>First Name</th>
-              <th>Last Name</th>
+              <th>Name</th>
               <th>years</th>
               <th>W</th>
               <th>L</th>
@@ -108,7 +106,11 @@ $data = $pitching->getDataset();
               <th>GIDP</th>
             </tr></thead>
             <tbody>
-              <?php echo Html::getPitchingAggregateTable($data); ?>
+              <tr><td colspan="27" rowspan="20">
+                <div class="text-center mt-5 mb-5">
+                  <?php echo Html::getSpinner() ?>
+                </div>
+              </td></tr>
             </tbody>
           </table>
         </div>
