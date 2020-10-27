@@ -22,3 +22,14 @@ body {
   }
 }
 
+.player-summary {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  
+  .player-summary-card {
+    margin: 10px;
+    width: 170px;
+  }
+}
+
