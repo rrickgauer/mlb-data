@@ -13,5 +13,8 @@
 <!-- autotables -->
 <script src="js/external/auto-tables.js"></script>
 
+<!-- chart.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
+
 <!-- navbar js -->
 <script src="js/navbar.js"></script>

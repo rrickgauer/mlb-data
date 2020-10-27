@@ -81,7 +81,7 @@
       <!-- batting -->
       <div class="tab-pane fade show active" id="player-batting" role="tabpanel">
 
-        <h5>Career</h5> 
+        <h4>Career</h4> 
         <div class="player-summary batting">
           <!-- AB -->
           <div class="card player-summary-card ab">
@@ -132,33 +132,46 @@
           </div>
         </div>
 
+        <h4 class="mt-5">Seasonal</h4>
+
+        <!-- chart -->
+        <div class="card card-chart mb-5">
+          <div class="card-body">
+            <canvas id="chart-player-batting"></canvas>
+          </div>
+        </div>
 
         <!-- seasonal batting stats -->
-        <div class="table-responsive">
-          <table class="table table-sm table-batting tablesort">
-            <thead><tr>
-              <th data-tablesort-type="int">Year</th>
-              <th data-tablesort-type="int">G</th>
-              <th data-tablesort-type="int">AB</th>
-              <th data-tablesort-type="int">R</th>
-              <th data-tablesort-type="int">H</th>
-              <th data-tablesort-type="int">2B</th>
-              <th data-tablesort-type="int">3B</th>
-              <th data-tablesort-type="int">HR</th>
-              <th data-tablesort-type="int">RBI</th>
-              <th data-tablesort-type="int">SB</th>
-              <th data-tablesort-type="int">CS</th>
-              <th data-tablesort-type="int">BB</th>
-              <th data-tablesort-type="int">SO</th>
-              <th data-tablesort-type="int">IBB</th>
-              <th data-tablesort-type="int">HBP</th>
-              <th data-tablesort-type="int">SH</th>
-              <th data-tablesort-type="int">SF</th>
-              <th data-tablesort-type="int">GIDP</th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
+        <div class="card card-table">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm table-batting tablesort">
+                <thead><tr>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="int">G</th>
+                  <th data-tablesort-type="int">AB</th>
+                  <th data-tablesort-type="int">R</th>
+                  <th data-tablesort-type="int">H</th>
+                  <th data-tablesort-type="int">2B</th>
+                  <th data-tablesort-type="int">3B</th>
+                  <th data-tablesort-type="int">HR</th>
+                  <th data-tablesort-type="int">RBI</th>
+                  <th data-tablesort-type="int">SB</th>
+                  <th data-tablesort-type="int">CS</th>
+                  <th data-tablesort-type="int">BB</th>
+                  <th data-tablesort-type="int">SO</th>
+                  <th data-tablesort-type="int">IBB</th>
+                  <th data-tablesort-type="int">HBP</th>
+                  <th data-tablesort-type="int">SH</th>
+                  <th data-tablesort-type="int">SF</th>
+                  <th data-tablesort-type="int">GIDP</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
         </div>
+
       </div>
 
       <!-- pitching -->

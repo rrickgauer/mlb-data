@@ -10,9 +10,14 @@ const API_APPEARANCES       = API + '/appearances/' + playerID;
 const API_SALARIES          = API + '/salaries/' + playerID;
 const API_BIO               = API + '/people/' + playerID;
 
+const CHART_COLORS = ['red', 'pink', 'purple', 'darkviolet', 'indigo', 'blue', 'lightblue', 'cyan', 'teal', 'green', 'lightgreen', 'lime', 'yellow', 'goldenrod', 'orange', 'tomato', 'brown', 'grey', 'cadetblue', 'thistle', 'yellowgreen'];
+
+
+
 // main function
 $(document).ready(function() {
   loadAllPlayerData();
+  // loadChartData();
 });
 
 
@@ -21,12 +26,15 @@ function loadAllPlayerData() {
 
   let urlBattingAggregate = API_BATTING + '?aggregate=true';
   getPlayerData(urlBattingAggregate, loadBattingAggregateData, 'batting aggregate');
+  getPlayerBatting(urlBattingAggregate, loadBattingChartData, 'batting aggregate chart');
 
   // loadPitchingAggregateData
   let urlPitchingAggregate = API_PITCHING + '?aggregate=true';
   getPlayerData(urlPitchingAggregate, loadPitchingAggregateData, 'pitching aggregate');
 
-  // getPlayerData(API_BATTING, loadBattingTable, 'batting');
+
+
+  getPlayerData(API_BATTING, loadBattingTable, 'batting');
   // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
   // getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
   // getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
@@ -397,4 +405,63 @@ function loadPitchingAggregateData(data) {
   $(battingSummary).find('.player-summary-card.so .data').text(data.SO);
   $(battingSummary).find('.player-summary-card.whip .data').text(WHIP);
 
+}
+
+
+
+function loadBattingChartData(data) {
+  let chartData = getBattingDatasets(data);
+
+  var ctz = document.getElementById('chart-player-batting');
+  new Chart(ctz, {
+    type: 'line',
+    data: {
+      labels: chartData.labels,
+      datasets: chartData.datasets,
+    },
+  });
+}
+
+function getBattingChartDataset(label, data, color) {
+  let item = {
+    label: label,
+    data: data,
+    borderColor: color,
+    fill: false,
+  }
+
+  return item;
+}
+
+
+
+function getBattingDatasets(data) {
+  let columnNames = Object.keys(data[0]);
+  let datasets = [];
+
+  for (var count = 0; count < columnNames.length; count++) {
+    let dataArray = [];
+    let label = columnNames[count];
+
+    // add the data piece into the array
+    for (let i = 0; i < data.length; i++) {
+      let item = data[i][label];
+      dataArray.push(data[i][label]);
+    }
+
+    datasets.push(getBattingChartDataset(label, dataArray, CHART_COLORS[count]));
+    console.log(count + '. ' + label + ': ' + CHART_COLORS[count]);
+  }
+
+  // redo the colors
+  let i = 0;
+  for (var count = 8; count < datasets.length; count++) {
+    datasets[count].borderColor = CHART_COLORS[i];
+    i++;
+  }
+  
+  return {
+    labels: datasets[3].data,
+    datasets: datasets.slice(8),
+  }
 }
