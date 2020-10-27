@@ -163,7 +163,59 @@
 
       <!-- pitching -->
       <div class="tab-pane fade" id="player-pitching" role="tabpanel"> 
-        <h4>Pitching</h4>
+
+        <!-- career stats -->
+        <h5>Career</h5> 
+        <div class="player-summary pitching">
+          <!-- ERA -->
+          <div class="card player-summary-card era">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">Earned run average</span>
+            </div>
+          </div>
+
+          <!-- W -->
+          <div class="card player-summary-card w">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">Wins</span>
+            </div>
+          </div>
+
+          <!-- G -->
+          <div class="card player-summary-card g">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">Games</span>
+            </div>
+          </div>
+
+          <!-- IP -->
+          <div class="card player-summary-card ip">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">Innings pitched</span>
+            </div>
+          </div>
+
+          <!-- SO -->
+          <div class="card player-summary-card so">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">Strike outs</span>
+            </div>
+          </div>
+
+          <!-- WHIP -->
+          <div class="card player-summary-card whip">
+            <div class="card-body">
+              <h4 class="card-title data"></h4>
+              <span class="label">WHIP</span>
+            </div>
+          </div>
+        </div>
+
 
         <div class="table-responsive">
           <table class="table table-sm tablesort table-pitching">
