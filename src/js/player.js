@@ -22,13 +22,17 @@ function loadAllPlayerData() {
   let urlBattingAggregate = API_BATTING + '?aggregate=true';
   getPlayerData(urlBattingAggregate, loadBattingAggregateData, 'batting aggregate');
 
-  getPlayerData(API_BATTING, loadBattingTable, 'batting');
-  getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
-  getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
-  getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
-  getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
-  getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
-  getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
+  // loadPitchingAggregateData
+  let urlPitchingAggregate = API_PITCHING + '?aggregate=true';
+  getPlayerData(urlPitchingAggregate, loadPitchingAggregateData, 'pitching aggregate');
+
+  // getPlayerData(API_BATTING, loadBattingTable, 'batting');
+  // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
+  // getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
+  // getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
+  // getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
+  // getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
+  // getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
 }
 
 // displays an alert on the screen
@@ -369,5 +373,28 @@ function loadBattingAggregateData(data) {
   $(battingSummary).find('.player-summary-card.ba .data').text(BA.toFixed(3));
   $(battingSummary).find('.player-summary-card.r .data').text(data.R);
   $(battingSummary).find('.player-summary-card.rbi .data').text(data.RBI);
+}
+
+
+function loadPitchingAggregateData(data) {
+  data = data[0];
+  const IP = data.IPouts / 3;
+
+  // calculate era
+  let ERA = (data.ER * 9) / IP;
+  ERA = ERA.toFixed(2);
+
+  // calculate whip
+  let WHIP = (data.BB + data.H) / IP;
+  WHIP = WHIP.toFixed(2);
+
+  // load data into the dom
+  let battingSummary = $('.player-summary.pitching');
+  $(battingSummary).find('.player-summary-card.era .data').text(ERA);
+  $(battingSummary).find('.player-summary-card.w .data').text(data.W);
+  $(battingSummary).find('.player-summary-card.g .data').text(data.G);
+  $(battingSummary).find('.player-summary-card.ip .data').text(IP.toFixed(1));
+  $(battingSummary).find('.player-summary-card.so .data').text(data.SO);
+  $(battingSummary).find('.player-summary-card.whip .data').text(WHIP);
 
 }
