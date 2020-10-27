@@ -82,6 +82,64 @@
       <div class="tab-pane fade show active" id="player-batting" role="tabpanel"> 
         <h4 class="mb-4">Batting</h4>
 
+        <div class="player-summary batting">
+          
+          <!-- AB -->
+          <div class="card player-summary-card ab">
+            <div class="card-body">
+              <h4 class="card-title">AB</h4>
+              <span class="data"></span>
+            </div>
+          </div>
+
+          <!-- H -->
+          <div class="card player-summary-card h">
+            <div class="card-body">
+              <h4 class="card-title">H</h4>
+              <span class="data"></span>
+            </div>
+          </div>
+
+          <!-- HR -->
+          <div class="card player-summary-card hr">
+            <div class="card-body">
+              <h4 class="card-title">HR</h4>
+              <span class="data"></span>
+            </div>
+          </div>
+
+
+          <!-- BA -->
+          <div class="card player-summary-card ba">
+            <div class="card-body">
+              <h4 class="card-title">BA</h4>
+              <span class="data"></span>
+            </div>
+          </div>
+
+          <!-- R -->
+          <div class="card player-summary-card r">
+            <div class="card-body">
+              <h4 class="card-title">R</h4>
+              <span class="data"></span>
+            </div>
+          </div>
+
+          <!-- RBI -->
+          <div class="card player-summary-card rbi">
+            <div class="card-body">
+              <h4 class="card-title">RBI</h4>
+              <span class="data"></span>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+
+
         <!-- seasonal batting stats -->
         <div class="table-responsive">
           <table class="table table-sm table-batting tablesort">
