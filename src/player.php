@@ -259,168 +259,180 @@
           </div>
         </div>
 
-
-        <div class="table-responsive">
-          <table class="table table-sm tablesort table-pitching">
-            <thead><tr>
-              <th data-tablesort-type="int">Year</th>
-              <th data-tablesort-type="string">Team</th>
-              <th data-tablesort-type="int">W</th>
-              <th data-tablesort-type="int">L</th>
-              <th data-tablesort-type="int">G</th>
-              <th data-tablesort-type="int">GS</th>
-              <th data-tablesort-type="int">CG</th>
-              <th data-tablesort-type="int">SHO</th>
-              <th data-tablesort-type="int">SV</th>
-              <th data-tablesort-type="int">IPouts</th>
-              <th data-tablesort-type="int">H</th>
-              <th data-tablesort-type="int">ER</th>
-              <th data-tablesort-type="int">HR</th>
-              <th data-tablesort-type="int">BB</th>
-              <th data-tablesort-type="int">SO</th>
-              <th data-tablesort-type="int">BAOpp</th>
-              <th data-tablesort-type="int">ERA</th>
-              <th data-tablesort-type="int">IBB</th>
-              <th data-tablesort-type="int">WP</th>
-              <th data-tablesort-type="int">HBP</th>
-              <th data-tablesort-type="int">BK</th>
-              <th data-tablesort-type="int">BFP</th>
-              <th data-tablesort-type="int">GF</th>
-              <th data-tablesort-type="int">R</th>
-              <th data-tablesort-type="int">SH</th>
-              <th data-tablesort-type="int">SF</th>
-              <th data-tablesort-type="int">GIDP</th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
+        <div class="card card-table">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm tablesort table-pitching">
+                <thead><tr>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
+                  <th data-tablesort-type="int">W</th>
+                  <th data-tablesort-type="int">L</th>
+                  <th data-tablesort-type="int">G</th>
+                  <th data-tablesort-type="int">GS</th>
+                  <th data-tablesort-type="int">CG</th>
+                  <th data-tablesort-type="int">SHO</th>
+                  <th data-tablesort-type="int">SV</th>
+                  <th data-tablesort-type="int">IPouts</th>
+                  <th data-tablesort-type="int">H</th>
+                  <th data-tablesort-type="int">ER</th>
+                  <th data-tablesort-type="int">HR</th>
+                  <th data-tablesort-type="int">BB</th>
+                  <th data-tablesort-type="int">SO</th>
+                  <th data-tablesort-type="int">BAOpp</th>
+                  <th data-tablesort-type="int">ERA</th>
+                  <th data-tablesort-type="int">IBB</th>
+                  <th data-tablesort-type="int">WP</th>
+                  <th data-tablesort-type="int">HBP</th>
+                  <th data-tablesort-type="int">BK</th>
+                  <th data-tablesort-type="int">BFP</th>
+                  <th data-tablesort-type="int">GF</th>
+                  <th data-tablesort-type="int">R</th>
+                  <th data-tablesort-type="int">SH</th>
+                  <th data-tablesort-type="int">SF</th>
+                  <th data-tablesort-type="int">GIDP</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
         </div>
-
       </div>
 
       <!-- fielding -->
       <div class="tab-pane fade" id="player-fielding" role="tabpanel"> 
-        <h4>Fielding</h4>
 
-        <div class="table-responsive">
-          <table class="table table-sm tablesort table-fielding">
-            <thead><tr>
-              <th data-tablesort-type="int">Year</th>
-              <th data-tablesort-type="string">Team</th>
-              <th data-tablesort-type="string">POS</th>
-              <th data-tablesort-type="int">G</th>
-              <th data-tablesort-type="int">GS</th>
-              <th data-tablesort-type="int">InnOuts</th>
-              <th data-tablesort-type="int">PO</th>
-              <th data-tablesort-type="int">A</th>
-              <th data-tablesort-type="int">E</th>
-              <th data-tablesort-type="int">DP</th>
-              <th data-tablesort-type="int">PB</th>
-              <th data-tablesort-type="int">WP</th>
-              <th data-tablesort-type="int">SB</th>
-              <th data-tablesort-type="int">CS</th>
-              <th data-tablesort-type="int">ZR</th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
+        <div class="card card-table">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm tablesort table-fielding">
+                <thead><tr>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
+                  <th data-tablesort-type="string">POS</th>
+                  <th data-tablesort-type="int">G</th>
+                  <th data-tablesort-type="int">GS</th>
+                  <th data-tablesort-type="int">InnOuts</th>
+                  <th data-tablesort-type="int">PO</th>
+                  <th data-tablesort-type="int">A</th>
+                  <th data-tablesort-type="int">E</th>
+                  <th data-tablesort-type="int">DP</th>
+                  <th data-tablesort-type="int">PB</th>
+                  <th data-tablesort-type="int">WP</th>
+                  <th data-tablesort-type="int">SB</th>
+                  <th data-tablesort-type="int">CS</th>
+                  <th data-tablesort-type="int">ZR</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
         </div>
+
+
       </div>
 
       <!-- fielding of -->
       <div class="tab-pane fade" id="player-fielding-of" role="tabpanel"> 
-        <h4>Fielding OF</h4>
-
-        <div class="table-responsive">
-          <table class="table table-sm tablesort table-fielding-of">
-            <thead><tr>
-              <th data-tablesort-type="int">Year</th>
-              <th data-tablesort-type="int">Glf</th>
-              <th data-tablesort-type="int">Gcf</th>
-              <th data-tablesort-type="int">Grf</th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
+        <div class="card card-table">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm tablesort table-fielding-of">
+                <thead><tr>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="int">Glf</th>
+                  <th data-tablesort-type="int">Gcf</th>
+                  <th data-tablesort-type="int">Grf</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- fielding of split -->
       <div class="tab-pane fade" id="player-fielding-of-split" role="tabpanel"> 
-        <h4>Fielding OF Split</h4>
-
-        <div class="table-responsive">
-          <table class="table table-sm tablesort table-fielding-of-split">
-            <thead><tr>
-              <th data-tablesort-type="int">Year</th>
-              <th data-tablesort-type="string">Team</th>
-              <th data-tablesort-type="string">POS</th>
-              <th data-tablesort-type="int">G</th>
-              <th data-tablesort-type="int">GS</th>
-              <th data-tablesort-type="int">InnOuts</th>
-              <th data-tablesort-type="int">PO</th>
-              <th data-tablesort-type="int">A</th>
-              <th data-tablesort-type="int">E</th>
-              <th data-tablesort-type="int">DP</th>
-              <th data-tablesort-type="int">PB</th>
-              <th data-tablesort-type="int">WP</th>
-              <th data-tablesort-type="int">SB</th>
-              <th data-tablesort-type="int">CS</th>
-              <th data-tablesort-type="int">ZR</th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
+        <div class="card card-table">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm tablesort table-fielding-of-split">
+                <thead><tr>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
+                  <th data-tablesort-type="string">POS</th>
+                  <th data-tablesort-type="int">G</th>
+                  <th data-tablesort-type="int">GS</th>
+                  <th data-tablesort-type="int">InnOuts</th>
+                  <th data-tablesort-type="int">PO</th>
+                  <th data-tablesort-type="int">A</th>
+                  <th data-tablesort-type="int">E</th>
+                  <th data-tablesort-type="int">DP</th>
+                  <th data-tablesort-type="int">PB</th>
+                  <th data-tablesort-type="int">WP</th>
+                  <th data-tablesort-type="int">SB</th>
+                  <th data-tablesort-type="int">CS</th>
+                  <th data-tablesort-type="int">ZR</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- appearances -->
       <div class="tab-pane fade" id="player-appearances" role="tabpanel"> 
-        <h4>Appearances</h4>
-
-        <div class="table-responsive">
-          <table class="table table-sm tablesort table-appearances">
-            <thead><tr>
-              <th data-tablesort-type="int">Year</th>
-              <th data-tablesort-type="string">Team</th>
-              <th data-tablesort-type="int">G_all</th>
-              <th data-tablesort-type="int">GS</th>
-              <th data-tablesort-type="int">G_batting</th>
-              <th data-tablesort-type="int">G_defense</th>
-              <th data-tablesort-type="int">G_p</th>
-              <th data-tablesort-type="int">G_c</th>
-              <th data-tablesort-type="int">G_1b</th>
-              <th data-tablesort-type="int">G_2b</th>
-              <th data-tablesort-type="int">G_3b</th>
-              <th data-tablesort-type="int">G_ss</th>
-              <th data-tablesort-type="int">G_lf</th>
-              <th data-tablesort-type="int">G_cf</th>
-              <th data-tablesort-type="int">G_rf</th>
-              <th data-tablesort-type="int">G_of</th>
-              <th data-tablesort-type="int">G_dh</th>
-              <th data-tablesort-type="int">G_ph</th>
-              <th data-tablesort-type="int">G_pr</th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
+        <div class="card card-table">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm tablesort table-appearances">
+                <thead><tr>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
+                  <th data-tablesort-type="int">G_all</th>
+                  <th data-tablesort-type="int">GS</th>
+                  <th data-tablesort-type="int">G_batting</th>
+                  <th data-tablesort-type="int">G_defense</th>
+                  <th data-tablesort-type="int">G_p</th>
+                  <th data-tablesort-type="int">G_c</th>
+                  <th data-tablesort-type="int">G_1b</th>
+                  <th data-tablesort-type="int">G_2b</th>
+                  <th data-tablesort-type="int">G_3b</th>
+                  <th data-tablesort-type="int">G_ss</th>
+                  <th data-tablesort-type="int">G_lf</th>
+                  <th data-tablesort-type="int">G_cf</th>
+                  <th data-tablesort-type="int">G_rf</th>
+                  <th data-tablesort-type="int">G_of</th>
+                  <th data-tablesort-type="int">G_dh</th>
+                  <th data-tablesort-type="int">G_ph</th>
+                  <th data-tablesort-type="int">G_pr</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
-
 
       <!-- salaries -->
       <div class="tab-pane fade" id="player-salaries" role="tabpanel"> 
-        <h4>Salaries</h4>
-
-        <div class="table-responsive">
-          <table class="table table-sm tablesort table-salaries">
-            <thead><tr>
-              <th data-tablesort-type="int">Year</th>
-              <th data-tablesort-type="string">Team</th>
-              <th data-tablesort-type="int">Salary</th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
+        <div class="card card-table">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-sm tablesort table-salaries">
+                <thead><tr>
+                  <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="string">Team</th>
+                  <th data-tablesort-type="int">Salary</th>
+                </tr></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
         </div>
-
       </div>
-    </div>
-
+    </div>  
 
   </div>
 
