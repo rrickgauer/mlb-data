@@ -10,6 +10,10 @@ const API_APPEARANCES       = API + '/appearances/' + playerID;
 const API_SALARIES          = API + '/salaries/' + playerID;
 const API_BIO               = API + '/people/' + playerID;
 
+const CHART_COLORS = ['red', 'pink', 'purple', 'darkviolet', 'indigo', 'blue', 'lightblue', 'cyan', 'teal', 'green', 'lightgreen', 'lime', 'yellow', 'goldenrod', 'orange', 'tomato', 'brown', 'grey', 'cadetblue', 'thistle', 'yellowgreen'];
+
+
+
 // main function
 $(document).ready(function() {
   loadAllPlayerData();
@@ -30,7 +34,7 @@ function loadAllPlayerData() {
 
 
 
-  // getPlayerData(API_BATTING, loadBattingTable, 'batting');
+  getPlayerData(API_BATTING, loadBattingTable, 'batting');
   // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
   // getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
   // getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
@@ -406,83 +410,58 @@ function loadPitchingAggregateData(data) {
 
 
 function loadBattingChartData(data) {
+  let chartData = getBattingDatasets(data);
 
-  let aYears = [];
-  let aH     = [];
-  let aHR    = [];
-  let aG     = [];
-  let aR     = [];
-  let aBB    = [];
-  let aSO    = [];
+  var ctz = document.getElementById('chart-player-batting');
+  new Chart(ctz, {
+    type: 'line',
+    data: {
+      labels: chartData.labels,
+      datasets: chartData.datasets,
+    },
+  });
+}
 
-
-  for (var count = 0; count < data.length; count++) {
-    aYears.push(data[count].yearID);
-    aH.push(data[count].H);
-    aHR.push(data[count].HR);
-    aG.push(data[count].G);
-    aR.push(data[count].R);
-    aBB.push(data[count].BB);
-    aSO.push(data[count].SO);
+function getBattingChartDataset(label, data, color) {
+  let item = {
+    label: label,
+    data: data,
+    borderColor: color,
+    fill: false,
   }
 
+  return item;
+}
+
+
+
+function getBattingDatasets(data) {
+  let columnNames = Object.keys(data[0]);
+  let datasets = [];
+
+  for (var count = 0; count < columnNames.length; count++) {
+    let dataArray = [];
+    let label = columnNames[count];
+
+    // add the data piece into the array
+    for (let i = 0; i < data.length; i++) {
+      let item = data[i][label];
+      dataArray.push(data[i][label]);
+    }
+
+    datasets.push(getBattingChartDataset(label, dataArray, CHART_COLORS[count]));
+    console.log(count + '. ' + label + ': ' + CHART_COLORS[count]);
+  }
+
+  // redo the colors
+  let i = 0;
+  for (var count = 8; count < datasets.length; count++) {
+    datasets[count].borderColor = CHART_COLORS[i];
+    i++;
+  }
   
-  const borderColor = "#3e95cd";
-  const fill        = false;
-  const labels = aYears;
-
-  let dataSets      = [];
-
-  dataSets.push(
-    data: aH,
-    label: 'H',
-  );
-
-  dataSets.push(
-    data: aHR,
-    label: 'HR',
-  );
-
-  dataSets.push(
-    data: aG,
-    label: 'G',
-  );
-
-  dataSets.push(
-    data: aR,
-    label: 'R',
-  );
-
-  dataSets.push(
-    data: aBB,
-    label: 'BB',
-  );
-
-  dataSets.push(
-    data: aSO,
-    label: 'SO',
-  );
-
-
-  console.log(datSets);
-
-
-  // var ctz = document.getElementById('chart-player-batting');
-  //   new Chart(ctz, {
-  //     type: 'line',
-  //     data: {
-  //       labels: dates,
-  //       datasets: [{
-  //         data: counts,
-  //         label: "Entries posted",
-  //         borderColor: "#3e95cd",
-  //         fill: false
-  //       }],
-  //       fill: false,
-  //     },
-  //   });
-
-
-
-
+  return {
+    labels: datasets[3].data,
+    datasets: datasets.slice(8),
+  }
 }
