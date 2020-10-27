@@ -10,5 +10,8 @@
 <!-- jquery toast: https://kamranahmed.info/toast -->
 <link rel="stylesheet" href="css/external/jquery.toast.min.css">
 
+<!-- chart.js -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css" />
+
 <!-- personal css -->
 <link rel="stylesheet" type="text/css" href="css/style.css" />

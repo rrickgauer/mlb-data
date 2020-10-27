@@ -132,6 +132,9 @@
           </div>
         </div>
 
+        <!-- chart -->
+        <canvas id="chart-player-batting" class="mt-5 mb-5"></canvas>
+
 
         <!-- seasonal batting stats -->
         <div class="table-responsive">

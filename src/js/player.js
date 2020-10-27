@@ -13,6 +13,7 @@ const API_BIO               = API + '/people/' + playerID;
 // main function
 $(document).ready(function() {
   loadAllPlayerData();
+  // loadChartData();
 });
 
 
@@ -21,10 +22,13 @@ function loadAllPlayerData() {
 
   let urlBattingAggregate = API_BATTING + '?aggregate=true';
   getPlayerData(urlBattingAggregate, loadBattingAggregateData, 'batting aggregate');
+  getPlayerBatting(urlBattingAggregate, loadBattingChartData, 'batting aggregate chart');
 
   // loadPitchingAggregateData
   let urlPitchingAggregate = API_PITCHING + '?aggregate=true';
   getPlayerData(urlPitchingAggregate, loadPitchingAggregateData, 'pitching aggregate');
+
+
 
   // getPlayerData(API_BATTING, loadBattingTable, 'batting');
   // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
@@ -396,5 +400,89 @@ function loadPitchingAggregateData(data) {
   $(battingSummary).find('.player-summary-card.ip .data').text(IP.toFixed(1));
   $(battingSummary).find('.player-summary-card.so .data').text(data.SO);
   $(battingSummary).find('.player-summary-card.whip .data').text(WHIP);
+
+}
+
+
+
+function loadBattingChartData(data) {
+
+  let aYears = [];
+  let aH     = [];
+  let aHR    = [];
+  let aG     = [];
+  let aR     = [];
+  let aBB    = [];
+  let aSO    = [];
+
+
+  for (var count = 0; count < data.length; count++) {
+    aYears.push(data[count].yearID);
+    aH.push(data[count].H);
+    aHR.push(data[count].HR);
+    aG.push(data[count].G);
+    aR.push(data[count].R);
+    aBB.push(data[count].BB);
+    aSO.push(data[count].SO);
+  }
+
+  
+  const borderColor = "#3e95cd";
+  const fill        = false;
+  const labels = aYears;
+
+  let dataSets      = [];
+
+  dataSets.push(
+    data: aH,
+    label: 'H',
+  );
+
+  dataSets.push(
+    data: aHR,
+    label: 'HR',
+  );
+
+  dataSets.push(
+    data: aG,
+    label: 'G',
+  );
+
+  dataSets.push(
+    data: aR,
+    label: 'R',
+  );
+
+  dataSets.push(
+    data: aBB,
+    label: 'BB',
+  );
+
+  dataSets.push(
+    data: aSO,
+    label: 'SO',
+  );
+
+
+  console.log(datSets);
+
+
+  // var ctz = document.getElementById('chart-player-batting');
+  //   new Chart(ctz, {
+  //     type: 'line',
+  //     data: {
+  //       labels: dates,
+  //       datasets: [{
+  //         data: counts,
+  //         label: "Entries posted",
+  //         borderColor: "#3e95cd",
+  //         fill: false
+  //       }],
+  //       fill: false,
+  //     },
+  //   });
+
+
+
 
 }
