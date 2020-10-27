@@ -1,3 +1,19 @@
+<?php
+
+require_once('Modules.php');
+require_once('HTML-Generator.php');
+
+$pitching = new Pitching();
+
+if (isset($_GET['column']))
+  $pitching->setSortColumn($_GET['column']);
+if (isset($_GET['type']))
+  $pitching->setSortType($_GET['type']);
+
+$data = $pitching->getDataset();
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +30,7 @@
     <form class="form-inline">
       <!-- select -->
       <select class="form-control mr-4" name="column">
-        <option value="years">years</option>
+        <option value="yearID">years</option>
         <option value="W">W</option>
         <option value="L">L</option>
         <option value="G">G</option>
@@ -55,6 +71,50 @@
       <!-- submit -->
       <button type="submit" class="btn btn-sm btn-primary ml-4">Sort table</button>
     </form>
+
+    <div class="card card-table mt-5">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-sm">
+            <thead><tr>
+              <th>Player ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>years</th>
+              <th>W</th>
+              <th>L</th>
+              <th>G</th>
+              <th>GS</th>
+              <th>CG</th>
+              <th>SHO</th>
+              <th>SV</th>
+              <th>IPouts</th>
+              <th>H</th>
+              <th>ER</th>
+              <th>HR</th>
+              <th>BB</th>
+              <th>SO</th>
+              <th>BAOpp</th>
+              <th>ERA</th>
+              <th>IBB</th>
+              <th>WP</th>
+              <th>HBP</th>
+              <th>BK</th>
+              <th>BFP</th>
+              <th>GF</th>
+              <th>R</th>
+              <th>SH</th>
+              <th>SF</th>
+              <th>GIDP</th>
+            </tr></thead>
+            <tbody>
+              <?php echo Html::getPitchingAggregateTable($data); ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
 
 
   </div>
