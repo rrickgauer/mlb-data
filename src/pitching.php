@@ -3,15 +3,6 @@
 require_once('Modules.php');
 require_once('HTML-Generator.php');
 
-$pitching = new Pitching();
-
-if (isset($_GET['column']))
-  $pitching->setSortColumn($_GET['column']);
-if (isset($_GET['type']))
-  $pitching->setSortType($_GET['type']);
-
-$data = $pitching->getDataset();
-
 ?>
 
 <!DOCTYPE html>
