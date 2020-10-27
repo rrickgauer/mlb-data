@@ -292,7 +292,14 @@
                   <th data-tablesort-type="int">SF</th>
                   <th data-tablesort-type="int">GIDP</th>
                 </tr></thead>
-                <tbody></tbody>
+                <tbody>
+                  <!-- inital spinner -->
+                  <tr><td colspan="27">
+                    <div class="text-center mt-5">
+                      <?php echo Html::getSpinner(); ?>
+                    </div>
+                  </td></tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -323,7 +330,14 @@
                   <th data-tablesort-type="int">CS</th>
                   <th data-tablesort-type="int">ZR</th>
                 </tr></thead>
-                <tbody></tbody>
+                <tbody>
+                  <!-- inital spinner -->
+                  <tr><td colspan="15">
+                    <div class="text-center mt-5">
+                      <?php echo Html::getSpinner(); ?>
+                    </div>
+                  </td></tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -344,7 +358,14 @@
                   <th data-tablesort-type="int">Gcf</th>
                   <th data-tablesort-type="int">Grf</th>
                 </tr></thead>
-                <tbody></tbody>
+                <tbody>
+                  <!-- inital spinner -->
+                  <tr><td colspan="4">
+                    <div class="text-center mt-5">
+                      <?php echo Html::getSpinner(); ?>
+                    </div>
+                  </td></tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -374,7 +395,14 @@
                   <th data-tablesort-type="int">CS</th>
                   <th data-tablesort-type="int">ZR</th>
                 </tr></thead>
-                <tbody></tbody>
+                <tbody>
+                  <!-- inital spinner -->
+                  <tr><td colspan="15">
+                    <div class="text-center mt-5">
+                      <?php echo Html::getSpinner(); ?>
+                    </div>
+                  </td></tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -408,7 +436,14 @@
                   <th data-tablesort-type="int">G_ph</th>
                   <th data-tablesort-type="int">G_pr</th>
                 </tr></thead>
-                <tbody></tbody>
+                <tbody>
+                  <!-- inital spinner -->
+                  <tr><td colspan="19">
+                    <div class="text-center mt-5">
+                      <?php echo Html::getSpinner(); ?>
+                    </div>
+                  </td></tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -426,7 +461,14 @@
                   <th data-tablesort-type="string">Team</th>
                   <th data-tablesort-type="int">Salary</th>
                 </tr></thead>
-                <tbody></tbody>
+                <tbody>
+                  <!-- inital spinner -->
+                  <tr><td colspan="3">
+                    <div class="text-center mt-5">
+                      <?php echo Html::getSpinner(); ?>
+                    </div>
+                  </td></tr>
+                </tbody>
               </table>
             </div>
           </div>
