@@ -35,12 +35,12 @@ function loadAllPlayerData() {
 
 
   getPlayerData(API_BATTING, loadBattingTable, 'batting');
-  // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
-  // getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
-  // getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
-  // getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
-  // getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
-  // getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
+  getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
+  getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
+  getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
+  getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
+  getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
+  getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
 }
 
 // displays an alert on the screen
