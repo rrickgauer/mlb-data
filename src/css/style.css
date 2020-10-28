@@ -1,3 +1,16 @@
+body {
+  background-color: #fafbfe;
+}
+
+#navbar {
+  color: white;
+  background-color: #37404a;
+}
+#navbar .nav-link {
+  color: white;
+  font-weight: bold;
+}
+
 table {
   white-space: nowrap;
 }
@@ -33,6 +46,10 @@ body {
 
 .card {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+}
+
+.nav-normal .nav-link.active {
+  border-bottom: 2px solid #727cf5;
 }
 
 /*# sourceMappingURL=style.css.map */
