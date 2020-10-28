@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php include('header.php'); ?>
-    <title>MLB Data - Batting</title>
+  <?php include('header.php'); ?>
+  <title>MLB Data - Batting</title>
 </head>
 <body>
   <?php include('navbar.php'); ?>
 
   <div class="container">
-    
+
     <h1 class="text-center mt-5 mb-5">Batting</h1>
 
     <form method="get" class="form-batting-sort">
-      <div>Sorting options</div>
+      <div class="font-weight-bold mb-2">Sorting options</div>
       <div class="form-row">
         <div class="col-10">
           <div class="input-group input-group-sm">
@@ -59,40 +59,44 @@
       </div>
     </form>
 
-    <div class="card card-table mt-5"><div class="card-body"><div class="table-responsive">
-      <table class="table table-sm table-batting">
-        <thead><tr>
-          <th>Player</th>
-          <th>Years</th>
-          <th>G</th>
-          <th>G_batting</th>
-          <th>AB</th>
-          <th>R</th>
-          <th>H</th>
-          <th>2B</th>
-          <th>3B</th>
-          <th>HR</th>
-          <th>RBI</th>
-          <th>SB</th>
-          <th>CS</th>
-          <th>BB</th>
-          <th>SO</th>
-          <th>IBB</th>
-          <th>HBP</th>
-          <th>SH</th>
-          <th>SF</th>
-          <th>GIDP</th>
-        </tr></thead>
-        <tbody>
-          <tr><td colspan="21" rowspan="20">
-            <div class="text-center mt-5 mb-5">
-              <?php echo Html::getSpinner() ?>
-            </div>
-          </td></tr>
-        </tbody>
-        
-      </table>
-    </div></div></div>
+    <div class="card card-table mt-3">
+      <div class="card-body">
+
+        <div class="table-responsive">
+          <table class="table table-sm table-batting">
+            <thead><tr>
+              <th>Player</th>
+              <th>Years</th>
+              <th>G</th>
+              <th>G_batting</th>
+              <th>AB</th>
+              <th>R</th>
+              <th>H</th>
+              <th>2B</th>
+              <th>3B</th>
+              <th>HR</th>
+              <th>RBI</th>
+              <th>SB</th>
+              <th>CS</th>
+              <th>BB</th>
+              <th>SO</th>
+              <th>IBB</th>
+              <th>HBP</th>
+              <th>SH</th>
+              <th>SF</th>
+              <th>GIDP</th>
+            </tr></thead>
+            <tbody>
+              <tr><td colspan="21" rowspan="20">
+                <div class="text-center mt-5 mb-5">
+                  <?php echo Html::getSpinner() ?>
+                </div>
+              </td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
 
   </div>
 
