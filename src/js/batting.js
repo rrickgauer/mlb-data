@@ -6,9 +6,8 @@ const urlParams = new URLSearchParams(window.location.search);
 // main
 $(document).ready(function() {
   setGlobalVariables();
+  setSelectedInputValues();
   getData(URL, loadTableData);
-  getData(URL, console.log);
-
 });
 
 function setGlobalVariables() {
@@ -20,6 +19,19 @@ function setGlobalVariables() {
     URL += '&sort=' + sortColumn + ':' + sortType; 
 }
 
+function setSelectedInputValues() {
+  // choose which sort type to check
+  if (sortType == 'asc')
+    $('#batting-inlineradio-asc').prop('checked', true);
+  else
+    $('#batting-inlineradio-desc').prop('checked', true);
+
+  if (sortColumn == null)
+    return;
+
+  // display set the previously selected option
+  $('#batting-select option[value="' + sortColumn + '"]').prop('selected', true);
+}
 
 function getData(url, action) {
   $.getJSON(url, function(response) {

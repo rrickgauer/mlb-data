@@ -47,7 +47,7 @@
               </div>
               <div class="input-group-text">
                 <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="sort-type" id="batting-inlineradio-desc" value="desc" checked>
+                  <input class="form-check-input" type="radio" name="sort-type" id="batting-inlineradio-desc" value="desc">
                   <label class="form-check-label" for="batting-inlineradio-desc">Descending</label>
                 </div>
               </div>
