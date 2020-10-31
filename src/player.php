@@ -27,6 +27,12 @@
         <!-- name -->
         <h2 class="player-bio-item-data name"></h2>
 
+        <!-- position -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Position</span>
+          <span class="player-bio-item-data position"></span>
+        </div>
+
         <!-- bats and throws -->
         <div class="d-flex">
           <!-- bats -->
@@ -81,13 +87,13 @@
 
     <!-- sidebar links -->
     <ul class="nav nav-tabs mt-3 mb-4">
-      <li class="nav-item"><a class="nav-link active" href="#player-batting" data-toggle="tab">Batting</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-pitching" data-toggle="tab">Pitching</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-fielding" data-toggle="tab">Fielding</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-fielding-of" data-toggle="tab">Fielding OF</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-fielding-of-split" data-toggle="tab">Fielding OF Split</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-appearances" data-toggle="tab">Appearances</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-salaries" data-toggle="tab">Salaries</a></li>
+      <li class="nav-item batting"><a class="nav-link active" href="#player-batting" data-toggle="tab">Batting</a></li>
+      <li class="nav-item pitching"><a class="nav-link" href="#player-pitching" data-toggle="tab">Pitching</a></li>
+      <li class="nav-item fielding"><a class="nav-link" href="#player-fielding" data-toggle="tab">Fielding</a></li>
+      <li class="nav-item fielding-of"><a class="nav-link" href="#player-fielding-of" data-toggle="tab">Fielding OF</a></li>
+      <li class="nav-item fielding-of-split"><a class="nav-link" href="#player-fielding-of-split" data-toggle="tab">Fielding OF Split</a></li>
+      <li class="nav-item appearances"><a class="nav-link" href="#player-appearances" data-toggle="tab">Appearances</a></li>
+      <li class="nav-item salaries"><a class="nav-link" href="#player-salaries" data-toggle="tab">Salaries</a></li>
     </ul>
 
     <!-- sub panels -->
@@ -166,8 +172,11 @@
           <div class="card-body">
 
             <!-- loading spinner -->
-            <div class="text-center">
-              <?php echo Html::getSpinner(); ?>
+            <div class="d-flex justify-content-around align-items-stretch">
+              <div>
+                <?php echo Html::getSpinner(); ?>
+              </div>
+                
             </div>
 
             <canvas id="chart-player-batting" class="d-none"></canvas>
