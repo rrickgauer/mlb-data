@@ -23,23 +23,23 @@ $(document).ready(function() {
 
 function loadAllPlayerData() {
   getPlayerData(API_BIO, loadBioData, 'bio');
-  // let urlBattingAggregate = API_BATTING + '?aggregate=true';
-  // getPlayerData(urlBattingAggregate, loadBattingAggregateData, 'batting aggregate');
-  // getPlayerBatting(urlBattingAggregate, loadBattingChartData, 'batting aggregate chart');
+  let urlBattingAggregate = API_BATTING + '?aggregate=true';
+  getPlayerData(urlBattingAggregate, loadBattingAggregateData, 'batting aggregate');
+  getPlayerBatting(urlBattingAggregate, loadBattingChartData, 'batting aggregate chart');
 
-  // // loadPitchingAggregateData
-  // let urlPitchingAggregate = API_PITCHING + '?aggregate=true';
-  // getPlayerData(urlPitchingAggregate, loadPitchingAggregateData, 'pitching aggregate');
+  // loadPitchingAggregateData
+  let urlPitchingAggregate = API_PITCHING + '?aggregate=true';
+  getPlayerData(urlPitchingAggregate, loadPitchingAggregateData, 'pitching aggregate');
 
 
 
-  // getPlayerData(API_BATTING, loadBattingTable, 'batting');
-  // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
-  // getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
-  // getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
-  // getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
-  // getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
-  // getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
+  getPlayerData(API_BATTING, loadBattingTable, 'batting');
+  getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
+  getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
+  getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
+  getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
+  getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
+  getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
 }
 
 // displays an alert on the screen
@@ -79,7 +79,7 @@ function getBattingTableRowHtml(data) {
 
   let row =  
   ` <tr class="table-batting-row">
-    <td>${data.yearID}</td>
+    <td>${data.year}</td>
     <td>${data.G}</td>
     <td>${data.AB}</td>
     <td>${data.R}</td>
@@ -104,11 +104,10 @@ function getBattingTableRowHtml(data) {
 
 function getPlayerData(url, action, errorMessage) {
   $.getJSON(url, function(response) {
-    action(response);
+    action(response.results);
   })
   .fail(function(response) {
-    displayAlert('API Error: ' + errorMessage);
-    return;
+    console.log(errorMessage);
   });
 }
 
@@ -169,7 +168,7 @@ function loadFieldingTable(data) {
 function getFieldingRowHtml(data) {
   let html = `
     <tr class="table-fielding-row">
-    <td>${data.yearID}</td>
+    <td>${data.year}</td>
     <td>${data.teamName}</td>
     <td>${data.POS}</td>
     <td>${data.G}</td>
@@ -201,7 +200,7 @@ function loadFieldingOfTable(data) {
 function getFieldingOfRowHtml(data) {
   let html = `
     <tr class="table-fielding-of-row">
-      <td>${data.yearID}</td>
+      <td>${data.year}</td>
       <td>${data.Glf}</td>
       <td>${data.Gcf}</td>
       <td>${data.Grf}</td>
@@ -222,7 +221,7 @@ function loadFieldingOfSplitTable(data) {
 function getFieldingOfSplitRowHtml(data) {
   let html = `
     <tr class="table-fielding-of-split">
-      <td>${data.yearID}</td>
+      <td>${data.year}</td>
       <td>${data.name}</td>
       <td>${data.POS}</td>
       <td>${data.G}</td>
@@ -254,7 +253,7 @@ function loadAppearancesTable(data) {
 function getAppearancesRowHtml(data) {
   let html = `
     <tr class="table-appearances-row">
-      <td>${data.yearID}</td>
+      <td>${data.year}</td>
       <td>${data.name}</td>
       <td>${data.G_all}</td>
       <td>${data.GS}</td>
@@ -292,7 +291,7 @@ function getSalariesRowHtml(data) {
 
   let html = `
     <tr class="table-salaries-row">
-      <td>${data.yearID}</td>
+      <td>${data.year}</td>
       <td>${data.teamName}</td>
       <td>${salaryDisplay}</td>
     </tr>`;
@@ -301,9 +300,6 @@ function getSalariesRowHtml(data) {
 }
 
 function loadBioData(data) {
-  data = data.results;
-  console.log(data);
-
   let height           = inchesToFeet(data.height);
   let heightDisplay    = height.feet + '-' + height.inches;
   let birthDateDisplay = getDisplayDate(data.birthDate);
@@ -321,8 +317,6 @@ function loadBioData(data) {
   $('.player-bio .player-bio-item-data.debut-date').text(debutDateDisplay);
   $('.player-bio .player-bio-item-data.bbref-link').attr("href", data.baseballReferenceLink);
   $('.player-bio .player-item-data.image').attr("src", data.image);
-
-  // console.log(data.image);
 
 }
 
@@ -373,9 +367,7 @@ function formatCurrency(currency) {
 
 
 function loadBattingAggregateData(data) {
-  data = data[0];
   const BA = data.H / data.AB;
-  // const OBP = (data.H + data.BB + data.HBP) / (data.AB + data.BB + data.HBP + data.SF);
 
   let battingSummary = $('.player-summary.batting');
   $(battingSummary).find('.player-summary-card.ab .data').text(data.AB);
@@ -388,7 +380,6 @@ function loadBattingAggregateData(data) {
 
 
 function loadPitchingAggregateData(data) {
-  data = data[0];
   const IP = data.IPouts / 3;
 
   // calculate era
@@ -443,6 +434,8 @@ function getBattingChartDataset(label, data, color) {
 
 
 function getBattingDatasets(data) {
+  data = data.results;
+
   let columnNames = Object.keys(data[0]);
   let datasets = [];
 
@@ -453,11 +446,11 @@ function getBattingDatasets(data) {
     // add the data piece into the array
     for (let i = 0; i < data.length; i++) {
       let item = data[i][label];
-      dataArray.push(data[i][label]);
+      dataArray.push(item);
+      // console.log(item);
     }
 
     datasets.push(getBattingChartDataset(label, dataArray, CHART_COLORS[count]));
-    console.log(count + '. ' + label + ': ' + CHART_COLORS[count]);
   }
 
   // redo the colors
@@ -466,7 +459,7 @@ function getBattingDatasets(data) {
     datasets[count].borderColor = CHART_COLORS[i];
     i++;
   }
-  
+
   return {
     labels: datasets[3].data,
     datasets: datasets.slice(8),
