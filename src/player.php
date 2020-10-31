@@ -12,58 +12,67 @@
 
   <div class="container">
 
-    <div class="player-bio mt-5 mb-5">
+    <div class="player-bio mt-5 mb-5 d-flex align-items-center">
 
-      <!-- name -->
-      <h2 class="player-bio-item-data name"></h2>
-
-      <!-- bats and throws -->
-      <div class="d-flex">
-        <!-- bats -->
+      <div class="player-bio-left mr-3">
         <div class="player-bio-item">
-          <span class="player-bio-item-label">Bats</span>
-          <span class="player-bio-item-data bats"></span>
-        </div>
-
-        <span>&nbsp;&bull;&nbsp;</span>
-
-        <!-- throws -->
-        <div class="player-bio-item">
-          <span class="player-bio-item-label">Throws</span>
-          <span class="player-bio-item-data throws"></span>
+          <img src="#" alt="Player image" class="player-item-data image">
         </div>
       </div>
 
-      <!-- height -->
-      <div class="player-bio-item">
-        <span class="player-bio-item-label">Height</span>
-        <span class="player-bio-item-data height"></span>
+      <div class="player-bio-right">
+        <!-- name -->
+        <h2 class="player-bio-item-data name"></h2>
+
+        <!-- bats and throws -->
+        <div class="d-flex">
+          <!-- bats -->
+          <div class="player-bio-item">
+            <span class="player-bio-item-label">Bats</span>
+            <span class="player-bio-item-data bats"></span>
+          </div>
+
+          <span>&nbsp;&bull;&nbsp;</span>
+
+          <!-- throws -->
+          <div class="player-bio-item">
+            <span class="player-bio-item-label">Throws</span>
+            <span class="player-bio-item-data throws"></span>
+          </div>
+        </div>
+
+        <!-- height -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Height</span>
+          <span class="player-bio-item-data height"></span>
+        </div>
+
+        <!-- weight -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Weight</span>
+          <span class="player-bio-item-data weight"></span>
+        </div>
+
+        <!-- birth date -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Born </span>
+          <span class="player-bio-item-data birth-date"></span>
+          <span>in</span>
+          <span class="player-bio-item-data birth-city-state"></span>
+        </div>
+
+        <!-- debut date -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Debut date</span>
+          <span class="player-bio-item-data debut-date"></span>
+        </div>
+
+        <!-- baseball reference -->
+        <div class="player-bio-item">
+          <a href="#" class="player-bio-item-data bbref-link" target="_blank">Baseball Reference Profile <i class='bx bx-link-external'></i></a>
+        </div>
       </div>
 
-      <!-- weight -->
-      <div class="player-bio-item">
-        <span class="player-bio-item-label">Weight</span>
-        <span class="player-bio-item-data weight"></span>
-      </div>
-
-      <!-- birth date -->
-      <div class="player-bio-item">
-        <span class="player-bio-item-label">Born </span>
-        <span class="player-bio-item-data birth-date"></span>
-        <span>in</span>
-        <span class="player-bio-item-data birth-city-state"></span>
-      </div>
-
-      <!-- debut date -->
-      <div class="player-bio-item">
-        <span class="player-bio-item-label">Debut date</span>
-        <span class="player-bio-item-data debut-date"></span>
-      </div>
-
-      <!-- baseball reference -->
-      <div class="player-bio-item">
-        <a href="#" class="player-bio-item-data bbref-link" target="_blank">Baseball Reference Profile <i class='bx bx-link-external'></i></a>
-      </div>
     </div>
 
 

@@ -23,24 +23,23 @@ $(document).ready(function() {
 
 function loadAllPlayerData() {
   getPlayerData(API_BIO, loadBioData, 'bio');
+  // let urlBattingAggregate = API_BATTING + '?aggregate=true';
+  // getPlayerData(urlBattingAggregate, loadBattingAggregateData, 'batting aggregate');
+  // getPlayerBatting(urlBattingAggregate, loadBattingChartData, 'batting aggregate chart');
 
-  let urlBattingAggregate = API_BATTING + '?aggregate=true';
-  getPlayerData(urlBattingAggregate, loadBattingAggregateData, 'batting aggregate');
-  getPlayerBatting(urlBattingAggregate, loadBattingChartData, 'batting aggregate chart');
-
-  // loadPitchingAggregateData
-  let urlPitchingAggregate = API_PITCHING + '?aggregate=true';
-  getPlayerData(urlPitchingAggregate, loadPitchingAggregateData, 'pitching aggregate');
-
+  // // loadPitchingAggregateData
+  // let urlPitchingAggregate = API_PITCHING + '?aggregate=true';
+  // getPlayerData(urlPitchingAggregate, loadPitchingAggregateData, 'pitching aggregate');
 
 
-  getPlayerData(API_BATTING, loadBattingTable, 'batting');
-  getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
-  getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
-  getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
-  getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
-  getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
-  getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
+
+  // getPlayerData(API_BATTING, loadBattingTable, 'batting');
+  // getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
+  // getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
+  // getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
+  // getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
+  // getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
+  // getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
 }
 
 // displays an alert on the screen
@@ -302,7 +301,8 @@ function getSalariesRowHtml(data) {
 }
 
 function loadBioData(data) {
-  data = data[0];
+  data = data.results;
+  console.log(data);
 
   let height           = inchesToFeet(data.height);
   let heightDisplay    = height.feet + '-' + height.inches;
@@ -320,6 +320,9 @@ function loadBioData(data) {
   $('.player-bio .player-bio-item-data.birth-city-state').text(birthCityState);
   $('.player-bio .player-bio-item-data.debut-date').text(debutDateDisplay);
   $('.player-bio .player-bio-item-data.bbref-link').attr("href", data.baseballReferenceLink);
+  $('.player-bio .player-item-data.image').attr("src", data.image);
+
+  // console.log(data.image);
 
 }
 
