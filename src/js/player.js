@@ -316,7 +316,9 @@ function loadBioData(data) {
   $('.player-bio .player-bio-item-data.birth-city-state').text(birthCityState);
   $('.player-bio .player-bio-item-data.debut-date').text(debutDateDisplay);
   $('.player-bio .player-bio-item-data.bbref-link').attr("href", data.baseballReferenceLink);
-  $('.player-bio .player-item-data.image').attr("src", data.image);
+
+  $('.player-bio .player-item-data.image').closest('.player-bio').find('.spinner').remove();
+  $('.player-bio .player-item-data.image').attr("src", data.image).removeClass('d-none');
 
 }
 

@@ -12,7 +12,8 @@ $(document).ready(function() {
     timer = setTimeout(playerSearch, 400); 
   });
 
-  $('.navbar-search-input').on('focusout', function() {
+  // close search results menu when clicked off
+  $('body *:not(.navbar-search *)').on('click', function() {
     toggleNavbarSearchResultsMenu(false);
   });
 
@@ -80,7 +81,7 @@ function getNavbarSearchResultsHtml(results) {
   let html = '';
 
   for (let count = 0; count < results.length; count++) {
-    html += `<a href="player.php?playerID=${results[count].playerID}" class="navbar-search-menu-item">
+    html += `<a href="player.php?playerID=${results[count].playerID}" class="navbar-search-menu-item ">
       ${results[count].nameFirst} ${results[count].nameLast}</a>`;
   }
 

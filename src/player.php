@@ -16,7 +16,10 @@
 
       <div class="player-bio-left mr-3">
         <div class="player-bio-item">
-          <img src="#" alt="Player image" class="player-item-data image">
+          <div class="spinner">
+            <?php echo Html::getSpinner(); ?>
+          </div>
+          <img src="#" width="120" height="180" alt="Player image" class="player-item-data image d-none">
         </div>
       </div>
 
