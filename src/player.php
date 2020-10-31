@@ -12,70 +12,88 @@
 
   <div class="container">
 
-    <div class="player-bio mt-5 mb-5">
+    <div class="player-bio mt-5 mb-5 d-flex align-items-center">
 
-      <!-- name -->
-      <h2 class="player-bio-item-data name"></h2>
-
-      <!-- bats and throws -->
-      <div class="d-flex">
-        <!-- bats -->
+      <div class="player-bio-left mr-3">
         <div class="player-bio-item">
-          <span class="player-bio-item-label">Bats</span>
-          <span class="player-bio-item-data bats"></span>
-        </div>
-
-        <span>&nbsp;&bull;&nbsp;</span>
-
-        <!-- throws -->
-        <div class="player-bio-item">
-          <span class="player-bio-item-label">Throws</span>
-          <span class="player-bio-item-data throws"></span>
+          <div class="spinner">
+            <?php echo Html::getSpinner(); ?>
+          </div>
+          <img src="#" width="120" height="180" alt="Player image" class="player-item-data image d-none">
         </div>
       </div>
 
-      <!-- height -->
-      <div class="player-bio-item">
-        <span class="player-bio-item-label">Height</span>
-        <span class="player-bio-item-data height"></span>
+      <div class="player-bio-right">
+        <!-- name -->
+        <h2 class="player-bio-item-data name"></h2>
+
+        <!-- position -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Position</span>
+          <span class="player-bio-item-data position"></span>
+        </div>
+
+        <!-- bats and throws -->
+        <div class="d-flex">
+          <!-- bats -->
+          <div class="player-bio-item">
+            <span class="player-bio-item-label">Bats</span>
+            <span class="player-bio-item-data bats"></span>
+          </div>
+
+          <span>&nbsp;&bull;&nbsp;</span>
+
+          <!-- throws -->
+          <div class="player-bio-item">
+            <span class="player-bio-item-label">Throws</span>
+            <span class="player-bio-item-data throws"></span>
+          </div>
+        </div>
+
+        <!-- height -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Height</span>
+          <span class="player-bio-item-data height"></span>
+        </div>
+
+        <!-- weight -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Weight</span>
+          <span class="player-bio-item-data weight"></span>
+        </div>
+
+        <!-- birth date -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Born </span>
+          <span class="player-bio-item-data birth-date"></span>
+          <span>in</span>
+          <span class="player-bio-item-data birth-city-state"></span>
+        </div>
+
+        <!-- debut date -->
+        <div class="player-bio-item">
+          <span class="player-bio-item-label">Debut date</span>
+          <span class="player-bio-item-data debut-date"></span>
+        </div>
+
+        <!-- baseball reference -->
+        <div class="player-bio-item">
+          <a href="#" class="player-bio-item-data bbref-link" target="_blank">Baseball Reference Profile <i class='bx bx-link-external'></i></a>
+        </div>
       </div>
 
-      <!-- weight -->
-      <div class="player-bio-item">
-        <span class="player-bio-item-label">Weight</span>
-        <span class="player-bio-item-data weight"></span>
-      </div>
-
-      <!-- birth date -->
-      <div class="player-bio-item">
-        <span class="player-bio-item-label">Born </span>
-        <span class="player-bio-item-data birth-date"></span>
-        <span>in</span>
-        <span class="player-bio-item-data birth-city-state"></span>
-      </div>
-
-      <!-- debut date -->
-      <div class="player-bio-item">
-        <span class="player-bio-item-label">Debut date</span>
-        <span class="player-bio-item-data debut-date"></span>
-      </div>
-
-      <!-- baseball reference -->
-      <div class="player-bio-item">
-        <a href="#" class="player-bio-item-data bbref-link" target="_blank">Baseball Reference Profile <i class='bx bx-link-external'></i></a>
-      </div>
     </div>
 
 
     <!-- sidebar links -->
     <ul class="nav nav-tabs mt-3 mb-4">
-      <li class="nav-item"><a class="nav-link active" href="#player-batting" data-toggle="tab">Batting</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-pitching" data-toggle="tab">Pitching</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-fielding" data-toggle="tab">Fielding</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-fielding-of" data-toggle="tab">Fielding OF</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-fielding-of-split" data-toggle="tab">Fielding OF Split</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-appearances" data-toggle="tab">Appearances</a></li>
-      <li class="nav-item"><a class="nav-link" href="#player-salaries" data-toggle="tab">Salaries</a></li>
+      <li class="nav-item batting"><a class="nav-link active" href="#player-batting" data-toggle="tab">Batting</a></li>
+      <li class="nav-item pitching"><a class="nav-link" href="#player-pitching" data-toggle="tab">Pitching</a></li>
+      <li class="nav-item fielding"><a class="nav-link" href="#player-fielding" data-toggle="tab">Fielding</a></li>
+      <li class="nav-item fielding-of"><a class="nav-link" href="#player-fielding-of" data-toggle="tab">Fielding OF</a></li>
+      <li class="nav-item fielding-of-split"><a class="nav-link" href="#player-fielding-of-split" data-toggle="tab">Fielding OF Split</a></li>
+      <li class="nav-item appearances"><a class="nav-link" href="#player-appearances" data-toggle="tab">Appearances</a></li>
+      <li class="nav-item salaries"><a class="nav-link" href="#player-salaries" data-toggle="tab">Salaries</a></li>
     </ul>
 
     <!-- sub panels -->
@@ -154,8 +172,11 @@
           <div class="card-body">
 
             <!-- loading spinner -->
-            <div class="text-center">
-              <?php echo Html::getSpinner(); ?>
+            <div class="d-flex justify-content-around align-items-stretch">
+              <div>
+                <?php echo Html::getSpinner(); ?>
+              </div>
+                
             </div>
 
             <canvas id="chart-player-batting" class="d-none"></canvas>

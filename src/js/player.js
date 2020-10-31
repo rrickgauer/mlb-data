@@ -22,25 +22,57 @@ $(document).ready(function() {
 
 
 function loadAllPlayerData() {
-  getPlayerData(API_BIO, loadBioData, 'bio');
+  getPlayerData(API_APPEARANCES + '?aggregate=true', loadPositionData, function() {
+    console.log('error: loadPositionData()');
+  });
+
+  getPlayerData(API_BIO, loadBioData, console.log);
+
+  getPlayerData(API_BIO, loadBioData, function() {
+    displayAlert('API Error: bio data');
+  });
 
   let urlBattingAggregate = API_BATTING + '?aggregate=true';
-  getPlayerData(urlBattingAggregate, loadBattingAggregateData, 'batting aggregate');
-  getPlayerBatting(urlBattingAggregate, loadBattingChartData, 'batting aggregate chart');
+  getPlayerData(urlBattingAggregate, loadBattingAggregateData, console.log);
+
+  getPlayerBatting(urlBattingAggregate, loadBattingChartData, function() {
+    hideModule('batting');
+  });
 
   // loadPitchingAggregateData
   let urlPitchingAggregate = API_PITCHING + '?aggregate=true';
-  getPlayerData(urlPitchingAggregate, loadPitchingAggregateData, 'pitching aggregate');
+  getPlayerData(urlPitchingAggregate, loadPitchingAggregateData, function() {
+    hideModule('pitching');
+  });
+
+  getPlayerData(API_BATTING, loadBattingTable, function() {
+    hideModule('batting');
+  });
 
 
+  getPlayerData(API_PITCHING, loadPitchingTable, function() {
+    hideModule('pitching');
+  });
 
-  getPlayerData(API_BATTING, loadBattingTable, 'batting');
-  getPlayerData(API_PITCHING, loadPitchingTable, 'pitching');
-  getPlayerData(API_FIELDING, loadFieldingTable, 'fielding');  
-  getPlayerData(API_FIELDING_OF, loadFieldingOfTable, 'fieldingOF');
-  getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, 'fieldingOFSplit');
-  getPlayerData(API_APPEARANCES, loadAppearancesTable, 'appearances');
-  getPlayerData(API_SALARIES, loadSalariesTable, 'salaries');
+  getPlayerData(API_FIELDING, loadFieldingTable, function() {
+    hideModule('fielding');
+  });  
+  
+  getPlayerData(API_FIELDING_OF, loadFieldingOfTable, function() {
+    hideModule('fielding-of');
+  });
+
+  getPlayerData(API_FIELDING_OF_SPLIT, loadFieldingOfSplitTable, function() {
+    hideModule('fielding-of-split');
+  });
+
+  getPlayerData(API_APPEARANCES, loadAppearancesTable, function() {
+    hideModule('appearances');
+  });
+
+  getPlayerData(API_SALARIES, loadSalariesTable, function() {
+    hideModule('salaries');
+  });
 }
 
 // displays an alert on the screen
@@ -54,6 +86,10 @@ function displayAlert(text) {
   });
 }
 
+function hideModule(moduleName) {
+  let element = '.nav-item.' + moduleName;
+  $(element).addClass('d-none');
+}
 
 function getPlayerBatting(playerID, action) {
   $.getJSON(API_BATTING, function(result) {
@@ -80,7 +116,7 @@ function getBattingTableRowHtml(data) {
 
   let row =  
   ` <tr class="table-batting-row">
-    <td>${data.yearID}</td>
+    <td>${data.year}</td>
     <td>${data.G}</td>
     <td>${data.AB}</td>
     <td>${data.R}</td>
@@ -103,13 +139,12 @@ function getBattingTableRowHtml(data) {
     return row;
 }
 
-function getPlayerData(url, action, errorMessage) {
+function getPlayerData(url, action, actionError) {
   $.getJSON(url, function(response) {
-    action(response);
+    action(response.results);
   })
   .fail(function(response) {
-    displayAlert('API Error: ' + errorMessage);
-    return;
+    actionError();
   });
 }
 
@@ -170,7 +205,7 @@ function loadFieldingTable(data) {
 function getFieldingRowHtml(data) {
   let html = `
     <tr class="table-fielding-row">
-    <td>${data.yearID}</td>
+    <td>${data.year}</td>
     <td>${data.teamName}</td>
     <td>${data.POS}</td>
     <td>${data.G}</td>
@@ -202,7 +237,7 @@ function loadFieldingOfTable(data) {
 function getFieldingOfRowHtml(data) {
   let html = `
     <tr class="table-fielding-of-row">
-      <td>${data.yearID}</td>
+      <td>${data.year}</td>
       <td>${data.Glf}</td>
       <td>${data.Gcf}</td>
       <td>${data.Grf}</td>
@@ -223,8 +258,8 @@ function loadFieldingOfSplitTable(data) {
 function getFieldingOfSplitRowHtml(data) {
   let html = `
     <tr class="table-fielding-of-split">
-      <td>${data.yearID}</td>
-      <td>${data.name}</td>
+      <td>${data.year}</td>
+      <td>${data.teamName}</td>
       <td>${data.POS}</td>
       <td>${data.G}</td>
       <td>${data.GS}</td>
@@ -255,8 +290,8 @@ function loadAppearancesTable(data) {
 function getAppearancesRowHtml(data) {
   let html = `
     <tr class="table-appearances-row">
-      <td>${data.yearID}</td>
-      <td>${data.name}</td>
+      <td>${data.year}</td>
+      <td>${data.teamName}</td>
       <td>${data.G_all}</td>
       <td>${data.GS}</td>
       <td>${data.G_batting}</td>
@@ -293,7 +328,7 @@ function getSalariesRowHtml(data) {
 
   let html = `
     <tr class="table-salaries-row">
-      <td>${data.yearID}</td>
+      <td>${data.year}</td>
       <td>${data.teamName}</td>
       <td>${salaryDisplay}</td>
     </tr>`;
@@ -302,8 +337,6 @@ function getSalariesRowHtml(data) {
 }
 
 function loadBioData(data) {
-  data = data[0];
-
   let height           = inchesToFeet(data.height);
   let heightDisplay    = height.feet + '-' + height.inches;
   let birthDateDisplay = getDisplayDate(data.birthDate);
@@ -319,7 +352,10 @@ function loadBioData(data) {
   $('.player-bio .player-bio-item-data.birth-date').text(birthDateDisplay );
   $('.player-bio .player-bio-item-data.birth-city-state').text(birthCityState);
   $('.player-bio .player-bio-item-data.debut-date').text(debutDateDisplay);
-  $('.player-bio .player-bio-item-data.bbref-link').attr("href", data.baseballReferenceLink);
+  $('.player-bio .player-bio-item-data.bbref-link').attr("href", data.bbrefLink);
+  $('.player-bio .player-item-data.image').closest('.player-bio').find('.spinner').remove();
+  $('.player-bio .player-item-data.image').attr("src", data.image).removeClass('d-none');
+
 
 }
 
@@ -370,9 +406,7 @@ function formatCurrency(currency) {
 
 
 function loadBattingAggregateData(data) {
-  data = data[0];
   const BA = data.H / data.AB;
-  // const OBP = (data.H + data.BB + data.HBP) / (data.AB + data.BB + data.HBP + data.SF);
 
   let battingSummary = $('.player-summary.batting');
   $(battingSummary).find('.player-summary-card.ab .data').text(data.AB);
@@ -385,7 +419,6 @@ function loadBattingAggregateData(data) {
 
 
 function loadPitchingAggregateData(data) {
-  data = data[0];
   const IP = data.IPouts / 3;
 
   // calculate era
@@ -422,7 +455,6 @@ function loadBattingChartData(data) {
   });
 
   $('#chart-player-batting').removeClass('d-none');
-
   $('#chart-player-batting').closest('.card-body').find('.spinner-border').remove();
 }
 
@@ -440,6 +472,8 @@ function getBattingChartDataset(label, data, color) {
 
 
 function getBattingDatasets(data) {
+  data = data.results;
+
   let columnNames = Object.keys(data[0]);
   let datasets = [];
 
@@ -450,11 +484,11 @@ function getBattingDatasets(data) {
     // add the data piece into the array
     for (let i = 0; i < data.length; i++) {
       let item = data[i][label];
-      dataArray.push(data[i][label]);
+      dataArray.push(item);
+      // console.log(item);
     }
 
     datasets.push(getBattingChartDataset(label, dataArray, CHART_COLORS[count]));
-    console.log(count + '. ' + label + ': ' + CHART_COLORS[count]);
   }
 
   // redo the colors
@@ -463,9 +497,44 @@ function getBattingDatasets(data) {
     datasets[count].borderColor = CHART_COLORS[i];
     i++;
   }
-  
+
   return {
     labels: datasets[3].data,
     datasets: datasets.slice(8),
   }
+}
+
+
+function loadPositionData(data) {
+  const positions = {
+    G_1b: 'First Baseman',
+    G_2b: 'Second Baseman',
+    G_3b: 'Third Baseman',
+    G_ss: 'Shortstop',
+    G_lf: 'Leftfielder',
+    G_rf: 'Rightfielder',
+    G_cf: 'Centerfielder',
+    G_p: 'Pitcher',
+    G_c: 'Catcher',
+  }
+
+  const positionKeys = Object.keys(positions);
+  let dataArray      = Object.entries(data);
+
+  // sort the data
+  let dataSorted = dataArray.sort(function(a, b) {
+    let aValue = a[1];
+    let bValue = b[1];
+
+    return (aValue > bValue) ? -1 : 1;
+  });
+
+  // find the highest sum in the data that is a key in the positions array
+  let count = 0;
+  while (!positionKeys.includes(dataSorted[count][0])) {
+    count++;
+  }
+
+  const positionKey = dataSorted[count][0];
+  $('.player-bio .player-bio-item-data.position').text(positions[positionKey]);
 }
