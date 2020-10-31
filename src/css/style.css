@@ -52,4 +52,14 @@ body {
   border-bottom: 2px solid #727cf5;
 }
 
+.navbar-search-menu {
+  z-index: 1000;
+  max-height: 300px;
+  overflow-x: auto;
+}
+.navbar-search-menu .navbar-search-menu-item {
+  background-color: white;
+  padding: 5px;
+}
+
 /*# sourceMappingURL=style.css.map */

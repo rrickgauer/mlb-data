@@ -222,7 +222,7 @@ function getFieldingOfSplitRowHtml(data) {
   let html = `
     <tr class="table-fielding-of-split">
       <td>${data.year}</td>
-      <td>${data.name}</td>
+      <td>${data.teamName}</td>
       <td>${data.POS}</td>
       <td>${data.G}</td>
       <td>${data.GS}</td>
@@ -254,7 +254,7 @@ function getAppearancesRowHtml(data) {
   let html = `
     <tr class="table-appearances-row">
       <td>${data.year}</td>
-      <td>${data.name}</td>
+      <td>${data.teamName}</td>
       <td>${data.G_all}</td>
       <td>${data.GS}</td>
       <td>${data.G_batting}</td>

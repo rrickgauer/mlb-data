@@ -1,4 +1,4 @@
-const API_SEARCH = 'http://api.mlb-data.ryanrickgauer.com/main.php/search?q=';
+const API_SEARCH = 'http://api.mlb-data.ryanrickgauer.com/main.php/search?perPage=20&q=';
 
 
 // main
@@ -9,8 +9,15 @@ $(document).ready(function() {
   $('.navbar-search-input').on('keydown', function() {
     if (timer)
       clearTimeout(timer);
-
     timer = setTimeout(playerSearch, 400); 
+  });
+
+  $('.navbar-search-input').on('focusout', function() {
+    toggleNavbarSearchResultsMenu(false);
+  });
+
+  $('.navbar-search-input').on('focus', function() {
+    playerSearch();
   });
 
 });
@@ -39,7 +46,7 @@ function playerSearch() {
   let url = API_SEARCH + query;
 
   $.getJSON(url, function(response) {
-    let topResults = response.slice(0, 5);
+    let topResults = response.results;
 
     // if no results break and inform user
     if (topResults.length == 0) {
@@ -55,8 +62,7 @@ function playerSearch() {
     toggleNavbarSearchResultsMenu(true);
   })
   .fail(function(response) {
-    displayAlert('API Error. Search bar');
-    return;
+    console.log(response);
   });
 
 }
