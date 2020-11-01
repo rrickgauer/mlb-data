@@ -58,11 +58,13 @@ body {
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
-  
-  .player-summary-card {
-    margin: 10px;
-    width: 170px;
-  }
+}
+
+.player-summary-card {
+  margin: 10px;
+  width: 170px;
+  background-color: $color-pink;
+  color: white;
 }
 
 .card {
@@ -95,4 +97,8 @@ body {
 .card-chart {
   height: 534px;
   width: 1068px;
+}
+
+.card-table .card-body {
+  padding: 10px;
 }

@@ -170,6 +170,7 @@
 
           <h4 class="mt-5">Seasonal</h4>
 
+
           <!-- chart -->
           <div class="card card-chart mb-5">
             <div class="card-body">
@@ -190,10 +191,10 @@
           <div class="card card-table">
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-sm table-batting tablesort">
+                <table class="table table-sm table-striped table-batting tablesort">
                   <thead><tr>
-                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="int">Team</th>
+                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="int">G</th>
                     <th data-tablesort-type="int">AB</th>
                     <th data-tablesort-type="int">R</th>
@@ -222,6 +223,9 @@
                     </td></tr>
 
                   </tbody>
+                  <tfoot>
+    
+                  </tfoot>
                 </table>
               </div>
             </div>

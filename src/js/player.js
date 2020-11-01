@@ -51,6 +51,8 @@ function loadAllPlayerData() {
   let urlBattingAggregate = API_LINKS.BATTING + '?aggregate=true';
   getPlayerData(urlBattingAggregate, loadBattingAggregateData, console.log);
 
+  getPlayerData(urlBattingAggregate, loadBattingTableFooter, console.log);
+
   // Batting - graph
   getPlayerBatting(urlBattingAggregate, loadBattingChartData, function() {
     hideModule('batting');
@@ -138,30 +140,66 @@ function getBattingTableRowHtml(data) {
 
 
   let row =  
-  ` <tr class="table-batting-row">
-      <td>${data.year}</td>
-      <td>${data.teamName}</td>
-      <td>${data.G}</td>
-      <td>${data.AB}</td>
-      <td>${data.R}</td>
-      <td>${data.H}</td>
-      <td>${doubles}</td>
-      <td>${triples}</td>
-      <td>${data.HR}</td>
-      <td>${data.RBI}</td>
-      <td>${data.SB}</td>
-      <td>${data.CS}</td>
-      <td>${data.BB}</td>
-      <td>${data.SO}</td>
-      <td>${data.IBB}</td>
-      <td>${data.HBP}</td>
-      <td>${data.SH}</td>
-      <td>${data.SF}</td>
-      <td>${data.GIDP}</td>
-    </tr>`;
+  `<tr class="table-batting-row">
+    <td>${data.teamName}</td>
+    <td>${data.year}</td>
+    <td>${data.G}</td>
+    <td>${data.AB}</td>
+    <td>${data.R}</td>
+    <td>${data.H}</td>
+    <td>${doubles}</td>
+    <td>${triples}</td>
+    <td>${data.HR}</td>
+    <td>${data.RBI}</td>
+    <td>${data.SB}</td>
+    <td>${data.CS}</td>
+    <td>${data.BB}</td>
+    <td>${data.SO}</td>
+    <td>${data.IBB}</td>
+    <td>${data.HBP}</td>
+    <td>${data.SH}</td>
+    <td>${data.SF}</td>
+    <td>${data.GIDP}</td>
+  </tr>`;
 
-    return row;
+  return row;
 }
+
+
+function loadBattingTableFooter(data) {
+
+  console.log(data);
+
+  let doubles = data['2B'];
+  let triples = data['3B'];
+
+  let row = `
+  <tr>
+    <th>Totals</th>
+    <th>${data.years}</th>
+    <th>${data.G}</th>
+    <th>${data.AB}</th>
+    <th>${data.R}</th>
+    <th>${data.H}</th>
+    <th>${doubles}</th>
+    <th>${triples}</th>
+    <th>${data.HR}</th>
+    <th>${data.RBI}</th>
+    <th>${data.SB}</th>
+    <th>${data.CS}</th>
+    <th>${data.BB}</th>
+    <th>${data.SO}</th>
+    <th>${data.IBB}</th>
+    <th>${data.HBP}</th>
+    <th>${data.SH}</th>
+    <th>${data.SF}</th>
+    <th>${data.GIDP}</th>
+  </tr>`;
+
+  $('.table-batting tfoot').html(row);
+
+}
+
 
 function getPlayerData(url, action, actionError) {
   $.getJSON(url, function(response) {

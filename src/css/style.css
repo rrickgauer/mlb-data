@@ -48,9 +48,12 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.player-summary .player-summary-card {
+
+.player-summary-card {
   margin: 10px;
   width: 170px;
+  background-color: #e83f6f;
+  color: white;
 }
 
 .card {
@@ -79,6 +82,10 @@ body {
 .card-chart {
   height: 534px;
   width: 1068px;
+}
+
+.card-table .card-body {
+  padding: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */
