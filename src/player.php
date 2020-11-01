@@ -87,13 +87,13 @@
 
     <!-- sidebar links -->
     <ul class="nav nav-tabs mt-3 mb-4">
-      <li class="nav-item batting"><a class="nav-link active" href="#player-batting" data-toggle="tab">Batting</a></li>
-      <li class="nav-item pitching"><a class="nav-link" href="#player-pitching" data-toggle="tab">Pitching</a></li>
-      <li class="nav-item fielding"><a class="nav-link" href="#player-fielding" data-toggle="tab">Fielding</a></li>
-      <li class="nav-item fielding-of"><a class="nav-link" href="#player-fielding-of" data-toggle="tab">Fielding OF</a></li>
-      <li class="nav-item fielding-of-split"><a class="nav-link" href="#player-fielding-of-split" data-toggle="tab">Fielding OF Split</a></li>
-      <li class="nav-item appearances"><a class="nav-link" href="#player-appearances" data-toggle="tab">Appearances</a></li>
-      <li class="nav-item salaries"><a class="nav-link" href="#player-salaries" data-toggle="tab">Salaries</a></li>
+      <li class="nav-item nav-item-player batting"><a class="nav-link active" href="#player-batting" data-toggle="tab" data-module="batting">Batting</a></li>
+      <li class="nav-item nav-item-player pitching"><a class="nav-link" href="#player-pitching" data-toggle="tab" data-module="pitching">Pitching</a></li>
+      <li class="nav-item nav-item-player fielding"><a class="nav-link" href="#player-fielding" data-toggle="tab" data-module="fielding">Fielding</a></li>
+      <li class="nav-item nav-item-player fielding-of"><a class="nav-link" href="#player-fielding-of" data-toggle="tab" data-module="fielding-of">Fielding OF</a></li>
+      <li class="nav-item nav-item-player fielding-of-split"><a class="nav-link" href="#player-fielding-of-split" data-toggle="tab" data-module="fielding-of-split">Fielding OF Split</a></li>
+      <li class="nav-item nav-item-player appearances"><a class="nav-link" href="#player-appearances" data-toggle="tab" data-module="appearances">Appearances</a></li>
+      <li class="nav-item nav-item-player salaries"><a class="nav-link" href="#player-salaries" data-toggle="tab" data-module="salaries">Salaries</a></li>
     </ul>
 
     <!-- sub panels -->
@@ -190,6 +190,7 @@
               <table class="table table-sm table-batting tablesort">
                 <thead><tr>
                   <th data-tablesort-type="int">Year</th>
+                  <th data-tablesort-type="int">Team</th>
                   <th data-tablesort-type="int">G</th>
                   <th data-tablesort-type="int">AB</th>
                   <th data-tablesort-type="int">R</th>
