@@ -62,13 +62,17 @@
     <div class="card card-table mt-3">
       <div class="card-body">
 
+        <div class="btn-group btn-group-sm mb-3" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-secondary btn-pagination previous"><</button>
+          <button type="button" class="btn btn-secondary btn-pagination next">></button>
+        </div>
+
         <div class="table-responsive">
           <table class="table table-sm table-batting">
             <thead><tr>
               <th>Player</th>
-              <th>Years</th>
+              <th>Year</th>
               <th>G</th>
-              <th>G_batting</th>
               <th>AB</th>
               <th>R</th>
               <th>H</th>

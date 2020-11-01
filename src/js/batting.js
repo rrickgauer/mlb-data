@@ -1,14 +1,67 @@
-let URL         = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting?aggregate=true&perPage=100';
+let URL         = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting?aggregate=false&perPage=10';
 let sortColumn  = null;
 let sortType    = 'desc';
 const urlParams = new URLSearchParams(window.location.search); 
+let data = null;
+
+let paginationPrevious = [];
+
+let pagination = {
+  first: null,
+  previous: null,
+  next: null,
+  last: null,
+}
 
 // main
 $(document).ready(function() {
-  setGlobalVariables();
-  setSelectedInputValues();
-  getData(URL, loadTableData);
+  testFunction();
+
+  paginationPrevious.push(URL);
+
+  $('.btn-pagination.next').on('click', function() {
+    // console.log(pagination.next);
+    // console.log(pagination);
+    paginationPrevious.push(pagination.previous);
+    getData(pagination.next, loadTableData, paginationActions);
+    console.log(paginationPrevious);
+  });
+
+  $('.btn-pagination.previous').on('click', function() {
+    // console.log(pagination);
+
+    // paginationPrevious.pop()
+    getData(paginationPrevious.pop(), loadTableData, paginationActions);
+    console.log(paginationPrevious);
+  });
 });
+
+
+function testFunction() {
+  // console.log(pagination);
+  getData(URL, loadTableData, paginationActions);
+}
+
+function paginationActions(paginationData) {
+  pagination.first    = paginationData.first;
+  pagination.previous = pagination.next;
+  pagination.next     = paginationData.next;
+  pagination.last     = paginationData.last;
+}
+
+function paginationActionsPrev(paginationData) {
+  pagination.first    = paginationData.first;
+  pagination.next     = paginationData.next;
+  pagination.last     = paginationData.last;
+}
+
+
+
+
+
+
+
+
 
 function setGlobalVariables() {
   if (urlParams.has('sort-column'))
@@ -33,12 +86,17 @@ function setSelectedInputValues() {
   $('#batting-select option[value="' + sortColumn + '"]').prop('selected', true);
 }
 
-function getData(url, action) {
+function getData(url, actionResults, actionPagination, actionFail) {
+
+  console.log('Fetching data from: ' + url);
+
   $.getJSON(url, function(response) {
-    action(response);
+    actionResults(response.results);
+    actionPagination(response.pagination);
+    console.log(pagination);
   })
   .fail(function(response) {
-    alert('Error fetching data from API');
+    actionFail();
   });
 }
 
@@ -61,9 +119,8 @@ function getTableRowHtml(data) {
   let html = `
     <tr class="table-batting-row">
       <td>${player}</td>
-      <td>${data.years}</td>
+      <td>${data.year}</td>
       <td>${data.G}</td>
-      <td>${data.G_batting}</td>
       <td>${data.AB}</td>
       <td>${data.R}</td>
       <td>${data.H}</td>
@@ -84,3 +141,8 @@ function getTableRowHtml(data) {
 
   return html;
 }
+
+
+
+
+
