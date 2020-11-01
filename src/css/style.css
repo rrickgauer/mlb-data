@@ -1,7 +1,3 @@
-body {
-  background-color: #fafbfe;
-}
-
 #navbar {
   color: white;
   background-color: #37404a;
@@ -9,6 +5,19 @@ body {
 #navbar .nav-link {
   color: white;
   font-weight: bold;
+}
+
+.player-header {
+  background-color: #f0f0f0;
+  padding-top: 40px;
+}
+
+.player-bio {
+  margin-bottom: 40px;
+}
+
+.player-body {
+  background-color: #fafbfe;
 }
 
 table {
@@ -39,9 +48,12 @@ body {
   display: flex;
   justify-content: space-between;
 }
-.player-summary .player-summary-card {
+
+.player-summary-card {
   margin: 10px;
   width: 170px;
+  background-color: #e83f6f;
+  color: white;
 }
 
 .card {
@@ -49,7 +61,12 @@ body {
 }
 
 .nav-normal .nav-link.active {
-  border-bottom: 2px solid #727cf5;
+  border-bottom: 2px solid #f9826c;
+  font-weight: bold;
+}
+
+.nav-normal .nav-link {
+  color: black;
 }
 
 .navbar-search-menu {
@@ -65,6 +82,10 @@ body {
 .card-chart {
   height: 534px;
   width: 1068px;
+}
+
+.card-table .card-body {
+  padding: 10px;
 }
 
 /*# sourceMappingURL=style.css.map */
