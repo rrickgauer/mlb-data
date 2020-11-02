@@ -1,14 +1,73 @@
-let URL         = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting?aggregate=true&perPage=100';
+let URL         = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting?page=1&aggregate=false&perPage=50';
 let sortColumn  = null;
 let sortType    = 'desc';
 const urlParams = new URLSearchParams(window.location.search); 
+let data = null;
+let perPage = 50;
+
+let emptyRows = '';
+
+let pagination = {
+  current: null,
+  first: null,
+  last: null,
+  next: null,
+};
+
 
 // main
 $(document).ready(function() {
-  setGlobalVariables();
-  setSelectedInputValues();
-  getData(URL, loadTableData);
+  generateBlankRows();
+  $('.table-batting tbody').html(emptyRows);
+  getData(URL, loadTableData, updatePagination);
+
+  $('.btn-pagination.next').on('click', function() {
+    $('.table-batting tbody').html(emptyRows);
+    getData(pagination.next, loadTableData, updatePagination);
+  });
+
+  $('.btn-pagination.previous').on('click', function() {
+    $('.table-batting tbody').html(emptyRows);
+    getData(pagination.previous, loadTableData, updatePagination);
+  });
+
 });
+
+function updatePagination(newPagination) {
+  pagination.current  = newPagination.current;
+  pagination.first    = newPagination.first;
+  pagination.last     = newPagination.last;
+  pagination.next     = newPagination.next;
+  pagination.previous = newPagination.previous;
+
+  // disable the previous button if previous link is null
+  if (pagination.previous == null) {
+    $('.btn-pagination.previous').prop('disabled', true);
+  } else {
+    $('.btn-pagination.previous').prop('disabled', false);
+  }
+
+}
+
+
+function generateBlankRows() {
+  let html = '';
+
+  for (var count = 0; count < perPage; count++) {
+    html += `<tr>
+              <td colspan="19">
+                <div class="text-center">
+                <div class="spinner-border spinner-border-sm" role="status">
+                <span class="sr-only">Loading...</span>
+                </div></div>
+              </td>
+            </tr>`;
+  }
+
+  emptyRows = html;
+}
+
+
 
 function setGlobalVariables() {
   if (urlParams.has('sort-column'))
@@ -33,12 +92,13 @@ function setSelectedInputValues() {
   $('#batting-select option[value="' + sortColumn + '"]').prop('selected', true);
 }
 
-function getData(url, action) {
+function getData(url, actionResults, actionPagination, actionFail) {
   $.getJSON(url, function(response) {
-    action(response);
+    actionResults(response.results);
+    actionPagination(response.pagination);    
   })
   .fail(function(response) {
-    alert('Error fetching data from API');
+    actionFail();
   });
 }
 
@@ -61,9 +121,8 @@ function getTableRowHtml(data) {
   let html = `
     <tr class="table-batting-row">
       <td>${player}</td>
-      <td>${data.years}</td>
+      <td>${data.year}</td>
       <td>${data.G}</td>
-      <td>${data.G_batting}</td>
       <td>${data.AB}</td>
       <td>${data.R}</td>
       <td>${data.H}</td>
@@ -84,3 +143,8 @@ function getTableRowHtml(data) {
 
   return html;
 }
+
+
+
+
+
