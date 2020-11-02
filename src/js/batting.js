@@ -5,66 +5,43 @@ const urlParams = new URLSearchParams(window.location.search);
 let data = null;
 
 let pagination = {
+  current: null,
+  first: null,
+  last: null,
   next: null,
-  previous: null,
-}
+};
 
-let paginationPrevious = [];
-
-let cURL = null;
-
-// let pageNow = url;
 
 // main
 $(document).ready(function() {
-  testFunction();
+
+  getData(URL, loadTableData, updatePagination);
 
   $('.btn-pagination.next').on('click', function() {
-    paginationPrevious.push(pagination.next);
-    getData(pagination.next, loadTableData, function(response) {
-      // console.log(paginationPrevious);
-    });
+    getData(pagination.next, loadTableData, updatePagination);
   });
 
   $('.btn-pagination.previous').on('click', function() {
-
-
-    paginationPrevious.pop();
-    let previous = paginationPrevious.pop();
-    // previous = paginationPrevious.pop();
-
-    getData(previous, loadTableData, function(response) {
-      // console.log(paginationPrevious);
-    });
+    getData(pagination.previous, loadTableData, updatePagination);
   });
 
-  // console.log(paginationPrevious);
 });
 
+function updatePagination(newPagination) {
+  pagination.current  = newPagination.current;
+  pagination.first    = newPagination.first;
+  pagination.last     = newPagination.last;
+  pagination.next     = newPagination.next;
+  pagination.previous = newPagination.previous;
 
-function testFunction() {
-  // console.log(pagination);
-  getData(URL, loadTableData, function(response) {
-    paginationPrevious.push(URL);
-  });
+  // disable the previous button if previous link is null
+  if (pagination.previous == null) {
+    $('.btn-pagination.previous').prop('disabled', true);
+  } else {
+    $('.btn-pagination.previous').prop('disabled', false);
+  }
+
 }
-
-function getPageFromLink(link) {
-  let sub = link.split("page=");
-  let pageNum = parseInt(sub[1]);
-  return pageNum;
-}
-
-
-
-function printArray(array) {
-  for (let count = 0; count < array.length; count++)
-    console.log(array[count]);
-
-  console.log('');
-}
-
-
 
 
 
@@ -92,17 +69,9 @@ function setSelectedInputValues() {
 }
 
 function getData(url, actionResults, actionPagination, actionFail) {
-
-  console.log('Fetching data from: ' + url);
-
   $.getJSON(url, function(response) {
     actionResults(response.results);
-    actionPagination(response.pagination);
-    // console.log(pagination);
-    pagination.next = response.pagination.next;
-
-    console.log(paginationPrevious);
-    
+    actionPagination(response.pagination);    
   })
   .fail(function(response) {
     actionFail();

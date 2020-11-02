@@ -63,7 +63,7 @@
       <div class="card-body">
 
         <div class="btn-group btn-group-sm mb-3" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-secondary btn-pagination previous"><</button>
+          <button type="button" class="btn btn-secondary btn-pagination previous" disabled><</button>
           <button type="button" class="btn btn-secondary btn-pagination next">></button>
         </div>
 
