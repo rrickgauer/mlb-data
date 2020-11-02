@@ -19,8 +19,8 @@
           <div class="input-group input-group-sm">
             <select class="custom-select" id="batting-select" name="sort-column">
               <option>Choose one...</option>
+              <option value="year">Year</option>
               <option value="G">G</option>
-              <option value="G_batting">G_batting</option>
               <option value="AB">AB</option>
               <option value="R">R</option>
               <option value="H">H</option>
@@ -63,10 +63,18 @@
     <div class="card card-table mt-3">
       <div class="card-body">
 
-        <div class="btn-group btn-group-sm mb-3" role="group" aria-label="Basic example">
-          <button type="button" class="btn btn-secondary btn-pagination previous" disabled><</button>
-          <button type="button" class="btn btn-secondary btn-pagination next">></button>
+        <div class="d-flex align-items-center justify-content-between my-3">
+          <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary btn-pagination previous" disabled><</button>
+            <button type="button" class="btn btn-secondary btn-pagination next">></button>
+          </div>
+
+          <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-filter-batting">
+            Filters
+          </button>
         </div>
+
+
 
         <div class="table-responsive">
           <table class="table table-sm table-batting">
@@ -103,13 +111,43 @@
       </div>
     </div>
 
+  </div>
 
+  <!-- filter modal -->
+  <div class="modal fade modal-filter" id="modal-filter-batting" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Filters</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            
+          <form>
+            <p>Year</p>
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <select id="inputState" class="form-control">
+                  <option>=</option>
+                  <option>></option>
+                  <option><</option>
+                  <option>!=</option>
+                </select>
+              </div>
+              <div class="form-group col-md-10">
+                <input type="text" class="form-control" id="inputZip">
+              </div>
+            </div>
+          </form>
 
-
-
-
-
-
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <?php include('footer.php'); ?>

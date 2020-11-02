@@ -17,6 +17,11 @@ let pagination = {
 
 // main
 $(document).ready(function() {
+
+  $('#modal-filter-batting').modal('show');
+
+  setGlobalVariables();
+
   generateBlankRows();
   $('.table-batting tbody').html(emptyRows);
   getData(URL, loadTableData, updatePagination);
