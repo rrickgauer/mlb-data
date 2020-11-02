@@ -1,63 +1,68 @@
-let URL         = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting?aggregate=false&perPage=10';
+let URL         = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting?page=1&aggregate=false&perPage=10';
 let sortColumn  = null;
 let sortType    = 'desc';
 const urlParams = new URLSearchParams(window.location.search); 
 let data = null;
 
+let pagination = {
+  next: null,
+  previous: null,
+}
+
 let paginationPrevious = [];
 
-let pagination = {
-  first: null,
-  previous: null,
-  next: null,
-  last: null,
-}
+let cURL = null;
+
+// let pageNow = url;
 
 // main
 $(document).ready(function() {
   testFunction();
 
-  paginationPrevious.push(URL);
-
   $('.btn-pagination.next').on('click', function() {
-    // console.log(pagination.next);
-    // console.log(pagination);
-    paginationPrevious.push(pagination.previous);
-    getData(pagination.next, loadTableData, paginationActions);
-    console.log(paginationPrevious);
+    paginationPrevious.push(pagination.next);
+    getData(pagination.next, loadTableData, function(response) {
+      // console.log(paginationPrevious);
+    });
   });
 
   $('.btn-pagination.previous').on('click', function() {
-    // console.log(pagination);
 
-    // paginationPrevious.pop()
-    getData(paginationPrevious.pop(), loadTableData, paginationActions);
-    console.log(paginationPrevious);
+
+    paginationPrevious.pop();
+    let previous = paginationPrevious.pop();
+    // previous = paginationPrevious.pop();
+
+    getData(previous, loadTableData, function(response) {
+      // console.log(paginationPrevious);
+    });
   });
+
+  // console.log(paginationPrevious);
 });
 
 
 function testFunction() {
   // console.log(pagination);
-  getData(URL, loadTableData, paginationActions);
+  getData(URL, loadTableData, function(response) {
+    paginationPrevious.push(URL);
+  });
 }
 
-function paginationActions(paginationData) {
-  pagination.first    = paginationData.first;
-  pagination.previous = pagination.next;
-  pagination.next     = paginationData.next;
-  pagination.last     = paginationData.last;
-}
-
-function paginationActionsPrev(paginationData) {
-  pagination.first    = paginationData.first;
-  pagination.next     = paginationData.next;
-  pagination.last     = paginationData.last;
+function getPageFromLink(link) {
+  let sub = link.split("page=");
+  let pageNum = parseInt(sub[1]);
+  return pageNum;
 }
 
 
 
+function printArray(array) {
+  for (let count = 0; count < array.length; count++)
+    console.log(array[count]);
 
+  console.log('');
+}
 
 
 
@@ -93,7 +98,11 @@ function getData(url, actionResults, actionPagination, actionFail) {
   $.getJSON(url, function(response) {
     actionResults(response.results);
     actionPagination(response.pagination);
-    console.log(pagination);
+    // console.log(pagination);
+    pagination.next = response.pagination.next;
+
+    console.log(paginationPrevious);
+    
   })
   .fail(function(response) {
     actionFail();
