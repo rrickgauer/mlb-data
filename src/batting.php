@@ -129,7 +129,7 @@
             <p>Year</p>
             <div class="form-row">
               <div class="form-group col-md-2">
-                <select id="inputState" class="form-control">
+                <select id="inputState" class="form-control" name="filter-column-coniditional">
                   <option>=</option>
                   <option>></option>
                   <option><</option>
@@ -137,7 +137,7 @@
                 </select>
               </div>
               <div class="form-group col-md-10">
-                <input type="text" class="form-control" id="inputZip">
+                <input type="text" class="form-control" name="filter-column-qualifier">
               </div>
             </div>
           </form>
