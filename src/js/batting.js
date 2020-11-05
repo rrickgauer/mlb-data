@@ -63,24 +63,58 @@ $(document).ready(function() {
 
 });
 
-
-
 function showPlayerPopover(link) {
+  $('.table-batting [data-toggle="popover"]').popover('hide');
+  const playerID = $(link).closest('.table-batting-row').attr('data-player-id');
+  const playerUrl = 'https://api.mlb-data.ryanrickgauer.com/main.php/people/' + playerID;
 
-  let content = 'Hello this is the content';
-  $(link).attr('data-content', content);
+  // let content = `<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>`;
+  // $(link).attr('data-content', content);
+  // $(link).popover('show');
 
-  $(link).popover('show');
+  $.getJSON(playerUrl, function(response) {
+    // if the mouse is still not hovering over the link exit
+    if (!$(link).is(':hover'))
+      return;
 
+    let content = getPlayerPopoverContent(response);
+    $(link).attr('data-content', content);
+    $(link).popover('show');
+  });
 
 }
 
+function getPlayerPopoverContent(data) {
+
+  let html = `
+  <div class="d-flex align-items-start">
+    <div class="player-bio-left mr-3">
+      <div class="player-bio-item">
+        <img src="${data.results.image}" width="60" height="90" alt="Player image" class="player-item-data image">
+      </div>
+    </div>
+    <div class="player-bio-right">
+      <h4 class="player-bio-item-data name">${data.results.nameFirst} ${data.results.nameLast}</h4>
+      <div class="player-bio-item">
+        <span class="player-bio-item-label">Debut date</span>
+        <span class="player-bio-item-data debut-date">${data.results.debuteDate}</span>
+      </div>
+      <div class="player-bio-item">
+        <span class="player-bio-item-label">Team</span>
+        <span class="player-bio-item-data team">${data.results.team}</span>
+      </div>
+    </div>
+  </div>
+  `;
+
+  return html;
+
+}
 
 function removePlayerPopover(link) {
-  $(link).popover('hide');
+  $('.table-batting [data-toggle="popover"]').popover('hide');
+  // $(link).popover('hide');
 }
-
-
 
 function applyPerPage() {
   let newPerPage = $('.select-per-page option:checked').val();
@@ -147,10 +181,12 @@ function getTableRowHtml(data) {
   let doubles = data['2B'];
   let triples = data['3B'];
 
-  let player = `<a data-toggle="popover" class="link-player" href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
+  let player = `<a data-toggle="popover" data-html="true" data-placement="bottom" 
+  class="link-player"
+   href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
 
   let html = `
-    <tr class="table-batting-row">
+    <tr class="table-batting-row" data-player-id="${data.playerID}">
       <td>${player}</td>
       <td>${data.year}</td>
       <td>${data.G}</td>
