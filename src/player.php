@@ -186,7 +186,7 @@ if (!isset($_GET['playerID'])) {
 
 
           <!-- chart -->
-          <div class="card card-chart mb-5">
+          <div class="card card-chart mb-5 d-none">
             <div class="card-body">
 
               <!-- loading spinner -->
