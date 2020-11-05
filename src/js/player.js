@@ -3,16 +3,7 @@ const playerID              = urlParams.get('playerID');
 const API                   = 'http://api.mlb-data.ryanrickgauer.com/main.php';
 const CHART_COLORS = ['red', 'pink', 'purple', 'darkviolet', 'indigo', 'blue', 'lightblue', 'cyan', 'teal', 'green', 'lightgreen', 'lime', 'yellow', 'goldenrod', 'orange', 'tomato', 'brown', 'grey', 'cadetblue', 'thistle', 'yellowgreen'];
 
-const API_LINKS = {
-  BATTING          : API + '/batting/' + playerID,
-  PITCHING         : API + '/pitching/' + playerID,
-  FIELDING         : API + '/fielding/' + playerID,
-  FIELDING_OF      : API + '/fielding-of/' + playerID,
-  FIELDING_OF_SPLIT: API + '/fielding-of-split/' + playerID,
-  APPEARANCES      : API + '/appearances/' + playerID,
-  SALARIES         : API + '/salaries/' + playerID,
-  BIO              : API + '/people/' + playerID,
-}
+const player = new Player(playerID);
 
 const MODULES = {
   PITCHING         : "pitching",
@@ -38,17 +29,17 @@ $(document).ready(function() {
 /////////////////////////////////////////////////////////////////
 function loadAllPlayerData() {
   // Positsion
-  getPlayerData(API_LINKS.APPEARANCES + '?aggregate=true', loadPositionData, function() {
+  getPlayerData(player.appearances + '?aggregate=true', loadPositionData, function() {
     console.log('error: loadPositionData()');
   });
 
   // Bio data
-  getPlayerData(API_LINKS.BIO, loadBioData, function() {
+  getPlayerData(player.bio, loadBioData, function() {
     displayAlert('API Error: bio data');
   });
 
   // Batting - aggregate
-  let urlBattingAggregate = API_LINKS.BATTING + '?aggregate=true';
+  let urlBattingAggregate = player.batting + '?aggregate=true';
   getPlayerData(urlBattingAggregate, loadBattingAggregateData, console.log);
 
   getPlayerData(urlBattingAggregate, loadBattingTableFooter, console.log);
@@ -59,43 +50,43 @@ function loadAllPlayerData() {
   });
 
   // Batting - table
-  getPlayerData(API_LINKS.BATTING, loadBattingTable, function() {
+  getPlayerData(player.batting, loadBattingTable, function() {
     hideModule('batting');
   });
 
   // Pitching - aggregate
-  let urlPitchingAggregate = API_LINKS.PITCHING + '?aggregate=true';
+  let urlPitchingAggregate = player.pitching + '?aggregate=true';
   getPlayerData(urlPitchingAggregate, loadPitchingAggregateData, function() {
     hideModule('pitching');
   });
 
   // Pitching - table
-  getPlayerData(API_LINKS.PITCHING, loadPitchingTable, function() {
+  getPlayerData(player.pitching , loadPitchingTable, function() {
     hideModule('pitching');
   });
 
   // Fielding
-  getPlayerData(API_LINKS.FIELDING, loadFieldingTable, function() {
+  getPlayerData(player.fielding, loadFieldingTable, function() {
     hideModule('fielding');
   });  
   
   // Fielding OF
-  getPlayerData(API_LINKS.FIELDING_OF, loadFieldingOfTable, function() {
+  getPlayerData(player.fieldingOf, loadFieldingOfTable, function() {
     hideModule('fielding-of');
   });
 
   // Fielding OF Split
-  getPlayerData(API_LINKS.FIELDING_OF_SPLIT, loadFieldingOfSplitTable, function() {
+  getPlayerData(player.fieldingOfSplit, loadFieldingOfSplitTable, function() {
     hideModule('fielding-of-split');
   });
 
   // Appearances
-  getPlayerData(API_LINKS.APPEARANCES, loadAppearancesTable, function() {
+  getPlayerData(player.appearances, loadAppearancesTable, function() {
     hideModule('appearances');
   });
 
   // Salaries
-  getPlayerData(API_LINKS.SALARIES, loadSalariesTable, function() {
+  getPlayerData(player.salaries, loadSalariesTable, function() {
     hideModule('salaries');
   });
 }
@@ -117,7 +108,7 @@ function hideModule(moduleName) {
 }
 
 function getPlayerBatting(playerID, action) {
-  $.getJSON(API_LINKS.BATTING, function(result) {
+  $.getJSON(player.batting, function(result) {
     action(result);
   })
   .fail(function(response) {

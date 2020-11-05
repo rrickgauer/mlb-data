@@ -523,6 +523,7 @@ if (!isset($_GET['playerID'])) {
   </section>
 
   <?php include('footer.php'); ?>
+  <script src="js/Player-Class.js"></script>
   <script src="js/player.js"></script>
 </body>
 </html>
