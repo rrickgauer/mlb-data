@@ -53,7 +53,33 @@ $(document).ready(function() {
     applyPerPage();
   });
 
+  $('.table-batting').on('mouseover', '.link-player', function() {
+    showPlayerPopover(this);
+  });
+
+  $('.table-batting').on('mouseout', '.link-player', function() {
+    removePlayerPopover(this);
+  });
+
 });
+
+
+
+function showPlayerPopover(link) {
+
+  let content = 'Hello this is the content';
+  $(link).attr('data-content', content);
+
+  $(link).popover('show');
+
+
+}
+
+
+function removePlayerPopover(link) {
+  $(link).popover('hide');
+}
+
 
 
 function applyPerPage() {
@@ -121,7 +147,7 @@ function getTableRowHtml(data) {
   let doubles = data['2B'];
   let triples = data['3B'];
 
-  let player = `<a href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
+  let player = `<a data-toggle="popover" class="link-player" href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
 
   let html = `
     <tr class="table-batting-row">
