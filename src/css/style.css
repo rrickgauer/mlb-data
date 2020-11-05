@@ -11,9 +11,19 @@
   background-color: #f0f0f0;
   padding-top: 40px;
 }
-
-.player-bio {
+.player-header .player-bio {
   margin-bottom: 40px;
+}
+.player-header .player-item-data.image {
+  height: 238px;
+  width: auto;
+}
+.player-header .player-item-data.image img {
+  height: 100%;
+  width: auto;
+}
+.player-header .player-bio-right {
+  margin-left: 15px;
 }
 
 .player-body {

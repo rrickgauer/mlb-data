@@ -23,18 +23,21 @@ if (!isset($_GET['playerID'])) {
 
   <section class="player-header">
     <div class="container">
-
       <!-- bio -->
-      <div class="player-bio d-flex align-items-start">
-        <div class="player-bio-left mr-3">
-          <div class="player-bio-item">
-            <img src="https://www.elitefoods.com.au/backend/user_images/avatar.jpg" width="120" height="180" alt="Player image" class="player-item-data image">
-          </div>
+      <div class="player-bio d-flex">
+        <!-- player image -->
+        <div class="player-item-data image">
+          <img src="https://www.elitefoods.com.au/backend/user_images/avatar.jpg" alt="Player image">
         </div>
 
         <div class="player-bio-right">
           <!-- name -->
           <h2 class="player-bio-item-data name"></h2>
+
+          <!-- hall of fame -->
+          <div class="player-bio-item">
+            <span class="player-bio-item-data hof d-none badge badge-info">Hall of fame</span>
+          </div>
 
           <!-- position -->
           <div class="player-bio-item">
