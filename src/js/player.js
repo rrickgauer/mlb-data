@@ -400,7 +400,7 @@ function getSalariesRowHtml(data) {
 
 function loadBioData(data) {
   
-  // console.log(data);
+  console.log(data);
 
   let height           = inchesToFeet(data.height);
   let heightDisplay    = height.feet + '-' + height.inches;
@@ -409,8 +409,13 @@ function loadBioData(data) {
   let birthCityState   = data.birthCity + ', ' + data.birthState;
   let nameDisplay      = data.nameFirst + ' ' + data.nameLast;
 
-  $('.player-bio .player-item-data.image').attr("src", data.image);
+  $('.player-bio .player-item-data.image img').attr("src", data.image);
   $('.player-bio .player-bio-item-data.name').text(nameDisplay);
+
+
+  if (data.hallOfFame == 'y')
+    $('.player-bio .player-bio-item-data.hof').removeClass('d-none');
+
   $('.player-bio .player-bio-item-data.bats').text(data.bats);
   $('.player-bio .player-bio-item-data.throws').text(data.throws);
   $('.player-bio .player-bio-item-data.height').text(heightDisplay);
@@ -419,7 +424,8 @@ function loadBioData(data) {
   $('.player-bio .player-bio-item-data.birth-city-state').text(birthCityState);
   $('.player-bio .player-bio-item-data.debut-date').text(debutDateDisplay);
   $('.player-bio .player-bio-item-data.bbref-link').attr("href", data.bbrefLink);
-  $('.player-bio .player-item-data.image').attr("src", data.image);
+
+
 }
 
 function inchesToFeet(inches) {

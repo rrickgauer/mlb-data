@@ -20,11 +20,27 @@ body {
 .player-header {
   background-color: $color-white-darker;
   padding-top: 40px;
+
+  .player-bio {
+    margin-bottom: 40px;
+  }
+
+  .player-item-data.image {
+    height: 238px;
+    width: auto;
+
+    img {
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  .player-bio-right {
+    margin-left: 15px;
+  }
 }
 
-.player-bio {
-  margin-bottom: 40px;
-}
+
 
 .player-body {
   background-color: $color-white;
