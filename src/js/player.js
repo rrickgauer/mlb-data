@@ -21,11 +21,6 @@ const MODULES = {
 ///////////////////
 $(document).ready(function() {
   loadAllPlayerData();
-
-  // getPlayerData(player.batting + '?aggregate=true', function(result) {
-  //   console.log(result);
-  // }, console.log);
-
 });
 
 
@@ -71,6 +66,7 @@ function loadAllPlayerData() {
   let urlPitchingAggregate = player.pitching + '?aggregate=true';
   getPlayerData(urlPitchingAggregate, function(response) {
     loadPitchingAggregateData(response.results);
+    loadPitchingFooter(response.results);
   }, function() {
     hideModule('pitching');
   });
@@ -230,8 +226,8 @@ function loadPitchingTable(data) {
 function getPitchingRowHtml(pitching) {
   let html = `
   <tr class="table-pitching-row">
-    <td>${pitching.year}</td>
     <td>${pitching.teamName}</td>  
+    <td>${pitching.year}</td>
     <td>${pitching.W}</td> 
     <td>${pitching.L}</td>
     <td>${pitching.G}</td>
@@ -608,4 +604,43 @@ function loadPositionData(data) {
 
   const positionKey = dataSorted[count][0];
   $('.player-bio .player-bio-item-data.position').text(positions[positionKey]);
+}
+
+function loadPitchingFooter(data) {
+
+  let html = `
+  <tr>
+    <th>Totals</th>
+    <th>${data.years}</th>
+    <th>${data.W}</th>
+    <th>${data.L}</th>
+    <th>${data.G}</th>
+    <th>${data.GS}</th>
+    <th>${data.CG}</th>
+    <th>${data.SHO}</th>
+    <th>${data.SV}</th>
+    <th>${data.IPouts}</th>
+    <th>${data.H}</th>
+    <th>${data.ER}</th>
+    <th>${data.HR}</th>
+    <th>${data.BB}</th>
+    <th>${data.SO}</th>
+    <th>${data.BAOpp.toFixed(2)}</th>
+    <th>${data.ERA}</th>
+    <th>${data.IBB}</th>
+    <th>${data.WP}</th>
+    <th>${data.HBP}</th>
+    <th>${data.BK}</th>
+    <th>${data.BFP}</th>
+    <th>${data.GF}</th>
+    <th>${data.R}</th>
+    <th>${data.SH}</th>
+    <th>${data.SF}</th>
+    <th>${data.GIDP}</th>
+  </tr>`;
+
+  $('.table-pitching tfoot').html(html);
+
+
+
 }

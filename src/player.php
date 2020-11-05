@@ -307,8 +307,8 @@ if (!isset($_GET['playerID'])) {
               <div class="table-responsive">
                 <table class="table table-sm tablesort table-pitching">
                   <thead><tr>
-                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="string">Team</th>
+                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="int">W</th>
                     <th data-tablesort-type="int">L</th>
                     <th data-tablesort-type="int">G</th>
@@ -343,6 +343,9 @@ if (!isset($_GET['playerID'])) {
                       </div>
                     </td></tr>
                   </tbody>
+                  <tfoot>
+
+                  </tfoot>
                 </table>
               </div>
             </div>
