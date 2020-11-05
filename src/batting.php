@@ -9,73 +9,37 @@
   <?php include('navbar.php'); ?>
 
   <div class="container">
-
     <h1 class="text-center mt-5 mb-5">Batting</h1>
 
-    <form method="get" class="form-batting-sort">
-      <div class="font-weight-bold mb-2">Sorting options</div>
-      <div class="form-row">
-        <div class="col-10">
-          <div class="input-group input-group-sm">
-            <select class="custom-select" id="batting-select" name="sort-column">
-              <option>Choose one...</option>
-              <option value="year">Year</option>
-              <option value="G">G</option>
-              <option value="AB">AB</option>
-              <option value="R">R</option>
-              <option value="H">H</option>
-              <option value="2B">2B</option>
-              <option value="3B">3B</option>
-              <option value="HR">HR</option>
-              <option value="RBI">RBI</option>
-              <option value="SB">SB</option>
-              <option value="CS">CS</option>
-              <option value="BB">BB</option>
-              <option value="SO">SO</option>
-              <option value="IBB">IBB</option>
-              <option value="HBP">HBP</option>
-              <option value="SH">SH</option>
-              <option value="SF">SF</option>
-              <option value="GIDP">GIDP</option>
-            </select>
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="sort-type" id="batting-inlineradio-asc" value="asc">
-                  <label class="form-check-label" for="batting-inlineradio-asc">Ascending</label>
-                </div>
-              </div>
-              <div class="input-group-text">
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="sort-type" id="batting-inlineradio-desc" value="desc">
-                  <label class="form-check-label" for="batting-inlineradio-desc">Descending</label>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <button type="submit" class="btn btn-sm btn-primary">Sort table</button>
+    <!-- toolbar -->
+    <div class="d-flex align-items-center justify-content-start my-3">
+      <!-- pagination -->
+      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary btn-pagination previous" disabled><</button>
+        <button type="button" class="btn btn-primary btn-pagination next">></button>
       </div>
-    </form>
 
+      <!-- filters -->
+      <button type="button" class="btn btn-sm btn-primary ml-2" data-toggle="modal" data-target="#modal-filter-batting">Filters</button>
 
+      <!-- sort -->
+      <button type="button" class="btn btn-sm btn-primary ml-2" data-toggle="modal" data-target="#modal-sort-batting">Sort</button>
+
+      <!-- per page -->
+      <div class="ml-2">
+        <select class="form-control select-per-page">
+          <option value="10">10</option>
+          <option value="50" selected>50</option>
+          <option value="100">100</option>
+          <option value="500">500</option>
+          <option value="1000">1000</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- data table -->
     <div class="card card-table mt-3">
       <div class="card-body">
-
-        <div class="d-flex align-items-center justify-content-between my-3">
-          <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary btn-pagination previous" disabled><</button>
-            <button type="button" class="btn btn-secondary btn-pagination next">></button>
-          </div>
-
-          <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#modal-filter-batting">
-            Filters
-          </button>
-        </div>
-
-
-
         <div class="table-responsive">
           <table class="table table-sm table-batting">
             <thead><tr>
@@ -124,34 +88,90 @@
           </button>
         </div>
         <div class="modal-body">
-            
-          <form>
-            <p>Year</p>
-            <div class="form-row">
-              <div class="form-group col-md-2">
-                <select id="inputState" class="form-control" name="filter-column-coniditional">
-                  <option>=</option>
-                  <option>></option>
-                  <option><</option>
-                  <option>!=</option>
-                </select>
-              </div>
-              <div class="form-group col-md-10">
-                <input type="text" class="form-control" name="filter-column-qualifier">
-              </div>
-            </div>
-          </form>
+          <!-- filter inputs go here -->
+          <form class="form-filters"></form>
+
+          <!-- new filter button -->
+          <button type="button" class="btn btn-sm btn-outline-secondary form-control btn-filter-new mt-3">Add new filter</button>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary btn-filters-apply">Apply filters</button>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- sort modal -->
+  <div class="modal fade modal-sort" id="modal-sort-batting" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Sorting</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- filter inputs go here -->
+          <form class="form-sort">
+
+            <div class="form-group">
+              <label for="form-sort-column">Column</label>
+              <select class="form-control sort-column mb-3" id="form-sort-column">
+                <option value="year">Year</option>
+                <option value="G">G</option>
+                <option value="AB">AB</option>
+                <option value="R">R</option>
+                <option value="H">H</option>
+                <option value="2B">2B</option>
+                <option value="3B">3B</option>
+                <option value="HR">HR</option>
+                <option value="RBI">RBI</option>
+                <option value="SB">SB</option>
+                <option value="CS">CS</option>
+                <option value="BB">BB</option>
+                <option value="SO">SO</option>
+                <option value="IBB">IBB</option>
+                <option value="HBP">HBP</option>
+                <option value="SH">SH</option>
+                <option value="SF">SF</option>
+                <option value="GIDP">GIDP</option>
+              </select>
+            </div>
+            
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="form-sort-type" id="form-sort-type-asc" value="asc">
+              <label class="form-check-label" for="form-sort-type-asc">
+                Ascending
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="form-sort-type" id="form-sort-type-desc" value="desc" checked>
+              <label class="form-check-label" for="form-sort-type-desc">
+                Descending
+              </label>
+            </div>
+
+
+          </form>
+
+          <button type="button" class="btn btn-sm btn-outline-primary form-control mt-3 btn-sort-apply">Sort table</button>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
   <?php include('footer.php'); ?>
 
+  <script src="js/Filters.js"></script>
+  <script src="js/test.js"></script>
+  <script src="js/Global-Variables.js"></script>
   <script src="js/batting.js"></script>
 </body>
 </html>
