@@ -1,25 +1,25 @@
-let URL         = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting?page=1&aggregate=false&perPage=50';
-let sortColumn  = null;
-let sortType    = 'desc';
-const urlParams = new URLSearchParams(window.location.search); 
-let data = null;
-let perPage = 50;
-
-let emptyRows = '';
-
-let pagination = {
+let globalVariables  = new GlobalVariables();
+const API            = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting' + globalVariables.getUrl();
+let filterColumns    = ["year", "G", "AB", "R", "H", "2B", "3B", "HR", "RBI", "SB", "CS", "BB", "SO", "IBB", "HBP", "SH", "SF", "GIDP"];
+let userFilerColumns = [];
+const filters        = new Filters();
+let emptyRows        = '';
+let pagination       = {
   current: null,
-  first: null,
-  last: null,
-  next: null,
+  first  : null,
+  last   : null,
+  next   : null,
 };
 
 
 // main
 $(document).ready(function() {
+
+  // $('#modal-sort-batting').modal('show');
+
   generateBlankRows();
   $('.table-batting tbody').html(emptyRows);
-  getData(URL, loadTableData, updatePagination);
+  getData(API, loadTableData, updatePagination);
 
   $('.btn-pagination.next').on('click', function() {
     $('.table-batting tbody').html(emptyRows);
@@ -31,7 +31,37 @@ $(document).ready(function() {
     getData(pagination.previous, loadTableData, updatePagination);
   });
 
+
+  $('.btn-filter-new').on('click', function() {
+    addNewFilterRow();
+  });
+
+
+  $('.form-filters').on('click', '.btn-filter-delete', function() {
+    deleteFilter(this);
+  });
+
+  $('.btn-filters-apply').on('click', function() {
+    applyFilters();
+  });
+
+  $('.btn-sort-apply').on('click', function() {
+    applySort();
+  });
+
+  $('.select-per-page').on('change', function() {
+    applyPerPage();
+  });
+
 });
+
+
+function applyPerPage() {
+  let newPerPage = $('.select-per-page option:checked').val();
+  globalVariables.perPage = newPerPage;
+  refreshPage();
+}
+
 
 function updatePagination(newPagination) {
   pagination.current  = newPagination.current;
@@ -53,52 +83,29 @@ function updatePagination(newPagination) {
 function generateBlankRows() {
   let html = '';
 
-  for (var count = 0; count < perPage; count++) {
-    html += `<tr>
-              <td colspan="19">
-                <div class="text-center">
-                <div class="spinner-border spinner-border-sm" role="status">
-                <span class="sr-only">Loading...</span>
-                </div></div>
-              </td>
-            </tr>`;
+  for (var count = 0; count < globalVariables.perPage; count++) {
+    html += `
+    <tr>
+      <td colspan="19">
+        <div class="text-center">
+        <div class="spinner-border spinner-border-sm" role="status">
+        <span class="sr-only">Loading...</span>
+        </div></div>
+      </td>
+    </tr>`;
   }
 
   emptyRows = html;
 }
 
 
-
-function setGlobalVariables() {
-  if (urlParams.has('sort-column'))
-    sortColumn = urlParams.get('sort-column');
-  if (urlParams.has('sort-type') && urlParams.get('sort-type') == 'asc')
-    sortType = 'asc';
-  if (sortColumn != null)
-    URL += '&sort=' + sortColumn + ':' + sortType; 
-}
-
-function setSelectedInputValues() {
-  // choose which sort type to check
-  if (sortType == 'asc')
-    $('#batting-inlineradio-asc').prop('checked', true);
-  else
-    $('#batting-inlineradio-desc').prop('checked', true);
-
-  if (sortColumn == null)
-    return;
-
-  // display set the previously selected option
-  $('#batting-select option[value="' + sortColumn + '"]').prop('selected', true);
-}
-
-function getData(url, actionResults, actionPagination, actionFail) {
+function getData(url, actionResults, actionPagination) {
   $.getJSON(url, function(response) {
     actionResults(response.results);
     actionPagination(response.pagination);    
   })
   .fail(function(response) {
-    actionFail();
+    console.error(response);
   });
 }
 
@@ -107,12 +114,10 @@ function loadTableData(data) {
   for (var count = 0; count < data.length; count++) 
     html += getTableRowHtml(data[count]);
   
-
   $('.table-batting tbody').html(html);
 }
 
 function getTableRowHtml(data) {
-
   let doubles = data['2B'];
   let triples = data['3B'];
 
@@ -145,6 +150,93 @@ function getTableRowHtml(data) {
 }
 
 
+function addNewFilterRow() {
+  let html = '<div class="input-group input-group-filter">';
+
+  // column
+  html += getFilterColumnOptionsHtml();
+
+  // conditional
+  html += `
+    <select class="form-control filter-conditional">
+      <option value="=">=</option>
+      <option value="!=">!=</option>
+      <option value=">=">>=</option>
+      <option value="<="><=</option>
+      <option value=">">></option>
+      <option value="<"><</option>
+    </select>`;
+
+  // qualifier
+  html += '<input type="text" class="form-control filter-qualifier">';
+
+  // delete filter button
+  html += `
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary btn-filter-delete" type="button"><i class='bx bx-trash'></i></button>
+    </div>`;
+
+  html += '</div>';
+
+  $('.form-filters').append(html);
+}
 
 
+function getFilterColumnOptionsHtml() {
+  // get a list of already used filters
+  let usedFilters = $('.filter-column option:checked').text();
+
+  let html = '<select class="form-control filter-column">';
+
+  for (let count = 0; count < filterColumns.length; count++) {
+    // skip over column if it is already used as a filter
+    if (usedFilters.includes(filterColumns[count]))
+      continue;
+
+    html += `<option value="${filterColumns[count]}">${filterColumns[count]}</option>`;
+  }
+  
+  html += '</select>';
+  return html;
+}
+
+//////////////////////////////////////////
+// remove a filter from the filter list //
+//////////////////////////////////////////
+function deleteFilter(btn) {
+  $(btn).closest('.input-group-filter').remove();
+}
+
+
+// Executes when the .btn-filters-apply button is clicked
+function applyFilters() {
+  let filterRows = $('.input-group-filter');
+
+  for (let count = 0; count < filterRows.length; count++) {
+    let newColumn      = $(filterRows[count]).find('.filter-column option:checked').val();
+    let newConditional = $(filterRows[count]).find('.filter-conditional option:checked').val();
+    let newQualifier   = $(filterRows[count]).find('.filter-qualifier').val();
+    filters.addFilter(newColumn, newConditional, newQualifier);
+  }
+
+  // update the filters
+  globalVariables.filters = filters.getFiltersString();
+
+  refreshPage();
+}
+
+
+function applySort() {
+  let sortColumn       = $('.sort-column option:checked').val();
+  let sortType         = $('input[name="form-sort-type"]:checked').val();
+  let sortResult       = `${sortColumn}:${sortType}`;
+  globalVariables.sort = sortResult;
+
+  refreshPage();
+}
+
+function refreshPage() {
+  // go to the new page
+  window.location.href = window.location.protocol + window.location.pathname + globalVariables.getUrl();
+}
 
