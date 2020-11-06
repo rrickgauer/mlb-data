@@ -60,7 +60,7 @@ function loadAllPlayerData() {
     loadBattingTable(response.results);
   }, function(response) {
     // hideModule('batting');
-    console.log(response);
+    console.error(response);
   });
 
   // Pitching - aggregate
@@ -70,7 +70,7 @@ function loadAllPlayerData() {
     loadPitchingFooter(response.results);
   }, function(response) {
     // hideModule('pitching');
-    console.log(response);
+    console.error(response);
   });
 
   // Pitching - table
@@ -78,7 +78,7 @@ function loadAllPlayerData() {
     loadPitchingTable(response.results);
   }, function(response) {
     // hideModule('pitching');
-    console.log(response);
+    console.error(response);
   });
 
   // Fielding
@@ -86,15 +86,24 @@ function loadAllPlayerData() {
     loadFieldingTable(response.results);
   }, function(response) {
     // hideModule('fielding');
-    console.log(response);
+    console.error(response);
   });  
+
+
+  // Fielding - aggregate
+  getPlayerData(player.fielding_aggregate, function(response) {
+    loadFieldingTableFooter(response.results);
+  }, function(response) {
+    console.error(response);
+  });
+
   
   // Fielding OF
   getPlayerData(player.fieldingOf, function(response) {
     loadFieldingOfTable(response.results);
   }, function(response) {
     // hideModule('fielding-of');
-    console.log(response);
+    console.error(response);
   });
 
   // Fielding OF Split
@@ -102,7 +111,7 @@ function loadAllPlayerData() {
     loadFieldingOfTable(response.results);
   }, function(response) {
     // hideModule('fielding-of-split');
-    console.log(response);
+    console.error(response);
   });
 
   // Appearances
@@ -110,7 +119,7 @@ function loadAllPlayerData() {
     loadAppearancesTable(response.results);
   }, function(response) {
     // hideModule('appearances');
-    console.log(response);
+    console.error(response);
   });
 
   // Salaries
@@ -118,9 +127,10 @@ function loadAllPlayerData() {
     loadSalariesTable(response.results);
   }, function(response) {
     // hideModule('salaries');
-    console.log(response);
+    console.error(response);
   });
 }
+
 
 // displays an alert on the screen
 function displayAlert(text) {
@@ -298,6 +308,29 @@ function getFieldingRowHtml(data) {
     return html;
 }
 
+function loadFieldingTableFooter(data) {
+  
+  let html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>-</th>
+    <th>${data.G}</th>
+    <th>${data.GS}</th>
+    <th>${data.InnOuts}</th>
+    <th>${data.PO}</th>
+    <th>${data.A}</th>
+    <th>${data.E}</th>
+    <th>${data.DP}</th>
+    <th>${data.PB}</th>
+    <th>${data.WP}</th>
+    <th>${data.SB}</th>
+    <th>${data.CS}</th>
+    <th>${data.ZR}</th>
+  </tr>`;
+
+  $('.table-fielding tfoot').html(html);
+}
 
 function loadFieldingOfTable(data) {
   let html = '';
