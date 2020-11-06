@@ -98,21 +98,20 @@ function loadAllPlayerData() {
   });
 
   
-  // Fielding OF
-  getPlayerData(player.fieldingOf, function(response) {
-    loadFieldingOfTable(response.results);
+  // Fielding OF Split
+  getPlayerData(player.fieldingOfSplit, function(response) {
+    loadFieldingOfSplitTable(response.results);
   }, function(response) {
-    // hideModule('fielding-of');
     console.error(response);
   });
 
-  // Fielding OF Split
-  getPlayerData(player.fieldingOfSplit, function(response) {
-    loadFieldingOfTable(response.results);
+  // Fielding OF Split - Aggregate
+  getPlayerData(player.fieldingOfSplit_aggregate, function(response) {
+    loadFieldingOfSplitTableFooter(response.results);
   }, function(response) {
-    // hideModule('fielding-of-split');
     console.error(response);
   });
+
 
   // Appearances
   getPlayerData(player.appearances, function(response) {
@@ -131,6 +130,30 @@ function loadAllPlayerData() {
   });
 }
 
+
+
+function loadFieldingOfSplitTableFooter(data) {
+  let html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>-</th>
+    <th>${data.G}</th>
+    <th>${data.GS}</th>
+    <th>${data.InnOuts}</th>
+    <th>${data.PO}</th>
+    <th>${data.A}</th>
+    <th>${data.E}</th>
+    <th>${data.DP}</th>
+    <th>${data.PB}</th>
+    <th>${data.WP}</th>
+    <th>${data.SB}</th>
+    <th>${data.CS}</th>
+    <th>${data.ZR}</th>
+  </tr>`;
+  
+  $('.table-fielding-of-split tfoot').html(html);
+}
 
 // displays an alert on the screen
 function displayAlert(text) {

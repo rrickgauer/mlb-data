@@ -450,6 +450,8 @@ if (!isset($_GET['playerID'])) {
                       </div>
                     </td></tr>
                   </tbody>
+                  <!-- aggregates -->
+                  <tfoot></tfoot>
                 </table>
               </div>
             </div>
