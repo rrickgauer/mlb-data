@@ -38,8 +38,8 @@ function loadAllPlayerData() {
   // Bio data
   getPlayerData(player.bio, function(response) {
     loadBioData(response.results);
-  }, function() {
-    displayAlert('API Error: bio data');
+  }, function(response) {
+    console.log(response);
   });
 
   // Batting - aggregate
@@ -58,8 +58,9 @@ function loadAllPlayerData() {
   // Batting - table
   getPlayerData(player.batting, function(response) {
     loadBattingTable(response.results);
-  }, function() {
-    hideModule('batting');
+  }, function(response) {
+    // hideModule('batting');
+    console.log(response);
   });
 
   // Pitching - aggregate
@@ -67,50 +68,57 @@ function loadAllPlayerData() {
   getPlayerData(urlPitchingAggregate, function(response) {
     loadPitchingAggregateData(response.results);
     loadPitchingFooter(response.results);
-  }, function() {
-    hideModule('pitching');
+  }, function(response) {
+    // hideModule('pitching');
+    console.log(response);
   });
 
   // Pitching - table
   getPlayerData(player.pitching , function(response) {
     loadPitchingTable(response.results);
-  }, function() {
-    hideModule('pitching');
+  }, function(response) {
+    // hideModule('pitching');
+    console.log(response);
   });
 
   // Fielding
   getPlayerData(player.fielding, function(response) {
     loadFieldingTable(response.results);
-  }, function() {
-    hideModule('fielding');
+  }, function(response) {
+    // hideModule('fielding');
+    console.log(response);
   });  
   
   // Fielding OF
   getPlayerData(player.fieldingOf, function(response) {
     loadFieldingOfTable(response.results);
-  }, function() {
-    hideModule('fielding-of');
+  }, function(response) {
+    // hideModule('fielding-of');
+    console.log(response);
   });
 
   // Fielding OF Split
   getPlayerData(player.fieldingOfSplit, function(response) {
     loadFieldingOfTable(response.results);
-  }, function() {
-    hideModule('fielding-of-split');
+  }, function(response) {
+    // hideModule('fielding-of-split');
+    console.log(response);
   });
 
   // Appearances
   getPlayerData(player.appearances, function(response) {
     loadAppearancesTable(response.results);
-  }, function() {
-    hideModule('appearances');
+  }, function(response) {
+    // hideModule('appearances');
+    console.log(response);
   });
 
   // Salaries
   getPlayerData(player.salaries, function(response) {
     loadSalariesTable(response.results);
-  }, function() {
-    hideModule('salaries');
+  }, function(response) {
+    // hideModule('salaries');
+    console.log(response);
   });
 }
 
@@ -209,7 +217,7 @@ function getPlayerData(url, action, actionError) {
     action(response);
   })
   .fail(function(response) {
-    actionError();
+    actionError(response);
   });
 }
 
