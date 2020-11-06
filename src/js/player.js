@@ -131,6 +131,22 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
+  // Fielding post
+  getPlayerData(player.fieldingPost, function(response) {
+    loadFieldingPostTable(response.results);
+  }, function(response) {
+    // hideModule('fielding');
+    console.error(response);
+  });  
+
+  // Fielding post aggregate
+  getPlayerData(player.fieldingPost_aggregate, function(response) {
+    loadFieldingPostTableFooter(response.results);
+  }, function(response) {
+    // hideModule('fielding');
+    console.error(response);
+  });  
+
   
   // Fielding OF Split
   getPlayerData(player.fieldingOfSplit, function(response) {
@@ -519,6 +535,56 @@ function loadFieldingTableFooter(data) {
   </tr>`;
 
   $('.table-fielding tfoot').html(html);
+}
+
+
+function loadFieldingPostTable(data) {
+  let html = '';
+
+  for (let count = 0; count < data.length; count++) {
+    const row = `
+    <tr>
+      <td>${data[count].teamName}</td>
+      <td>${data[count].year}</td>
+      <td>${data[count].POS}</td>
+      <td>${data[count].G}</td>
+      <td>${data[count].GS}</td>
+      <td>${data[count].InnOuts}</td>
+      <td>${data[count].PO}</td>
+      <td>${data[count].A}</td>
+      <td>${data[count].E}</td>
+      <td>${data[count].DP}</td>
+      <td>${data[count].PB}</td>
+      <td>${data[count].SB}</td>
+      <td>${data[count].CS}</td>
+    </tr>`;
+
+    html += row;
+  }
+
+  $('.table-fielding-post tbody').html(html);
+}
+
+
+function loadFieldingPostTableFooter(data) {
+  const html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>-</th>
+    <th>${data.G}</th>
+    <th>${data.GS}</th>
+    <th>${data.InnOuts}</th>
+    <th>${data.PO}</th>
+    <th>${data.A}</th>
+    <th>${data.E}</th>
+    <th>${data.DP}</th>
+    <th>${data.PB}</th>
+    <th>${data.SB}</th>
+    <th>${data.CS}</th>
+  </tr>`;
+
+  $('.table-fielding-post tfoot').html(html);
 }
 
 function loadFieldingOfTable(data) {

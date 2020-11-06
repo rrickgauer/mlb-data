@@ -503,10 +503,8 @@ if (!isset($_GET['playerID'])) {
                     <th data-tablesort-type="int">E</th>
                     <th data-tablesort-type="int">DP</th>
                     <th data-tablesort-type="int">PB</th>
-                    <th data-tablesort-type="int">WP</th>
                     <th data-tablesort-type="int">SB</th>
                     <th data-tablesort-type="int">CS</th>
-                    <th data-tablesort-type="int">ZR</th>
                   </tr></thead>
                   <tbody>
                     <!-- inital spinner -->
