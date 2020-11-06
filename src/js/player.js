@@ -28,7 +28,10 @@ $(document).ready(function() {
 // Load all the data for the player into the tables and charts //
 /////////////////////////////////////////////////////////////////
 function loadAllPlayerData() {
-  // Position
+  
+  //////////////
+  // Position //
+  //////////////
   getPlayerData(player.appearances_aggregate, function(response) {
     loadPositionData(response.results);
     loadAppearancesTableFooter(response.results);
@@ -36,14 +39,18 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Bio data
+  //////////////
+  // Bio data //
+  //////////////
   getPlayerData(player.bio, function(response) {
     loadBioData(response.results);
   }, function(response) {
     console.log(response);
   });
 
-  // Batting - aggregate
+  /////////////////////////
+  // Batting - aggregate //
+  /////////////////////////
   let urlBattingAggregate = player.batting + '?aggregate=true';
   getPlayerData(urlBattingAggregate, function(response) {
     loadBattingAggregateData(response.results);
@@ -56,7 +63,9 @@ function loadAllPlayerData() {
   //   hideModule('batting');
   // });
 
-  // Batting - table
+  /////////////////////
+  // Batting - table //
+  /////////////////////
   getPlayerData(player.batting, function(response) {
     loadBattingTable(response.results);
   }, function(response) {
@@ -65,14 +74,18 @@ function loadAllPlayerData() {
   });
 
 
-  // Batting post
+  //////////////////
+  // Batting post //
+  //////////////////
   getPlayerData(player.battingPost, function(response) {
     loadBattingPostTable(response.results);
   }, function(repsonse) {
     console.error(response);
   });
 
-  // Batting post aggregate
+  ////////////////////////////
+  // Batting post aggregate //
+  ////////////////////////////
   getPlayerData(player.battingPost_aggregate, function(response) {
     loadBattingPostTableFooter(response.results);
   }, function(repsonse) {
@@ -80,7 +93,9 @@ function loadAllPlayerData() {
   });
 
 
-  // Pitching - aggregate
+  //////////////////////////
+  // Pitching - aggregate //
+  //////////////////////////
   let urlPitchingAggregate = player.pitching + '?aggregate=true';
   getPlayerData(urlPitchingAggregate, function(response) {
     loadPitchingAggregateData(response.results);
@@ -90,7 +105,9 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Pitching - table
+  //////////////////////
+  // Pitching - table //
+  //////////////////////
   getPlayerData(player.pitching , function(response) {
     loadPitchingTable(response.results);
   }, function(response) {
@@ -99,7 +116,9 @@ function loadAllPlayerData() {
   });
 
 
-  // Pitching post
+  ///////////////////
+  // Pitching post //
+  ///////////////////
   getPlayerData(player.pitchingPost , function(response) {
     loadPitchingPostTable(response.results);
   }, function(response) {
@@ -107,7 +126,9 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Pitching post aggregate
+  /////////////////////////////
+  // Pitching post aggregate //
+  /////////////////////////////
   getPlayerData(player.pitchingPost_aggregate , function(response) {
     loadPitchingPostTableFooter(response.results);
   }, function(response) {
@@ -115,7 +136,9 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Fielding
+  //////////////
+  // Fielding //
+  //////////////
   getPlayerData(player.fielding, function(response) {
     loadFieldingTable(response.results);
   }, function(response) {
@@ -124,14 +147,18 @@ function loadAllPlayerData() {
   });  
 
 
-  // Fielding - aggregate
+  //////////////////////////
+  // Fielding - aggregate //
+  //////////////////////////
   getPlayerData(player.fielding_aggregate, function(response) {
     loadFieldingTableFooter(response.results);
   }, function(response) {
     console.error(response);
   });
 
-  // Fielding post
+  ///////////////////
+  // Fielding post //
+  ///////////////////
   getPlayerData(player.fieldingPost, function(response) {
     loadFieldingPostTable(response.results);
   }, function(response) {
@@ -139,7 +166,9 @@ function loadAllPlayerData() {
     console.error(response);
   });  
 
-  // Fielding post aggregate
+  /////////////////////////////
+  // Fielding post aggregate //
+  /////////////////////////////
   getPlayerData(player.fieldingPost_aggregate, function(response) {
     loadFieldingPostTableFooter(response.results);
   }, function(response) {
@@ -148,14 +177,18 @@ function loadAllPlayerData() {
   });  
 
   
-  // Fielding OF Split
+  ///////////////////////
+  // Fielding OF Split //
+  ///////////////////////
   getPlayerData(player.fieldingOfSplit, function(response) {
     loadFieldingOfSplitTable(response.results);
   }, function(response) {
     console.error(response);
   });
 
-  // Fielding OF Split - Aggregate
+  ///////////////////////////////////
+  // Fielding OF Split - Aggregate //
+  ///////////////////////////////////
   getPlayerData(player.fieldingOfSplit_aggregate, function(response) {
     loadFieldingOfSplitTableFooter(response.results);
   }, function(response) {
@@ -163,7 +196,9 @@ function loadAllPlayerData() {
   });
 
 
-  // Appearances
+  /////////////////
+  // Appearances //
+  /////////////////
   getPlayerData(player.appearances, function(response) {
     loadAppearancesTable(response.results);
   }, function(response) {
@@ -171,7 +206,9 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Salaries
+  //////////////
+  // Salaries //
+  //////////////
   getPlayerData(player.salaries, function(response) {
     loadSalariesTable(response.results);
   }, function(response) {
@@ -179,7 +216,9 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Salaries - aggregate
+  //////////////////////////
+  // Salaries - aggregate //
+  //////////////////////////
   getPlayerData(player.salaries_aggregate, function(response) {
     loadSalariesTableFooter(response.results);
   }, function(response) {
