@@ -129,6 +129,15 @@ function loadAllPlayerData() {
     // hideModule('salaries');
     console.error(response);
   });
+
+  // Salaries - aggregate
+  getPlayerData(player.salaries_aggregate, function(response) {
+    loadSalariesTableFooter(response.results);
+  }, function(response) {
+    // hideModule('salaries');
+    console.error(response);
+  });
+
 }
 
 // displays an alert on the screen
@@ -491,6 +500,18 @@ function getSalariesRowHtml(data) {
     </tr>`;
 
   return html;
+}
+
+function loadSalariesTableFooter(data) {
+  const salaryDisplay =  formatCurrency(data.salary);
+  const html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>${salaryDisplay}</th>
+  </tr>`;
+
+  $('.table-salaries tfoot').html(html);
 }
 
 function loadBioData(data) {

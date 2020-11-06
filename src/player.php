@@ -520,6 +520,8 @@ if (!isset($_GET['playerID'])) {
                       </div>
                     </td></tr>
                   </tbody>
+                  <!-- totals -->
+                  <tfoot></tfoot>
                 </table>
               </div>
             </div>
