@@ -98,6 +98,23 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
+
+  // Pitching post
+  getPlayerData(player.pitchingPost , function(response) {
+    loadPitchingPostTable(response.results);
+  }, function(response) {
+    // hideModule('pitching');
+    console.error(response);
+  });
+
+  // Pitching post aggregate
+  getPlayerData(player.pitchingPost_aggregate , function(response) {
+    loadPitchingPostTableFooter(response.results);
+  }, function(response) {
+    // hideModule('pitching');
+    console.error(response);
+  });
+
   // Fielding
   getPlayerData(player.fielding, function(response) {
     loadFieldingTable(response.results);
@@ -366,6 +383,86 @@ function getPitchingRowHtml(pitching) {
   </tr>`;
 
   return html;
+}
+
+
+function loadPitchingPostTable(data) {
+  let html = '';
+
+  for (let count = 0; count < data.length; count++) {
+    const row = `
+    <tr>
+      <td>${data[count].teamName}</td>
+      <td>${data[count].year}</td>
+      <td>${data[count].W}</td>
+      <td>${data[count].L}</td>
+      <td>${data[count].G}</td>
+      <td>${data[count].GS}</td>
+      <td>${data[count].CG}</td>
+      <td>${data[count].SHO}</td>
+      <td>${data[count].SV}</td>
+      <td>${data[count].IPouts}</td>
+      <td>${data[count].H}</td>
+      <td>${data[count].ER}</td>
+      <td>${data[count].HR}</td>
+      <td>${data[count].BB}</td>
+      <td>${data[count].SO}</td>
+      <td>${data[count].BAOpp}</td>
+      <td>${data[count].ERA}</td>
+      <td>${data[count].IBB}</td>
+      <td>${data[count].WP}</td>
+      <td>${data[count].HBP}</td>
+      <td>${data[count].BK}</td>
+      <td>${data[count].BFP}</td>
+      <td>${data[count].GF}</td>
+      <td>${data[count].R}</td>
+      <td>${data[count].SH}</td>
+      <td>${data[count].SF}</td>
+      <td>${data[count].GIDP}</td>
+    </tr>`;
+
+    html += row;
+  }
+
+  $('.table-pitching-post tbody').html(html);
+
+}
+
+
+function loadPitchingPostTableFooter(data) {
+  let html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>${data.W}</th>
+    <th>${data.L}</th>
+    <th>${data.G}</th>
+    <th>${data.GS}</th>
+    <th>${data.CG}</th>
+    <th>${data.SHO}</th>
+    <th>${data.SV}</th>
+    <th>${data.IPouts}</th>
+    <th>${data.H}</th>
+    <th>${data.ER}</th>
+    <th>${data.HR}</th>
+    <th>${data.BB}</th>
+    <th>${data.SO}</th>
+    <th>${data.BAOpp}</th>
+    <th>${data.ERA}</th>
+    <th>${data.IBB}</th>
+    <th>${data.WP}</th>
+    <th>${data.HBP}</th>
+    <th>${data.BK}</th>
+    <th>${data.BFP}</th>
+    <th>${data.GF}</th>
+    <th>${data.R}</th>
+    <th>${data.SH}</th>
+    <th>${data.SF}</th>
+    <th>${data.GIDP}</th>
+  </tr>`;
+
+
+  $('.table-pitching-post tfoot').html(html);
 }
 
 
