@@ -64,6 +64,22 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
+
+  // Batting post
+  getPlayerData(player.battingPost, function(response) {
+    loadBattingPostTable(response.results);
+  }, function(repsonse) {
+    console.error(response);
+  });
+
+  // Batting post aggregate
+  getPlayerData(player.battingPost_aggregate, function(response) {
+    loadBattingPostTableFooter(response.results);
+  }, function(repsonse) {
+    console.error(response);
+  });
+
+
   // Pitching - aggregate
   let urlPitchingAggregate = player.pitching + '?aggregate=true';
   getPlayerData(urlPitchingAggregate, function(response) {
@@ -138,6 +154,15 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
+}
+
+function getPlayerData(url, action, actionError) {
+  $.getJSON(url, function(response) {
+    action(response);
+  })
+  .fail(function(response) {
+    actionError(response);
+  });
 }
 
 // displays an alert on the screen
@@ -230,13 +255,72 @@ function loadBattingTableFooter(data) {
 }
 
 
-function getPlayerData(url, action, actionError) {
-  $.getJSON(url, function(response) {
-    action(response);
-  })
-  .fail(function(response) {
-    actionError(response);
-  });
+function loadBattingPostTable(data) {
+  let html = '';
+
+  for (let count = 0; count < data.length; count++) {
+    const doubles = data[count]['2B'];
+    const triples = data[count]['3B'];
+
+    const row = `
+    <tr>
+      <td>${data[count].teamName}</td>
+      <td>${data[count].year}</td>
+      <td>${data[count].G}</td>
+      <td>${data[count].AB}</td>
+      <td>${data[count].R}</td>
+      <td>${data[count].H}</td>
+      <td>${doubles}</td>
+      <td>${triples}</td>
+      <td>${data[count].HR}</td>
+      <td>${data[count].RBI}</td>
+      <td>${data[count].SB}</td>
+      <td>${data[count].CS}</td>
+      <td>${data[count].BB}</td>
+      <td>${data[count].SO}</td>
+      <td>${data[count].IBB}</td>
+      <td>${data[count].HBP}</td>
+      <td>${data[count].SH}</td>
+      <td>${data[count].SF}</td>
+      <td>${data[count].GIDP}</td>
+    <tr>`;
+
+    html += row;
+  }
+
+  $('.table-batting-post tbody').html(html);
+}
+
+
+
+function loadBattingPostTableFooter(data) {
+  const doubles = data['2B'];
+  const triples = data['3B'];
+
+  const html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>${data.G}</th>
+    <th>${data.AB}</th>
+    <th>${data.R}</th>
+    <th>${data.H}</th>
+    <th>${doubles}</th>
+    <th>${triples}</th>
+    <th>${data.HR}</th>
+    <th>${data.RBI}</th>
+    <th>${data.SB}</th>
+    <th>${data.CS}</th>
+    <th>${data.BB}</th>
+    <th>${data.SO}</th>
+    <th>${data.IBB}</th>
+    <th>${data.HBP}</th>
+    <th>${data.SH}</th>
+    <th>${data.SF}</th>
+    <th>${data.GIDP}</th>
+  <tr>`;
+ 
+  $('.table-batting-post tfoot').html(html);
 }
 
 

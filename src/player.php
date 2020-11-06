@@ -248,9 +248,9 @@ if (!isset($_GET['playerID'])) {
           <div class="card card-table">
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-sm table-striped table-batting-post tablesort">
+                <table class="table table-sm table-batting-post tablesort">
                   <thead><tr>
-                    <th data-tablesort-type="int">Team</th>
+                    <th data-tablesort-type="string">Team</th>
                     <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="int">G</th>
                     <th data-tablesort-type="int">AB</th>
@@ -522,7 +522,7 @@ if (!isset($_GET['playerID'])) {
               </div>
             </div>
           </div>
-          
+
         </div>
 
         <!-- fielding of -->
