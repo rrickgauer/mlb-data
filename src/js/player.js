@@ -28,7 +28,10 @@ $(document).ready(function() {
 // Load all the data for the player into the tables and charts //
 /////////////////////////////////////////////////////////////////
 function loadAllPlayerData() {
-  // Position
+  
+  //////////////
+  // Position //
+  //////////////
   getPlayerData(player.appearances_aggregate, function(response) {
     loadPositionData(response.results);
     loadAppearancesTableFooter(response.results);
@@ -36,14 +39,18 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Bio data
+  //////////////
+  // Bio data //
+  //////////////
   getPlayerData(player.bio, function(response) {
     loadBioData(response.results);
   }, function(response) {
     console.log(response);
   });
 
-  // Batting - aggregate
+  /////////////////////////
+  // Batting - aggregate //
+  /////////////////////////
   let urlBattingAggregate = player.batting + '?aggregate=true';
   getPlayerData(urlBattingAggregate, function(response) {
     loadBattingAggregateData(response.results);
@@ -56,7 +63,9 @@ function loadAllPlayerData() {
   //   hideModule('batting');
   // });
 
-  // Batting - table
+  /////////////////////
+  // Batting - table //
+  /////////////////////
   getPlayerData(player.batting, function(response) {
     loadBattingTable(response.results);
   }, function(response) {
@@ -64,7 +73,29 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Pitching - aggregate
+
+  //////////////////
+  // Batting post //
+  //////////////////
+  getPlayerData(player.battingPost, function(response) {
+    loadBattingPostTable(response.results);
+  }, function(repsonse) {
+    console.error(response);
+  });
+
+  ////////////////////////////
+  // Batting post aggregate //
+  ////////////////////////////
+  getPlayerData(player.battingPost_aggregate, function(response) {
+    loadBattingPostTableFooter(response.results);
+  }, function(repsonse) {
+    console.error(response);
+  });
+
+
+  //////////////////////////
+  // Pitching - aggregate //
+  //////////////////////////
   let urlPitchingAggregate = player.pitching + '?aggregate=true';
   getPlayerData(urlPitchingAggregate, function(response) {
     loadPitchingAggregateData(response.results);
@@ -74,7 +105,9 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Pitching - table
+  //////////////////////
+  // Pitching - table //
+  //////////////////////
   getPlayerData(player.pitching , function(response) {
     loadPitchingTable(response.results);
   }, function(response) {
@@ -82,7 +115,30 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Fielding
+
+  ///////////////////
+  // Pitching post //
+  ///////////////////
+  getPlayerData(player.pitchingPost , function(response) {
+    loadPitchingPostTable(response.results);
+  }, function(response) {
+    // hideModule('pitching');
+    console.error(response);
+  });
+
+  /////////////////////////////
+  // Pitching post aggregate //
+  /////////////////////////////
+  getPlayerData(player.pitchingPost_aggregate , function(response) {
+    loadPitchingPostTableFooter(response.results);
+  }, function(response) {
+    // hideModule('pitching');
+    console.error(response);
+  });
+
+  //////////////
+  // Fielding //
+  //////////////
   getPlayerData(player.fielding, function(response) {
     loadFieldingTable(response.results);
   }, function(response) {
@@ -91,22 +147,48 @@ function loadAllPlayerData() {
   });  
 
 
-  // Fielding - aggregate
+  //////////////////////////
+  // Fielding - aggregate //
+  //////////////////////////
   getPlayerData(player.fielding_aggregate, function(response) {
     loadFieldingTableFooter(response.results);
   }, function(response) {
     console.error(response);
   });
 
+  ///////////////////
+  // Fielding post //
+  ///////////////////
+  getPlayerData(player.fieldingPost, function(response) {
+    loadFieldingPostTable(response.results);
+  }, function(response) {
+    // hideModule('fielding');
+    console.error(response);
+  });  
+
+  /////////////////////////////
+  // Fielding post aggregate //
+  /////////////////////////////
+  getPlayerData(player.fieldingPost_aggregate, function(response) {
+    loadFieldingPostTableFooter(response.results);
+  }, function(response) {
+    // hideModule('fielding');
+    console.error(response);
+  });  
+
   
-  // Fielding OF Split
+  ///////////////////////
+  // Fielding OF Split //
+  ///////////////////////
   getPlayerData(player.fieldingOfSplit, function(response) {
     loadFieldingOfSplitTable(response.results);
   }, function(response) {
     console.error(response);
   });
 
-  // Fielding OF Split - Aggregate
+  ///////////////////////////////////
+  // Fielding OF Split - Aggregate //
+  ///////////////////////////////////
   getPlayerData(player.fieldingOfSplit_aggregate, function(response) {
     loadFieldingOfSplitTableFooter(response.results);
   }, function(response) {
@@ -114,7 +196,9 @@ function loadAllPlayerData() {
   });
 
 
-  // Appearances
+  /////////////////
+  // Appearances //
+  /////////////////
   getPlayerData(player.appearances, function(response) {
     loadAppearancesTable(response.results);
   }, function(response) {
@@ -122,7 +206,9 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Salaries
+  //////////////
+  // Salaries //
+  //////////////
   getPlayerData(player.salaries, function(response) {
     loadSalariesTable(response.results);
   }, function(response) {
@@ -130,7 +216,9 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
-  // Salaries - aggregate
+  //////////////////////////
+  // Salaries - aggregate //
+  //////////////////////////
   getPlayerData(player.salaries_aggregate, function(response) {
     loadSalariesTableFooter(response.results);
   }, function(response) {
@@ -138,6 +226,15 @@ function loadAllPlayerData() {
     console.error(response);
   });
 
+}
+
+function getPlayerData(url, action, actionError) {
+  $.getJSON(url, function(response) {
+    action(response);
+  })
+  .fail(function(response) {
+    actionError(response);
+  });
 }
 
 // displays an alert on the screen
@@ -230,13 +327,72 @@ function loadBattingTableFooter(data) {
 }
 
 
-function getPlayerData(url, action, actionError) {
-  $.getJSON(url, function(response) {
-    action(response);
-  })
-  .fail(function(response) {
-    actionError(response);
-  });
+function loadBattingPostTable(data) {
+  let html = '';
+
+  for (let count = 0; count < data.length; count++) {
+    const doubles = data[count]['2B'];
+    const triples = data[count]['3B'];
+
+    const row = `
+    <tr>
+      <td>${data[count].teamName}</td>
+      <td>${data[count].year}</td>
+      <td>${data[count].G}</td>
+      <td>${data[count].AB}</td>
+      <td>${data[count].R}</td>
+      <td>${data[count].H}</td>
+      <td>${doubles}</td>
+      <td>${triples}</td>
+      <td>${data[count].HR}</td>
+      <td>${data[count].RBI}</td>
+      <td>${data[count].SB}</td>
+      <td>${data[count].CS}</td>
+      <td>${data[count].BB}</td>
+      <td>${data[count].SO}</td>
+      <td>${data[count].IBB}</td>
+      <td>${data[count].HBP}</td>
+      <td>${data[count].SH}</td>
+      <td>${data[count].SF}</td>
+      <td>${data[count].GIDP}</td>
+    <tr>`;
+
+    html += row;
+  }
+
+  $('.table-batting-post tbody').html(html);
+}
+
+
+
+function loadBattingPostTableFooter(data) {
+  const doubles = data['2B'];
+  const triples = data['3B'];
+
+  const html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>${data.G}</th>
+    <th>${data.AB}</th>
+    <th>${data.R}</th>
+    <th>${data.H}</th>
+    <th>${doubles}</th>
+    <th>${triples}</th>
+    <th>${data.HR}</th>
+    <th>${data.RBI}</th>
+    <th>${data.SB}</th>
+    <th>${data.CS}</th>
+    <th>${data.BB}</th>
+    <th>${data.SO}</th>
+    <th>${data.IBB}</th>
+    <th>${data.HBP}</th>
+    <th>${data.SH}</th>
+    <th>${data.SF}</th>
+    <th>${data.GIDP}</th>
+  <tr>`;
+ 
+  $('.table-batting-post tfoot').html(html);
 }
 
 
@@ -282,6 +438,86 @@ function getPitchingRowHtml(pitching) {
   </tr>`;
 
   return html;
+}
+
+
+function loadPitchingPostTable(data) {
+  let html = '';
+
+  for (let count = 0; count < data.length; count++) {
+    const row = `
+    <tr>
+      <td>${data[count].teamName}</td>
+      <td>${data[count].year}</td>
+      <td>${data[count].W}</td>
+      <td>${data[count].L}</td>
+      <td>${data[count].G}</td>
+      <td>${data[count].GS}</td>
+      <td>${data[count].CG}</td>
+      <td>${data[count].SHO}</td>
+      <td>${data[count].SV}</td>
+      <td>${data[count].IPouts}</td>
+      <td>${data[count].H}</td>
+      <td>${data[count].ER}</td>
+      <td>${data[count].HR}</td>
+      <td>${data[count].BB}</td>
+      <td>${data[count].SO}</td>
+      <td>${data[count].BAOpp}</td>
+      <td>${data[count].ERA}</td>
+      <td>${data[count].IBB}</td>
+      <td>${data[count].WP}</td>
+      <td>${data[count].HBP}</td>
+      <td>${data[count].BK}</td>
+      <td>${data[count].BFP}</td>
+      <td>${data[count].GF}</td>
+      <td>${data[count].R}</td>
+      <td>${data[count].SH}</td>
+      <td>${data[count].SF}</td>
+      <td>${data[count].GIDP}</td>
+    </tr>`;
+
+    html += row;
+  }
+
+  $('.table-pitching-post tbody').html(html);
+
+}
+
+
+function loadPitchingPostTableFooter(data) {
+  let html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>${data.W}</th>
+    <th>${data.L}</th>
+    <th>${data.G}</th>
+    <th>${data.GS}</th>
+    <th>${data.CG}</th>
+    <th>${data.SHO}</th>
+    <th>${data.SV}</th>
+    <th>${data.IPouts}</th>
+    <th>${data.H}</th>
+    <th>${data.ER}</th>
+    <th>${data.HR}</th>
+    <th>${data.BB}</th>
+    <th>${data.SO}</th>
+    <th>${data.BAOpp}</th>
+    <th>${data.ERA}</th>
+    <th>${data.IBB}</th>
+    <th>${data.WP}</th>
+    <th>${data.HBP}</th>
+    <th>${data.BK}</th>
+    <th>${data.BFP}</th>
+    <th>${data.GF}</th>
+    <th>${data.R}</th>
+    <th>${data.SH}</th>
+    <th>${data.SF}</th>
+    <th>${data.GIDP}</th>
+  </tr>`;
+
+
+  $('.table-pitching-post tfoot').html(html);
 }
 
 
@@ -338,6 +574,56 @@ function loadFieldingTableFooter(data) {
   </tr>`;
 
   $('.table-fielding tfoot').html(html);
+}
+
+
+function loadFieldingPostTable(data) {
+  let html = '';
+
+  for (let count = 0; count < data.length; count++) {
+    const row = `
+    <tr>
+      <td>${data[count].teamName}</td>
+      <td>${data[count].year}</td>
+      <td>${data[count].POS}</td>
+      <td>${data[count].G}</td>
+      <td>${data[count].GS}</td>
+      <td>${data[count].InnOuts}</td>
+      <td>${data[count].PO}</td>
+      <td>${data[count].A}</td>
+      <td>${data[count].E}</td>
+      <td>${data[count].DP}</td>
+      <td>${data[count].PB}</td>
+      <td>${data[count].SB}</td>
+      <td>${data[count].CS}</td>
+    </tr>`;
+
+    html += row;
+  }
+
+  $('.table-fielding-post tbody').html(html);
+}
+
+
+function loadFieldingPostTableFooter(data) {
+  const html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>-</th>
+    <th>${data.G}</th>
+    <th>${data.GS}</th>
+    <th>${data.InnOuts}</th>
+    <th>${data.PO}</th>
+    <th>${data.A}</th>
+    <th>${data.E}</th>
+    <th>${data.DP}</th>
+    <th>${data.PB}</th>
+    <th>${data.SB}</th>
+    <th>${data.CS}</th>
+  </tr>`;
+
+  $('.table-fielding-post tfoot').html(html);
 }
 
 function loadFieldingOfTable(data) {

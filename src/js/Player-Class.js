@@ -10,14 +10,18 @@ function Player(playerID) {
   this.appearances               = this.apiRootUrl + '/appearances/' + playerID;
   this.salaries                  = this.apiRootUrl + '/salaries/' + playerID;
   this.bio                       = this.apiRootUrl + '/people/' + playerID;
-
-  // aggregates
   this.batting_aggregate         = this.batting + '?aggregate=true';         
   this.pitching_aggregate        = this.pitching + '?aggregate=true';        
   this.fielding_aggregate        = this.fielding + '?aggregate=true';        
   this.fieldingOf_aggregate      = this.fieldingOf + '?aggregate=true';      
   this.fieldingOfSplit_aggregate = this.fieldingOfSplit + '?aggregate=true'; 
   this.appearances_aggregate     = this.appearances + '?aggregate=true';     
-  this.salaries_aggregate        = this.salaries + '?aggregate=true';        
+  this.salaries_aggregate        = this.salaries + '?aggregate=true';
+  this.battingPost               = this.apiRootUrl + '/batting-post/' + playerID;
+  this.pitchingPost              = this.apiRootUrl + '/pitching-post/' + playerID;
+  this.fieldingPost              = this.apiRootUrl + '/fielding-post/' + playerID;
+  this.battingPost_aggregate     = this.battingPost + '?aggregate=true';
+  this.pitchingPost_aggregate    = this.pitchingPost + '?aggregate=true';
+  this.fieldingPost_aggregate    = this.fieldingPost + '?aggregate=true';
 }
 
