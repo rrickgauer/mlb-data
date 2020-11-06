@@ -28,11 +28,12 @@ $(document).ready(function() {
 // Load all the data for the player into the tables and charts //
 /////////////////////////////////////////////////////////////////
 function loadAllPlayerData() {
-  // Positsion
-  getPlayerData(player.appearances + '?aggregate=true', function(response) {
+  // Position
+  getPlayerData(player.appearances_aggregate, function(response) {
     loadPositionData(response.results);
-  }, function() {
-    console.log('error: loadPositionData()');
+    loadAppearancesTableFooter(response.results);
+  }, function(response) {
+    console.error(response);
   });
 
   // Bio data
@@ -128,31 +129,6 @@ function loadAllPlayerData() {
     // hideModule('salaries');
     console.error(response);
   });
-}
-
-
-
-function loadFieldingOfSplitTableFooter(data) {
-  let html = `
-  <tr>
-    <th>Total</th>
-    <th>${data.years}</th>
-    <th>-</th>
-    <th>${data.G}</th>
-    <th>${data.GS}</th>
-    <th>${data.InnOuts}</th>
-    <th>${data.PO}</th>
-    <th>${data.A}</th>
-    <th>${data.E}</th>
-    <th>${data.DP}</th>
-    <th>${data.PB}</th>
-    <th>${data.WP}</th>
-    <th>${data.SB}</th>
-    <th>${data.CS}</th>
-    <th>${data.ZR}</th>
-  </tr>`;
-  
-  $('.table-fielding-of-split tfoot').html(html);
 }
 
 // displays an alert on the screen
@@ -407,6 +383,29 @@ function getFieldingOfSplitRowHtml(data) {
   return html;
 }
 
+function loadFieldingOfSplitTableFooter(data) {
+  let html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>-</th>
+    <th>${data.G}</th>
+    <th>${data.GS}</th>
+    <th>${data.InnOuts}</th>
+    <th>${data.PO}</th>
+    <th>${data.A}</th>
+    <th>${data.E}</th>
+    <th>${data.DP}</th>
+    <th>${data.PB}</th>
+    <th>${data.WP}</th>
+    <th>${data.SB}</th>
+    <th>${data.CS}</th>
+    <th>${data.ZR}</th>
+  </tr>`;
+  
+  $('.table-fielding-of-split tfoot').html(html);
+}
+
 
 function loadAppearancesTable(data) {
   let html = '';
@@ -441,6 +440,35 @@ function getAppearancesRowHtml(data) {
     </tr>`;
 
   return html;
+}
+
+
+function loadAppearancesTableFooter(data) {
+  let html = `
+  <tr>
+    <th>Total</th>
+    <th>${data.years}</th>
+    <th>${data.G_all}</th>
+    <th>${data.GS}</th>
+    <th>${data.G_batting}</th>
+    <th>${data.G_defense}</th>
+    <th>${data.G_p}</th>
+    <th>${data.G_c}</th>
+    <th>${data.G_1b}</th>
+    <th>${data.G_2b}</th>
+    <th>${data.G_3b}</th>
+    <th>${data.G_ss}</th>
+    <th>${data.G_lf}</th>
+    <th>${data.G_cf}</th>
+    <th>${data.G_rf}</th>
+    <th>${data.G_of}</th>
+    <th>${data.G_dh}</th>
+    <th>${data.G_ph}</th>
+    <th>${data.G_pr}</th>
+  </tr>
+  `;
+
+  $('.table-appearances tfoot').html(html);
 }
 
 function loadSalariesTable(data) {
