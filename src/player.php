@@ -360,8 +360,8 @@ if (!isset($_GET['playerID'])) {
               <div class="table-responsive">
                 <table class="table table-sm tablesort table-fielding">
                   <thead><tr>
-                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="string">Team</th>
+                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="string">POS</th>
                     <th data-tablesort-type="int">G</th>
                     <th data-tablesort-type="int">GS</th>
@@ -388,7 +388,6 @@ if (!isset($_GET['playerID'])) {
               </div>
             </div>
           </div>
-
 
         </div>
 
@@ -425,8 +424,8 @@ if (!isset($_GET['playerID'])) {
               <div class="table-responsive">
                 <table class="table table-sm tablesort table-fielding-of-split">
                   <thead><tr>
-                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="string">Team</th>
+                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="string">POS</th>
                     <th data-tablesort-type="int">G</th>
                     <th data-tablesort-type="int">GS</th>
@@ -462,8 +461,8 @@ if (!isset($_GET['playerID'])) {
               <div class="table-responsive">
                 <table class="table table-sm tablesort table-appearances">
                   <thead><tr>
-                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="string">Team</th>
+                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="int">G_all</th>
                     <th data-tablesort-type="int">GS</th>
                     <th data-tablesort-type="int">G_batting</th>
@@ -503,8 +502,8 @@ if (!isset($_GET['playerID'])) {
               <div class="table-responsive">
                 <table class="table table-sm tablesort table-salaries">
                   <thead><tr>
-                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="string">Team</th>
+                    <th data-tablesort-type="int">Year</th>
                     <th data-tablesort-type="int">Salary</th>
                   </tr></thead>
                   <tbody>

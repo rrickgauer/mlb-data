@@ -278,8 +278,8 @@ function loadFieldingTable(data) {
 function getFieldingRowHtml(data) {
   let html = `
     <tr class="table-fielding-row">
-      <td>${data.year}</td>
       <td>${data.teamName}</td>
+      <td>${data.year}</td>
       <td>${data.POS}</td>
       <td>${data.G}</td>
       <td>${data.GS}</td>
@@ -331,8 +331,8 @@ function loadFieldingOfSplitTable(data) {
 function getFieldingOfSplitRowHtml(data) {
   let html = `
     <tr class="table-fielding-of-split">
-      <td>${data.year}</td>
       <td>${data.teamName}</td>
+      <td>${data.year}</td>
       <td>${data.POS}</td>
       <td>${data.G}</td>
       <td>${data.GS}</td>
@@ -363,8 +363,8 @@ function loadAppearancesTable(data) {
 function getAppearancesRowHtml(data) {
   let html = `
     <tr class="table-appearances-row">
-      <td>${data.year}</td>
       <td>${data.teamName}</td>
+      <td>${data.year}</td>
       <td>${data.G_all}</td>
       <td>${data.GS}</td>
       <td>${data.G_batting}</td>
@@ -401,8 +401,8 @@ function getSalariesRowHtml(data) {
 
   let html = `
     <tr class="table-salaries-row">
-      <td>${data.year}</td>
       <td>${data.teamName}</td>
+      <td>${data.year}</td>
       <td>${salaryDisplay}</td>
     </tr>`;
 
