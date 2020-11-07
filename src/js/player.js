@@ -1,7 +1,7 @@
 const urlParams             = new URLSearchParams(window.location.search);
 const playerID              = urlParams.get('playerID');  
 const API                   = 'http://api.mlb-data.ryanrickgauer.com/main.php';
-const CHART_COLORS = ['red', 'pink', 'purple', 'darkviolet', 'indigo', 'blue', 'lightblue', 'cyan', 'teal', 'green', 'lightgreen', 'lime', 'yellow', 'goldenrod', 'orange', 'tomato', 'brown', 'grey', 'cadetblue', 'thistle', 'yellowgreen'];
+// const CHART_COLORS = ['red', 'pink', 'purple', 'darkviolet', 'indigo', 'blue', 'lightblue', 'cyan', 'teal', 'green', 'lightgreen', 'lime', 'yellow', 'goldenrod', 'orange', 'tomato', 'brown', 'grey', 'cadetblue', 'thistle', 'yellowgreen'];
 
 const player = new Player(playerID);
 
@@ -71,6 +71,7 @@ function loadAllPlayerData() {
   /////////////////////
   getPlayerData(player.batting, function(response) {
     loadBattingTable(response.results);
+    displayChartData(response.results, '#chart-player-batting');
   }, function(response) {
     $('#player-batting .results').addClass('d-none');
     $('#player-batting .results-no-data').removeClass('d-none');
@@ -82,6 +83,7 @@ function loadAllPlayerData() {
   //////////////////
   getPlayerData(player.battingPost, function(response) {
     loadBattingPostTable(response.results);
+    displayChartData(response.results, '#chart-player-batting-post');
   }, function(repsonse) {
     console.error(response);
   });
@@ -113,6 +115,7 @@ function loadAllPlayerData() {
   //////////////////////
   getPlayerData(player.pitching , function(response) {
     loadPitchingTable(response.results);
+    displayChartData(response.results, '#chart-player-pitching');
   }, function(response) {
     $('#player-pitching .results').addClass('d-none');
     $('#player-pitching .results-no-data').removeClass('d-none');
@@ -124,6 +127,7 @@ function loadAllPlayerData() {
   ///////////////////
   getPlayerData(player.pitchingPost , function(response) {
     loadPitchingPostTable(response.results);
+    displayChartData(response.results, '#chart-player-pitching-post');
   }, function(response) {
     // hideModule('pitching');
     console.error(response);
@@ -144,6 +148,7 @@ function loadAllPlayerData() {
   //////////////
   getPlayerData(player.fielding, function(response) {
     loadFieldingTable(response.results);
+    displayChartData(response.results, '#chart-player-fielding');
   }, function(response) {
     $('#player-fielding .results').addClass('d-none');
     $('#player-fielding .results-no-data').removeClass('d-none');
@@ -164,6 +169,7 @@ function loadAllPlayerData() {
   ///////////////////
   getPlayerData(player.fieldingPost, function(response) {
     loadFieldingPostTable(response.results);
+    displayChartData(response.results, '#chart-player-fielding-post');
   }, function(response) {
     // hideModule('fielding');
     console.error(response);
@@ -185,6 +191,7 @@ function loadAllPlayerData() {
   ///////////////////////
   getPlayerData(player.fieldingOfSplit, function(response) {
     loadFieldingOfSplitTable(response.results);
+    displayChartData(response.results, '#chart-player-fielding-of-split');
   }, function(response) {
     $('#player-fielding-of-split .results').addClass('d-none');
     $('#player-fielding-of-split .results-no-data').removeClass('d-none');
@@ -205,6 +212,7 @@ function loadAllPlayerData() {
   /////////////////
   getPlayerData(player.appearances, function(response) {
     loadAppearancesTable(response.results);
+    displayChartData(response.results, '#chart-player-appearances');
   }, function(response) {
     $('#player-appearances .results').addClass('d-none');
     $('#player-appearances .results-no-data').removeClass('d-none');
@@ -215,6 +223,7 @@ function loadAllPlayerData() {
   //////////////
   getPlayerData(player.salaries, function(response) {
     loadSalariesTable(response.results);
+    displayChartData(response.results, '#chart-player-salaries');
   }, function(response) {
     $('#player-salaries .results').addClass('d-none');
     $('#player-salaries .results-no-data').removeClass('d-none');
@@ -231,6 +240,23 @@ function loadAllPlayerData() {
   });
 
 }
+
+
+function displayChartData(data, chartElementName) {
+  const newChartData = new ChartData(data);
+  const ctz = $(chartElementName);
+  new Chart(ctz, {
+    type: 'line',
+    data: {
+      labels: newChartData.years,
+      datasets: newChartData.datasets,
+    },
+  });
+
+  $(ctz).removeClass('d-none');
+}
+
+
 
 function getPlayerData(url, action, actionError) {
   $.getJSON(url, function(response) {
@@ -913,68 +939,6 @@ function loadPitchingAggregateData(data) {
 }
 
 
-
-function loadBattingChartData(data) {
-  let chartData = getBattingDatasets(data.results);
-  var ctz = document.getElementById('chart-player-batting');
-  new Chart(ctz, {
-    type: 'line',
-    data: {
-      labels: chartData.labels,
-      datasets: chartData.datasets,
-    },
-  });
-
-  $('#chart-player-batting').removeClass('d-none');
-  $('#chart-player-batting').closest('.card-body').find('.spinner-border').remove();
-}
-
-function getBattingChartDataset(label, data, color) {
-  let item = {
-    label: label,
-    data: data,
-    borderColor: color,
-    fill: false,
-  }
-
-  return item;
-}
-
-
-
-function getBattingDatasets(data) {
-
-  let columnNames = Object.keys(data);
-  let datasets = [];
-
-  for (var count = 0; count < columnNames.length; count++) {
-    let dataArray = [];
-    let label = columnNames[count];
-
-    // add the data piece into the array
-    for (let i = 0; i < data.length; i++) {
-      let item = data[i][label];
-      dataArray.push(item);
-      // console.log(item);
-    }
-
-    datasets.push(getBattingChartDataset(label, dataArray, CHART_COLORS[count]));
-  }
-
-  // redo the colors
-  let i = 0;
-  for (var count = 8; count < datasets.length; count++) {
-    datasets[count].borderColor = CHART_COLORS[i];
-    i++;
-  }
-
-  return {
-    labels: datasets[3].data,
-    datasets: datasets.slice(8),
-  }
-}
-
-
 function loadPositionData(data) {
   const positions = {
     G_1b: 'First Baseman',
@@ -1043,7 +1007,5 @@ function loadPitchingFooter(data) {
   </tr>`;
 
   $('.table-pitching tfoot').html(html);
-
-
 
 }
