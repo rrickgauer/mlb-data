@@ -48,6 +48,12 @@ function loadAllPlayerData() {
     console.log(response);
   });
 
+  // // Batting - graph
+  // getPlayerBatting(urlBattingAggregate, loadBattingChartData, function() {
+  //   hideModule('batting');
+  // });
+
+
   /////////////////////////
   // Batting - aggregate //
   /////////////////////////
@@ -55,13 +61,10 @@ function loadAllPlayerData() {
   getPlayerData(urlBattingAggregate, function(response) {
     loadBattingAggregateData(response.results);
     loadBattingTableFooter(response.results);
-  }, console.log);
+  }, function(response) {
+    console.error(response);
+  });
 
-
-  // // Batting - graph
-  // getPlayerBatting(urlBattingAggregate, loadBattingChartData, function() {
-  //   hideModule('batting');
-  // });
 
   /////////////////////
   // Batting - table //
@@ -69,8 +72,8 @@ function loadAllPlayerData() {
   getPlayerData(player.batting, function(response) {
     loadBattingTable(response.results);
   }, function(response) {
-    // hideModule('batting');
-    console.error(response);
+    $('#player-batting .results').addClass('d-none');
+    $('#player-batting .results-no-data').removeClass('d-none');
   });
 
 
@@ -111,8 +114,8 @@ function loadAllPlayerData() {
   getPlayerData(player.pitching , function(response) {
     loadPitchingTable(response.results);
   }, function(response) {
-    // hideModule('pitching');
-    console.error(response);
+    $('#player-pitching .results').addClass('d-none');
+    $('#player-pitching .results-no-data').removeClass('d-none');
   });
 
 
@@ -142,8 +145,8 @@ function loadAllPlayerData() {
   getPlayerData(player.fielding, function(response) {
     loadFieldingTable(response.results);
   }, function(response) {
-    // hideModule('fielding');
-    console.error(response);
+    $('#player-fielding .results').addClass('d-none');
+    $('#player-fielding .results-no-data').removeClass('d-none');
   });  
 
 
@@ -183,7 +186,8 @@ function loadAllPlayerData() {
   getPlayerData(player.fieldingOfSplit, function(response) {
     loadFieldingOfSplitTable(response.results);
   }, function(response) {
-    console.error(response);
+    $('#player-fielding-of-split .results').addClass('d-none');
+    $('#player-fielding-of-split .results-no-data').removeClass('d-none');
   });
 
   ///////////////////////////////////
@@ -202,8 +206,8 @@ function loadAllPlayerData() {
   getPlayerData(player.appearances, function(response) {
     loadAppearancesTable(response.results);
   }, function(response) {
-    // hideModule('appearances');
-    console.error(response);
+    $('#player-appearances .results').addClass('d-none');
+    $('#player-appearances .results-no-data').removeClass('d-none');
   });
 
   //////////////
@@ -212,8 +216,8 @@ function loadAllPlayerData() {
   getPlayerData(player.salaries, function(response) {
     loadSalariesTable(response.results);
   }, function(response) {
-    // hideModule('salaries');
-    console.error(response);
+    $('#player-salaries .results').addClass('d-none');
+    $('#player-salaries .results-no-data').removeClass('d-none');
   });
 
   //////////////////////////
