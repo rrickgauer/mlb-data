@@ -1,32 +1,49 @@
-function Filters() {
+function Filters(filterUrl) {
   this.filterList = [];
-}
 
-Filters.prototype = {
+  // if no argument is passed in stop
+  if (filterUrl == undefined || filterUrl == null)
+    return;
 
-  addFilter: function(column, conditional, qualifier) {
-    const newFilter = {
-      column: column,
-      conditional: conditional,
-      qualifier: qualifier,
-    }
 
-    this.filterList.push(newFilter);
-  },
+  const filterBlocks = filterUrl.split(',');
 
-  getFiltersString: function() {
-    let result = '';
+  for (let count = 0; count < filterBlocks.length; count++) {
+    const filterParts = filterBlocks[count].split(':');
 
-    for (let count = 0; count < this.filterList.length; count++) {
-      let filter = this.filterList[count];
+    // ensure there are 3 parts to the filter
+    if (filterParts.length != 3)
+      continue;
 
-      if (count > 0)
-        result += ',';
-
-      result += `${filter.column}:${filter.conditional}:${filter.qualifier}`
-    }
-
-    return result;
+    this.addFilter(filterParts[0], filterParts[1], filterParts[2]);
   }
 
 }
+
+Filters.prototype.addFilter = function(column, conditional, qualifier) {
+  const newFilter = {
+    column: column,
+    conditional: conditional,
+    qualifier: qualifier,
+  }
+
+  this.filterList.push(newFilter);
+}
+
+
+Filters.prototype.getFiltersString = function() {
+  let result = '';
+
+  for (let count = 0; count < this.filterList.length; count++) {
+    let filter = this.filterList[count];
+
+    if (count > 0)
+      result += ',';
+
+    result += `${filter.column}:${filter.conditional}:${filter.qualifier}`
+  }
+
+  return result;
+}
+
+
