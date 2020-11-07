@@ -2,7 +2,7 @@ let globalVariables  = new GlobalVariables();
 const API            = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting' + globalVariables.getUrl();
 let filterColumns    = ["year", "G", "AB", "R", "H", "2B", "3B", "HR", "RBI", "SB", "CS", "BB", "SO", "IBB", "HBP", "SH", "SF", "GIDP"];
 let userFilerColumns = [];
-const filters        = new Filters();
+const filters        = new Filters(globalVariables.filters);
 let emptyRows        = '';
 let pagination       = {
   current: null,
@@ -14,8 +14,7 @@ let pagination       = {
 
 // main
 $(document).ready(function() {
-
-  // $('#modal-sort-batting').modal('show');
+  setUrlInputValues();
 
   generateBlankRows();
   $('.table-batting tbody').html(emptyRows);
@@ -63,14 +62,54 @@ $(document).ready(function() {
 
 });
 
+
+
+function setUrlInputValues() {
+
+  // set perPage
+  const perPageOptions = $('.select-per-page option');
+  for (let count = 0; count < perPageOptions.length; count++) {
+    if ($(perPageOptions[count]).val() == globalVariables.perPage) {
+      $(perPageOptions[count]).prop('selected', true);
+      break;
+    }
+
+    $(perPageOptions[count]).prop('selected', false);
+  }
+
+  // sort type and column
+  if (globalVariables.sort != null) {
+    // set sort column
+    const inputSortColumns = $('#form-sort-column option');
+    let i = 0;
+    while ($(inputSortColumns[i]).val() != globalVariables.sortColumn) {
+      i++;
+    }
+
+    $(inputSortColumns[i]).prop('selected', true);
+
+    // set sort type
+    if (globalVariables.sortType == 'asc') {
+      $('#form-sort-type-asc').prop('checked', true);
+      $('#form-sort-type-desc').prop('checked', false);
+    } else {
+      $('#form-sort-type-asc').prop('checked', false);
+      $('#form-sort-type-desc').prop('checked', true);
+    }
+  }
+
+
+  // filters go here
+
+}
+
+
+
+
 function showPlayerPopover(link) {
   $('.table-batting [data-toggle="popover"]').popover('hide');
   const playerID = $(link).closest('.table-batting-row').attr('data-player-id');
   const playerUrl = 'https://api.mlb-data.ryanrickgauer.com/main.php/people/' + playerID;
-
-  // let content = `<div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div>`;
-  // $(link).attr('data-content', content);
-  // $(link).popover('show');
 
   $.getJSON(playerUrl, function(response) {
     // if the mouse is still not hovering over the link exit

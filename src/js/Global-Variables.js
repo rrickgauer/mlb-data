@@ -7,11 +7,23 @@ function GlobalVariables() {
   if (urlParams.get('perPage') != null)
     this.perPage = urlParams.get('perPage');
   else
-    this.perPage = 50;
+    this.perPage = 10;
 
   // sort
   this.sort = urlParams.get('sort');
   this.filters = urlParams.get('filter');
+
+  // split sort into column and type
+  this.sortColumn = null;
+  this.sortType   = null;
+
+  // make sure the sort is set
+  if (this.sort != null) {
+    const sortData = this.sort.split(':');
+    this.sortColumn = sortData[0];
+    this.sortType = sortData[1];
+  }
+
 }
 
 
@@ -26,5 +38,5 @@ GlobalVariables.prototype = {
       result += '&sort=' + this.sort;
 
     return result;
-  }
+  },
 }
