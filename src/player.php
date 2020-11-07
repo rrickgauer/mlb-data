@@ -199,7 +199,7 @@ if (!isset($_GET['playerID'])) {
                   </div>
 
                   <div class="card-body">
-                    <div class="tab-content mt-3">
+                    <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-batting">
                         <div class="table-responsive">
@@ -260,7 +260,7 @@ if (!isset($_GET['playerID'])) {
                     </nav>
                   </div>
                   <div class="card-body">
-                    <div class="tab-content mt-3">
+                    <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-batting-post">
                         <div class="table-responsive">
@@ -382,7 +382,7 @@ if (!isset($_GET['playerID'])) {
                     </nav>
                   </div>
                   <div class="card-body">
-                    <div class="tab-content mt-3">
+                    <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-pitching">
                         <div class="table-responsive">
@@ -450,7 +450,7 @@ if (!isset($_GET['playerID'])) {
                     </nav>
                   </div>
                   <div class="card-body">
-                    <div class="tab-content mt-3">
+                    <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-pitching-post">
                         <div class="table-responsive">
@@ -528,7 +528,7 @@ if (!isset($_GET['playerID'])) {
                     </nav>
                   </div>
                   <div class="card-body">
-                    <div class="tab-content mt-3">
+                    <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-fielding">
                         <div class="table-responsive">
@@ -584,7 +584,7 @@ if (!isset($_GET['playerID'])) {
                     </nav>
                   </div>
                   <div class="card-body">
-                    <div class="tab-content mt-3">
+                    <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-fielding-post">
                         <div class="table-responsive">
@@ -649,7 +649,7 @@ if (!isset($_GET['playerID'])) {
                     </nav>
                   </div>
                   <div class="card-body">
-                    <div class="tab-content mt-3">
+                    <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-fielding-of-split">
                         <div class="table-responsive">
@@ -714,7 +714,7 @@ if (!isset($_GET['playerID'])) {
                     </nav>
                   </div>
                   <div class="card-body">
-                    <div class="tab-content mt-3">
+                    <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-appearances">
                         <div class="table-responsive">
@@ -784,7 +784,7 @@ if (!isset($_GET['playerID'])) {
                     </nav>
                   </div>
                   <div class="card-body">
-                    <div class="tab-content mt-3">
+                    <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-salaries">
                         <div class="table-responsive">
