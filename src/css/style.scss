@@ -19,7 +19,6 @@ body {
 }
 
 .player-header {
-  background-color: $color-white-darker;
   padding-top: 40px;
 
   .player-bio {
@@ -42,21 +41,12 @@ body {
 }
 
 
-
-.player-body {
-  background-color: $color-white;
-}
-
 table {
   white-space: nowrap;
 }
 
 .player-bio-item-label {
   font-weight: bold;
-}
-
-body {
-  margin-bottom: 40px;
 }
 
 .navbar-search {
@@ -74,14 +64,12 @@ body {
 .player-summary {
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .player-summary-card {
   margin: 10px;
   width: 170px;
-  background-color: $color-pink;
-  color: white;
 }
 
 .card {
@@ -125,11 +113,10 @@ body {
 }
 
 .nav-player {
-
   background-color: rgb(250, 251, 252);
   border: 1px solid rgb(225, 228, 232);
   border-radius: 6px;
-  margin-left: 20px;
+  margin: 0px 20px;
 
   .nav-link {
     border-top: 1px solid #eaecef;
@@ -150,18 +137,57 @@ body {
 
 
 .card-table {
-
   margin-bottom: 40px;
 
   .card-header {
     display: flex;
     justify-content: space-between;
+    background-color: $color-white-darker;
   }
 
   .card-body {
     padding: 10px;
   }
 }
+
+.tablesort {
+  th:hover {
+    cursor: pointer;
+  }
+
+  .tablesort-asc, 
+  .tablesort-desc {
+    color: red;
+  }
+}
+
+
+
+// phones
+@media only screen 
+and (min-device-width: 375px) 
+and (max-device-width: 667px)  { 
+  .col-nav-player {
+    margin-bottom: 20px;
+  }
+
+
+  .player-summary-card {
+    width: 100%;
+    margin: 10px 0px;
+  }
+
+  .card-table .card-header {
+    h4 {font-size: 1.25em;}
+    align-items: baseline;
+
+    .nav-link {
+      padding: 8px;
+    }
+  }
+
+}
+
 
 
 

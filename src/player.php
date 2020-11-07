@@ -100,6 +100,9 @@ if (!isset($_GET['playerID'])) {
 
         <!-- sidebar links -->
         <div class="col-sm-12 col-md-4 col-lg-3 col-nav-player">
+
+          <h4 class="ml-4">Modules</h4>
+
           <ul class="nav flex-column nav-player">
             <li class="nav-item nav-item-player batting"><a class="nav-link active" href="#player-batting" data-toggle="tab" data-module="batting">Batting</a></li>
             <li class="nav-item nav-item-player pitching"><a class="nav-link" href="#player-pitching" data-toggle="tab" data-module="pitching">Pitching</a></li>
@@ -203,9 +206,9 @@ if (!isset($_GET['playerID'])) {
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-batting">
                         <div class="table-responsive">
-                          <table class="table table-sm table-striped table-batting tablesort">
+                          <table class="table table-sm table-batting tablesort">
                             <thead><tr>
-                              <th data-tablesort-type="int">Team</th>
+                              <th data-tablesort-type="string">Team</th>
                               <th data-tablesort-type="int">Year</th>
                               <th data-tablesort-type="int">G</th>
                               <th data-tablesort-type="int">AB</th>
