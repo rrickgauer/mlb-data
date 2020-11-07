@@ -118,325 +118,342 @@ if (!isset($_GET['playerID'])) {
             <!-- batting -->
             <div class="tab-pane fade show active" id="player-batting" role="tabpanel">
 
-              <h4>Career</h4> 
-              <div class="player-summary batting">
-                <!-- AB -->
-                <div class="card player-summary-card ab">
-                  <div class="card-body">
-                    <h4 class="card-title data">
-                      <?php echo Html::getSpinner(); ?>
-                    </h4>
-                    <span class="label">At bats</span>
-                  </div>
-                </div>
-
-                <!-- H -->
-                <div class="card player-summary-card h">
-                  <div class="card-body">
-                    <h4 class="card-title data">
-                      <?php echo Html::getSpinner(); ?>
-                    </h4>
-                    <span class="label">Hits</span>
-                  </div>
-                </div>
-
-                <!-- BA -->
-                <div class="card player-summary-card ba">
-                  <div class="card-body">
-                    <h4 class="card-title data">
-                      <?php echo Html::getSpinner(); ?>
-                    </h4>
-                    <span class="label">Batting average</span>
-                  </div>
-                </div>
-
-                <!-- HR -->
-                <div class="card player-summary-card hr">
-                  <div class="card-body">
-                    <h4 class="card-title data">
-                      <?php echo Html::getSpinner(); ?>
-                    </h4>
-                    <span class="label">Home runs</span>
-                  </div>
-                </div>
-
-                <!-- R -->
-                <div class="card player-summary-card r">
-                  <div class="card-body">
-                    <h4 class="card-title data">
-                      <?php echo Html::getSpinner(); ?>
-                    </h4>
-                    <span class="label">Runs</span>
-                  </div>
-                </div>
-
-                <!-- RBI -->
-                <div class="card player-summary-card rbi">
-                  <div class="card-body">
-                    <h4 class="card-title data">
-                      <?php echo Html::getSpinner(); ?>
-                    </h4>
-                    <span class="label">Runs batted in</span>
-                  </div>
-                </div>
+              <div class="results-no-data mt-4 d-none">
+                <h1 class="mt-5 text-center">No records 😢</h1>
               </div>
 
-              <h4 class="mt-5">Regular Season</h4>
+              <!-- tables go here -->
+              <div class="results">
 
-              <!-- chart - regular season -->
-              <div class="card card-chart mb-5 d-none">
-                <div class="card-body">
+                <h4 class="player-summary batting title">Career</h4> 
+                <div class="player-summary batting">
+                  
+                  <!-- AB -->
+                  <div class="card player-summary-card ab">
+                    <div class="card-body">
+                      <h4 class="card-title data">
+                        <?php echo Html::getSpinner(); ?>
+                      </h4>
+                      <span class="label">At bats</span>
+                    </div>
+                  </div>
 
-                  <!-- loading spinner -->
-                  <div class="d-flex justify-content-around align-items-stretch">
-                    <div>
-                      <?php echo Html::getSpinner(); ?>
+                  <!-- H -->
+                  <div class="card player-summary-card h">
+                    <div class="card-body">
+                      <h4 class="card-title data">
+                        <?php echo Html::getSpinner(); ?>
+                      </h4>
+                      <span class="label">Hits</span>
+                    </div>
+                  </div>
+
+                  <!-- BA -->
+                  <div class="card player-summary-card ba">
+                    <div class="card-body">
+                      <h4 class="card-title data">
+                        <?php echo Html::getSpinner(); ?>
+                      </h4>
+                      <span class="label">Batting average</span>
+                    </div>
+                  </div>
+
+                  <!-- HR -->
+                  <div class="card player-summary-card hr">
+                    <div class="card-body">
+                      <h4 class="card-title data">
+                        <?php echo Html::getSpinner(); ?>
+                      </h4>
+                      <span class="label">Home runs</span>
+                    </div>
+                  </div>
+
+                  <!-- R -->
+                  <div class="card player-summary-card r">
+                    <div class="card-body">
+                      <h4 class="card-title data">
+                        <?php echo Html::getSpinner(); ?>
+                      </h4>
+                      <span class="label">Runs</span>
+                    </div>
+                  </div>
+
+                  <!-- RBI -->
+                  <div class="card player-summary-card rbi">
+                    <div class="card-body">
+                      <h4 class="card-title data">
+                        <?php echo Html::getSpinner(); ?>
+                      </h4>
+                      <span class="label">Runs batted in</span>
+                    </div>
+                  </div>
+                </div>
+
+                <h4 class="mt-5">Regular Season</h4>
+
+                <!-- chart - regular season -->
+                <div class="card card-chart mb-5 d-none">
+                  <div class="card-body">
+
+                    <!-- loading spinner -->
+                    <div class="d-flex justify-content-around align-items-stretch">
+                      <div>
+                        <?php echo Html::getSpinner(); ?>
+                      </div>
+
                     </div>
 
-                  </div>
-
-                  <canvas id="chart-player-batting" class="d-none"></canvas>
-                </div>
-              </div>
-
-              <!-- seasonal batting stats -->
-              <div class="card card-table">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-sm table-striped table-batting tablesort">
-                      <thead><tr>
-                        <th data-tablesort-type="int">Team</th>
-                        <th data-tablesort-type="int">Year</th>
-                        <th data-tablesort-type="int">G</th>
-                        <th data-tablesort-type="int">AB</th>
-                        <th data-tablesort-type="int">R</th>
-                        <th data-tablesort-type="int">H</th>
-                        <th data-tablesort-type="int">2B</th>
-                        <th data-tablesort-type="int">3B</th>
-                        <th data-tablesort-type="int">HR</th>
-                        <th data-tablesort-type="int">RBI</th>
-                        <th data-tablesort-type="int">SB</th>
-                        <th data-tablesort-type="int">CS</th>
-                        <th data-tablesort-type="int">BB</th>
-                        <th data-tablesort-type="int">SO</th>
-                        <th data-tablesort-type="int">IBB</th>
-                        <th data-tablesort-type="int">HBP</th>
-                        <th data-tablesort-type="int">SH</th>
-                        <th data-tablesort-type="int">SF</th>
-                        <th data-tablesort-type="int">GIDP</th>
-                      </tr></thead>
-                      <tbody>
-                        <!-- inital spinner -->
-                        <tr><td colspan="27">
-                          <div class="text-center mt-5">
-                            <?php echo Html::getSpinner(); ?>
-                          </div>
-                        </td></tr>
-                      </tbody>
-                      <!-- total -->
-                      <tfoot></tfoot>
-                    </table>
+                    <canvas id="chart-player-batting" class="d-none"></canvas>
                   </div>
                 </div>
-              </div>
-              
 
-              <!-- post batting stats -->
-              <h4 class="mt-5">Post Season</h4>
-
-              <div class="card card-table">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-sm table-batting-post tablesort">
-                      <thead><tr>
-                        <th data-tablesort-type="string">Team</th>
-                        <th data-tablesort-type="int">Year</th>
-                        <th data-tablesort-type="int">G</th>
-                        <th data-tablesort-type="int">AB</th>
-                        <th data-tablesort-type="int">R</th>
-                        <th data-tablesort-type="int">H</th>
-                        <th data-tablesort-type="int">2B</th>
-                        <th data-tablesort-type="int">3B</th>
-                        <th data-tablesort-type="int">HR</th>
-                        <th data-tablesort-type="int">RBI</th>
-                        <th data-tablesort-type="int">SB</th>
-                        <th data-tablesort-type="int">CS</th>
-                        <th data-tablesort-type="int">BB</th>
-                        <th data-tablesort-type="int">SO</th>
-                        <th data-tablesort-type="int">IBB</th>
-                        <th data-tablesort-type="int">HBP</th>
-                        <th data-tablesort-type="int">SH</th>
-                        <th data-tablesort-type="int">SF</th>
-                        <th data-tablesort-type="int">GIDP</th>
-                      </tr></thead>
-                      <tbody>
-
-                        <!-- inital spinner -->
-                        <tr><td colspan="27">
-                          <div class="text-center mt-5">
-                            <?php echo Html::getSpinner(); ?>
-                          </div>
-                        </td></tr>
-                      </tbody>
-                      <!-- total -->
-                      <tfoot></tfoot>
-                    </table>
+                <!-- seasonal batting stats -->
+                <div class="card card-table">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-sm table-striped table-batting tablesort">
+                        <thead><tr>
+                          <th data-tablesort-type="int">Team</th>
+                          <th data-tablesort-type="int">Year</th>
+                          <th data-tablesort-type="int">G</th>
+                          <th data-tablesort-type="int">AB</th>
+                          <th data-tablesort-type="int">R</th>
+                          <th data-tablesort-type="int">H</th>
+                          <th data-tablesort-type="int">2B</th>
+                          <th data-tablesort-type="int">3B</th>
+                          <th data-tablesort-type="int">HR</th>
+                          <th data-tablesort-type="int">RBI</th>
+                          <th data-tablesort-type="int">SB</th>
+                          <th data-tablesort-type="int">CS</th>
+                          <th data-tablesort-type="int">BB</th>
+                          <th data-tablesort-type="int">SO</th>
+                          <th data-tablesort-type="int">IBB</th>
+                          <th data-tablesort-type="int">HBP</th>
+                          <th data-tablesort-type="int">SH</th>
+                          <th data-tablesort-type="int">SF</th>
+                          <th data-tablesort-type="int">GIDP</th>
+                        </tr></thead>
+                        <tbody>
+                          <!-- inital spinner -->
+                          <tr><td colspan="27">
+                            <div class="text-center mt-5">
+                              <?php echo Html::getSpinner(); ?>
+                            </div>
+                          </td></tr>
+                        </tbody>
+                        <!-- total -->
+                        <tfoot></tfoot>
+                      </table>
+                    </div>
                   </div>
                 </div>
+                
+
+                <!-- post batting stats -->
+                <h4 class="mt-5">Post Season</h4>
+
+                <div class="card card-table">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-sm table-batting-post tablesort">
+                        <thead><tr>
+                          <th data-tablesort-type="string">Team</th>
+                          <th data-tablesort-type="int">Year</th>
+                          <th data-tablesort-type="int">G</th>
+                          <th data-tablesort-type="int">AB</th>
+                          <th data-tablesort-type="int">R</th>
+                          <th data-tablesort-type="int">H</th>
+                          <th data-tablesort-type="int">2B</th>
+                          <th data-tablesort-type="int">3B</th>
+                          <th data-tablesort-type="int">HR</th>
+                          <th data-tablesort-type="int">RBI</th>
+                          <th data-tablesort-type="int">SB</th>
+                          <th data-tablesort-type="int">CS</th>
+                          <th data-tablesort-type="int">BB</th>
+                          <th data-tablesort-type="int">SO</th>
+                          <th data-tablesort-type="int">IBB</th>
+                          <th data-tablesort-type="int">HBP</th>
+                          <th data-tablesort-type="int">SH</th>
+                          <th data-tablesort-type="int">SF</th>
+                          <th data-tablesort-type="int">GIDP</th>
+                        </tr></thead>
+                        <tbody>
+
+                          <!-- inital spinner -->
+                          <tr><td colspan="27">
+                            <div class="text-center mt-5">
+                              <?php echo Html::getSpinner(); ?>
+                            </div>
+                          </td></tr>
+                        </tbody>
+                        <!-- total -->
+                        <tfoot></tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
             </div>
 
             <!-- pitching -->
             <div class="tab-pane fade" id="player-pitching" role="tabpanel"> 
-              <!-- career stats -->
-              <h4>Career</h4> 
-              <div class="player-summary pitching">
-                <!-- ERA -->
-                <div class="card player-summary-card era">
-                  <div class="card-body">
-                    <h4 class="card-title data"></h4>
-                    <span class="label">Earned run average</span>
-                  </div>
-                </div>
 
-                <!-- W -->
-                <div class="card player-summary-card w">
-                  <div class="card-body">
-                    <h4 class="card-title data"></h4>
-                    <span class="label">Wins</span>
-                  </div>
-                </div>
-
-                <!-- G -->
-                <div class="card player-summary-card g">
-                  <div class="card-body">
-                    <h4 class="card-title data"></h4>
-                    <span class="label">Games</span>
-                  </div>
-                </div>
-
-                <!-- IP -->
-                <div class="card player-summary-card ip">
-                  <div class="card-body">
-                    <h4 class="card-title data"></h4>
-                    <span class="label">Innings pitched</span>
-                  </div>
-                </div>
-
-                <!-- SO -->
-                <div class="card player-summary-card so">
-                  <div class="card-body">
-                    <h4 class="card-title data"></h4>
-                    <span class="label">Strike outs</span>
-                  </div>
-                </div>
-
-                <!-- WHIP -->
-                <div class="card player-summary-card whip">
-                  <div class="card-body">
-                    <h4 class="card-title data"></h4>
-                    <span class="label">WHIP</span>
-                  </div>
-                </div>
+              <div class="results-no-data mt-4 d-none">
+                <h1 class="mt-5 text-center">No records 😢</h1>
               </div>
 
-              <!-- Pitching - Regular season -->
-              <h4 class="mt-5">Regular Season</h4>
-              <div class="card card-table">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-sm tablesort table-pitching">
-                      <thead><tr>
-                        <th data-tablesort-type="string">Team</th>
-                        <th data-tablesort-type="int">Year</th>
-                        <th data-tablesort-type="int">W</th>
-                        <th data-tablesort-type="int">L</th>
-                        <th data-tablesort-type="int">G</th>
-                        <th data-tablesort-type="int">GS</th>
-                        <th data-tablesort-type="int">CG</th>
-                        <th data-tablesort-type="int">SHO</th>
-                        <th data-tablesort-type="int">SV</th>
-                        <th data-tablesort-type="int">IPouts</th>
-                        <th data-tablesort-type="int">H</th>
-                        <th data-tablesort-type="int">ER</th>
-                        <th data-tablesort-type="int">HR</th>
-                        <th data-tablesort-type="int">BB</th>
-                        <th data-tablesort-type="int">SO</th>
-                        <th data-tablesort-type="int">BAOpp</th>
-                        <th data-tablesort-type="int">ERA</th>
-                        <th data-tablesort-type="int">IBB</th>
-                        <th data-tablesort-type="int">WP</th>
-                        <th data-tablesort-type="int">HBP</th>
-                        <th data-tablesort-type="int">BK</th>
-                        <th data-tablesort-type="int">BFP</th>
-                        <th data-tablesort-type="int">GF</th>
-                        <th data-tablesort-type="int">R</th>
-                        <th data-tablesort-type="int">SH</th>
-                        <th data-tablesort-type="int">SF</th>
-                        <th data-tablesort-type="int">GIDP</th>
-                      </tr></thead>
-                      <tbody>
-                        <!-- inital spinner -->
-                        <tr><td colspan="27">
-                          <div class="text-center mt-5">
-                            <?php echo Html::getSpinner(); ?>
-                          </div>
-                        </td></tr>
-                      </tbody>
-                      <!-- totals -->
-                      <tfoot></tfoot>
-                    </table>
+              <div class="results">
+                <!-- career stats -->
+                <h4>Career</h4> 
+                <div class="player-summary pitching">
+                  <!-- ERA -->
+                  <div class="card player-summary-card era">
+                    <div class="card-body">
+                      <h4 class="card-title data"></h4>
+                      <span class="label">Earned run average</span>
+                    </div>
+                  </div>
+
+                  <!-- W -->
+                  <div class="card player-summary-card w">
+                    <div class="card-body">
+                      <h4 class="card-title data"></h4>
+                      <span class="label">Wins</span>
+                    </div>
+                  </div>
+
+                  <!-- G -->
+                  <div class="card player-summary-card g">
+                    <div class="card-body">
+                      <h4 class="card-title data"></h4>
+                      <span class="label">Games</span>
+                    </div>
+                  </div>
+
+                  <!-- IP -->
+                  <div class="card player-summary-card ip">
+                    <div class="card-body">
+                      <h4 class="card-title data"></h4>
+                      <span class="label">Innings pitched</span>
+                    </div>
+                  </div>
+
+                  <!-- SO -->
+                  <div class="card player-summary-card so">
+                    <div class="card-body">
+                      <h4 class="card-title data"></h4>
+                      <span class="label">Strike outs</span>
+                    </div>
+                  </div>
+
+                  <!-- WHIP -->
+                  <div class="card player-summary-card whip">
+                    <div class="card-body">
+                      <h4 class="card-title data"></h4>
+                      <span class="label">WHIP</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <!-- Pitching - Post season -->
-              <h4 class="mt-5">Post Season</h4>
-              <div class="card card-table">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-sm tablesort table-pitching-post">
-                      <thead><tr>
-                        <th data-tablesort-type="string">Team</th>
-                        <th data-tablesort-type="int">Year</th>
-                        <th data-tablesort-type="int">W</th>
-                        <th data-tablesort-type="int">L</th>
-                        <th data-tablesort-type="int">G</th>
-                        <th data-tablesort-type="int">GS</th>
-                        <th data-tablesort-type="int">CG</th>
-                        <th data-tablesort-type="int">SHO</th>
-                        <th data-tablesort-type="int">SV</th>
-                        <th data-tablesort-type="int">IPouts</th>
-                        <th data-tablesort-type="int">H</th>
-                        <th data-tablesort-type="int">ER</th>
-                        <th data-tablesort-type="int">HR</th>
-                        <th data-tablesort-type="int">BB</th>
-                        <th data-tablesort-type="int">SO</th>
-                        <th data-tablesort-type="int">BAOpp</th>
-                        <th data-tablesort-type="int">ERA</th>
-                        <th data-tablesort-type="int">IBB</th>
-                        <th data-tablesort-type="int">WP</th>
-                        <th data-tablesort-type="int">HBP</th>
-                        <th data-tablesort-type="int">BK</th>
-                        <th data-tablesort-type="int">BFP</th>
-                        <th data-tablesort-type="int">GF</th>
-                        <th data-tablesort-type="int">R</th>
-                        <th data-tablesort-type="int">SH</th>
-                        <th data-tablesort-type="int">SF</th>
-                        <th data-tablesort-type="int">GIDP</th>
-                      </tr></thead>
-                      <tbody>
-                        <!-- inital spinner -->
-                        <tr><td colspan="27">
-                          <div class="text-center mt-5">
-                            <?php echo Html::getSpinner(); ?>
-                          </div>
-                        </td></tr>
-                      </tbody>
-                      <!-- totals -->
-                      <tfoot></tfoot>
-                    </table>
+                <!-- Pitching - Regular season -->
+                <h4 class="mt-5">Regular Season</h4>
+                <div class="card card-table">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-sm tablesort table-pitching">
+                        <thead><tr>
+                          <th data-tablesort-type="string">Team</th>
+                          <th data-tablesort-type="int">Year</th>
+                          <th data-tablesort-type="int">W</th>
+                          <th data-tablesort-type="int">L</th>
+                          <th data-tablesort-type="int">G</th>
+                          <th data-tablesort-type="int">GS</th>
+                          <th data-tablesort-type="int">CG</th>
+                          <th data-tablesort-type="int">SHO</th>
+                          <th data-tablesort-type="int">SV</th>
+                          <th data-tablesort-type="int">IPouts</th>
+                          <th data-tablesort-type="int">H</th>
+                          <th data-tablesort-type="int">ER</th>
+                          <th data-tablesort-type="int">HR</th>
+                          <th data-tablesort-type="int">BB</th>
+                          <th data-tablesort-type="int">SO</th>
+                          <th data-tablesort-type="int">BAOpp</th>
+                          <th data-tablesort-type="int">ERA</th>
+                          <th data-tablesort-type="int">IBB</th>
+                          <th data-tablesort-type="int">WP</th>
+                          <th data-tablesort-type="int">HBP</th>
+                          <th data-tablesort-type="int">BK</th>
+                          <th data-tablesort-type="int">BFP</th>
+                          <th data-tablesort-type="int">GF</th>
+                          <th data-tablesort-type="int">R</th>
+                          <th data-tablesort-type="int">SH</th>
+                          <th data-tablesort-type="int">SF</th>
+                          <th data-tablesort-type="int">GIDP</th>
+                        </tr></thead>
+                        <tbody>
+                          <!-- inital spinner -->
+                          <tr><td colspan="27">
+                            <div class="text-center mt-5">
+                              <?php echo Html::getSpinner(); ?>
+                            </div>
+                          </td></tr>
+                        </tbody>
+                        <!-- totals -->
+                        <tfoot></tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Pitching - Post season -->
+                <h4 class="mt-5">Post Season</h4>
+                <div class="card card-table">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-sm tablesort table-pitching-post">
+                        <thead><tr>
+                          <th data-tablesort-type="string">Team</th>
+                          <th data-tablesort-type="int">Year</th>
+                          <th data-tablesort-type="int">W</th>
+                          <th data-tablesort-type="int">L</th>
+                          <th data-tablesort-type="int">G</th>
+                          <th data-tablesort-type="int">GS</th>
+                          <th data-tablesort-type="int">CG</th>
+                          <th data-tablesort-type="int">SHO</th>
+                          <th data-tablesort-type="int">SV</th>
+                          <th data-tablesort-type="int">IPouts</th>
+                          <th data-tablesort-type="int">H</th>
+                          <th data-tablesort-type="int">ER</th>
+                          <th data-tablesort-type="int">HR</th>
+                          <th data-tablesort-type="int">BB</th>
+                          <th data-tablesort-type="int">SO</th>
+                          <th data-tablesort-type="int">BAOpp</th>
+                          <th data-tablesort-type="int">ERA</th>
+                          <th data-tablesort-type="int">IBB</th>
+                          <th data-tablesort-type="int">WP</th>
+                          <th data-tablesort-type="int">HBP</th>
+                          <th data-tablesort-type="int">BK</th>
+                          <th data-tablesort-type="int">BFP</th>
+                          <th data-tablesort-type="int">GF</th>
+                          <th data-tablesort-type="int">R</th>
+                          <th data-tablesort-type="int">SH</th>
+                          <th data-tablesort-type="int">SF</th>
+                          <th data-tablesort-type="int">GIDP</th>
+                        </tr></thead>
+                        <tbody>
+                          <!-- inital spinner -->
+                          <tr><td colspan="27">
+                            <div class="text-center mt-5">
+                              <?php echo Html::getSpinner(); ?>
+                            </div>
+                          </td></tr>
+                        </tbody>
+                        <!-- totals -->
+                        <tfoot></tfoot>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -444,78 +461,84 @@ if (!isset($_GET['playerID'])) {
             </div>
 
             <!-- fielding -->
-            <div class="tab-pane fade" id="player-fielding" role="tabpanel"> 
+            <div class="tab-pane fade" id="player-fielding" role="tabpanel">
 
-              <!-- Fielding - regular season -->
-              <h4>Regular Season</h4>
-              <div class="card card-table">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-sm tablesort table-fielding">
-                      <thead><tr>
-                        <th data-tablesort-type="string">Team</th>
-                        <th data-tablesort-type="int">Year</th>
-                        <th data-tablesort-type="string">POS</th>
-                        <th data-tablesort-type="int">G</th>
-                        <th data-tablesort-type="int">GS</th>
-                        <th data-tablesort-type="int">InnOuts</th>
-                        <th data-tablesort-type="int">PO</th>
-                        <th data-tablesort-type="int">A</th>
-                        <th data-tablesort-type="int">E</th>
-                        <th data-tablesort-type="int">DP</th>
-                        <th data-tablesort-type="int">PB</th>
-                        <th data-tablesort-type="int">WP</th>
-                        <th data-tablesort-type="int">SB</th>
-                        <th data-tablesort-type="int">CS</th>
-                        <th data-tablesort-type="int">ZR</th>
-                      </tr></thead>
-                      <tbody>
-                        <!-- inital spinner -->
-                        <tr><td colspan="15">
-                          <div class="text-center mt-5">
-                            <?php echo Html::getSpinner(); ?>
-                          </div>
-                        </td></tr>
-                      </tbody>
-                      <!-- aggregates -->
-                      <tfoot></tfoot>
-                    </table>
-                  </div>
-                </div>
+              <div class="results-no-data mt-4 d-none">
+                <h1 class="mt-5 text-center">No records 😢</h1>
               </div>
 
-              <!-- Fielding - post season -->
-              <h4 class="mt-5">Post Season</h4>
-              <div class="card card-table">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-sm tablesort table-fielding-post">
-                      <thead><tr>
-                        <th data-tablesort-type="string">Team</th>
-                        <th data-tablesort-type="int">Year</th>
-                        <th data-tablesort-type="string">POS</th>
-                        <th data-tablesort-type="int">G</th>
-                        <th data-tablesort-type="int">GS</th>
-                        <th data-tablesort-type="int">InnOuts</th>
-                        <th data-tablesort-type="int">PO</th>
-                        <th data-tablesort-type="int">A</th>
-                        <th data-tablesort-type="int">E</th>
-                        <th data-tablesort-type="int">DP</th>
-                        <th data-tablesort-type="int">PB</th>
-                        <th data-tablesort-type="int">SB</th>
-                        <th data-tablesort-type="int">CS</th>
-                      </tr></thead>
-                      <tbody>
-                        <!-- inital spinner -->
-                        <tr><td colspan="15">
-                          <div class="text-center mt-5">
-                            <?php echo Html::getSpinner(); ?>
-                          </div>
-                        </td></tr>
-                      </tbody>
-                      <!-- aggregates -->
-                      <tfoot></tfoot>
-                    </table>
+              <div class="results">
+                <!-- Fielding - regular season -->
+                <h4>Regular Season</h4>
+                <div class="card card-table">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-sm tablesort table-fielding">
+                        <thead><tr>
+                          <th data-tablesort-type="string">Team</th>
+                          <th data-tablesort-type="int">Year</th>
+                          <th data-tablesort-type="string">POS</th>
+                          <th data-tablesort-type="int">G</th>
+                          <th data-tablesort-type="int">GS</th>
+                          <th data-tablesort-type="int">InnOuts</th>
+                          <th data-tablesort-type="int">PO</th>
+                          <th data-tablesort-type="int">A</th>
+                          <th data-tablesort-type="int">E</th>
+                          <th data-tablesort-type="int">DP</th>
+                          <th data-tablesort-type="int">PB</th>
+                          <th data-tablesort-type="int">WP</th>
+                          <th data-tablesort-type="int">SB</th>
+                          <th data-tablesort-type="int">CS</th>
+                          <th data-tablesort-type="int">ZR</th>
+                        </tr></thead>
+                        <tbody>
+                          <!-- inital spinner -->
+                          <tr><td colspan="15">
+                            <div class="text-center mt-5">
+                              <?php echo Html::getSpinner(); ?>
+                            </div>
+                          </td></tr>
+                        </tbody>
+                        <!-- aggregates -->
+                        <tfoot></tfoot>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Fielding - post season -->
+                <h4 class="mt-5">Post Season</h4>
+                <div class="card card-table">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-sm tablesort table-fielding-post">
+                        <thead><tr>
+                          <th data-tablesort-type="string">Team</th>
+                          <th data-tablesort-type="int">Year</th>
+                          <th data-tablesort-type="string">POS</th>
+                          <th data-tablesort-type="int">G</th>
+                          <th data-tablesort-type="int">GS</th>
+                          <th data-tablesort-type="int">InnOuts</th>
+                          <th data-tablesort-type="int">PO</th>
+                          <th data-tablesort-type="int">A</th>
+                          <th data-tablesort-type="int">E</th>
+                          <th data-tablesort-type="int">DP</th>
+                          <th data-tablesort-type="int">PB</th>
+                          <th data-tablesort-type="int">SB</th>
+                          <th data-tablesort-type="int">CS</th>
+                        </tr></thead>
+                        <tbody>
+                          <!-- inital spinner -->
+                          <tr><td colspan="15">
+                            <div class="text-center mt-5">
+                              <?php echo Html::getSpinner(); ?>
+                            </div>
+                          </td></tr>
+                        </tbody>
+                        <!-- aggregates -->
+                        <tfoot></tfoot>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -524,146 +547,173 @@ if (!isset($_GET['playerID'])) {
 
             <!-- fielding of -->
             <div class="tab-pane fade" id="player-fielding-of" role="tabpanel"> 
+              <div class="results-no-data mt-4 d-none">
+                <h1 class="mt-5 text-center">No records 😢</h1>
+              </div>
 
-              <h4>Regular season</h4>
-              <div class="card card-table">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-sm tablesort table-fielding-of">
-                      <thead><tr>
-                        <th data-tablesort-type="int">Year</th>
-                        <th data-tablesort-type="int">Glf</th>
-                        <th data-tablesort-type="int">Gcf</th>
-                        <th data-tablesort-type="int">Grf</th>
-                      </tr></thead>
-                      <tbody>
-                        <!-- inital spinner -->
-                        <tr><td colspan="4">
-                          <div class="text-center mt-5">
-                            <?php echo Html::getSpinner(); ?>
-                          </div>
-                        </td></tr>
-                      </tbody>
-                    </table>
+              <div class="results">
+                <h4>Regular season</h4>
+                <div class="card card-table">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-sm tablesort table-fielding-of">
+                        <thead><tr>
+                          <th data-tablesort-type="int">Year</th>
+                          <th data-tablesort-type="int">Glf</th>
+                          <th data-tablesort-type="int">Gcf</th>
+                          <th data-tablesort-type="int">Grf</th>
+                        </tr></thead>
+                        <tbody>
+                          <!-- inital spinner -->
+                          <tr><td colspan="4">
+                            <div class="text-center mt-5">
+                              <?php echo Html::getSpinner(); ?>
+                            </div>
+                          </td></tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
+
+
             </div>
 
             <!-- fielding of split -->
             <div class="tab-pane fade" id="player-fielding-of-split" role="tabpanel"> 
 
-              <h4>Regular season</h4>
+              <div class="results-no-data mt-4 d-none">
+                <h1 class="mt-5 text-center">No records 😢</h1>
+              </div>
 
-              <div class="card card-table">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-sm tablesort table-fielding-of-split">
-                      <thead><tr>
-                        <th data-tablesort-type="string">Team</th>
-                        <th data-tablesort-type="int">Year</th>
-                        <th data-tablesort-type="string">POS</th>
-                        <th data-tablesort-type="int">G</th>
-                        <th data-tablesort-type="int">GS</th>
-                        <th data-tablesort-type="int">InnOuts</th>
-                        <th data-tablesort-type="int">PO</th>
-                        <th data-tablesort-type="int">A</th>
-                        <th data-tablesort-type="int">E</th>
-                        <th data-tablesort-type="int">DP</th>
-                        <th data-tablesort-type="int">PB</th>
-                        <th data-tablesort-type="int">WP</th>
-                        <th data-tablesort-type="int">SB</th>
-                        <th data-tablesort-type="int">CS</th>
-                        <th data-tablesort-type="int">ZR</th>
-                      </tr></thead>
-                      <tbody>
-                        <!-- inital spinner -->
-                        <tr><td colspan="15">
-                          <div class="text-center mt-5">
-                            <?php echo Html::getSpinner(); ?>
-                          </div>
-                        </td></tr>
-                      </tbody>
-                      <!-- aggregates -->
-                      <tfoot></tfoot>
-                    </table>
+              <div class="results">
+                <h4>Regular season</h4>
+                <div class="card card-table">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-sm tablesort table-fielding-of-split">
+                        <thead><tr>
+                          <th data-tablesort-type="string">Team</th>
+                          <th data-tablesort-type="int">Year</th>
+                          <th data-tablesort-type="string">POS</th>
+                          <th data-tablesort-type="int">G</th>
+                          <th data-tablesort-type="int">GS</th>
+                          <th data-tablesort-type="int">InnOuts</th>
+                          <th data-tablesort-type="int">PO</th>
+                          <th data-tablesort-type="int">A</th>
+                          <th data-tablesort-type="int">E</th>
+                          <th data-tablesort-type="int">DP</th>
+                          <th data-tablesort-type="int">PB</th>
+                          <th data-tablesort-type="int">WP</th>
+                          <th data-tablesort-type="int">SB</th>
+                          <th data-tablesort-type="int">CS</th>
+                          <th data-tablesort-type="int">ZR</th>
+                        </tr></thead>
+                        <tbody>
+                          <!-- inital spinner -->
+                          <tr><td colspan="15">
+                            <div class="text-center mt-5">
+                              <?php echo Html::getSpinner(); ?>
+                            </div>
+                          </td></tr>
+                        </tbody>
+                        <!-- aggregates -->
+                        <tfoot></tfoot>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
+
+
             </div>
 
             <!-- appearances -->
             <div class="tab-pane fade" id="player-appearances" role="tabpanel"> 
+              <div class="results-no-data mt-4 d-none">
+                <h1 class="mt-5 text-center">No records 😢</h1>
+              </div>
 
-              <h4>Regular season</h4>
-              <div class="card card-table">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-sm tablesort table-appearances">
-                      <thead><tr>
-                        <th data-tablesort-type="string">Team</th>
-                        <th data-tablesort-type="int">Year</th>
-                        <th data-tablesort-type="int">G_all</th>
-                        <th data-tablesort-type="int">GS</th>
-                        <th data-tablesort-type="int">G_batting</th>
-                        <th data-tablesort-type="int">G_defense</th>
-                        <th data-tablesort-type="int">G_p</th>
-                        <th data-tablesort-type="int">G_c</th>
-                        <th data-tablesort-type="int">G_1b</th>
-                        <th data-tablesort-type="int">G_2b</th>
-                        <th data-tablesort-type="int">G_3b</th>
-                        <th data-tablesort-type="int">G_ss</th>
-                        <th data-tablesort-type="int">G_lf</th>
-                        <th data-tablesort-type="int">G_cf</th>
-                        <th data-tablesort-type="int">G_rf</th>
-                        <th data-tablesort-type="int">G_of</th>
-                        <th data-tablesort-type="int">G_dh</th>
-                        <th data-tablesort-type="int">G_ph</th>
-                        <th data-tablesort-type="int">G_pr</th>
-                      </tr></thead>
-                      <tbody>
-                        <!-- inital spinner -->
-                        <tr><td colspan="19">
-                          <div class="text-center mt-5">
-                            <?php echo Html::getSpinner(); ?>
-                          </div>
-                        </td></tr>
-                      </tbody>
-                      <!-- totals -->
-                      <tfoot></tfoot>
-                    </table>
+              <div class="results">
+                <h4>Regular season</h4>
+                <div class="card card-table">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-sm tablesort table-appearances">
+                        <thead><tr>
+                          <th data-tablesort-type="string">Team</th>
+                          <th data-tablesort-type="int">Year</th>
+                          <th data-tablesort-type="int">G_all</th>
+                          <th data-tablesort-type="int">GS</th>
+                          <th data-tablesort-type="int">G_batting</th>
+                          <th data-tablesort-type="int">G_defense</th>
+                          <th data-tablesort-type="int">G_p</th>
+                          <th data-tablesort-type="int">G_c</th>
+                          <th data-tablesort-type="int">G_1b</th>
+                          <th data-tablesort-type="int">G_2b</th>
+                          <th data-tablesort-type="int">G_3b</th>
+                          <th data-tablesort-type="int">G_ss</th>
+                          <th data-tablesort-type="int">G_lf</th>
+                          <th data-tablesort-type="int">G_cf</th>
+                          <th data-tablesort-type="int">G_rf</th>
+                          <th data-tablesort-type="int">G_of</th>
+                          <th data-tablesort-type="int">G_dh</th>
+                          <th data-tablesort-type="int">G_ph</th>
+                          <th data-tablesort-type="int">G_pr</th>
+                        </tr></thead>
+                        <tbody>
+                          <!-- inital spinner -->
+                          <tr><td colspan="19">
+                            <div class="text-center mt-5">
+                              <?php echo Html::getSpinner(); ?>
+                            </div>
+                          </td></tr>
+                        </tbody>
+                        <!-- totals -->
+                        <tfoot></tfoot>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
+
             </div>
 
             <!-- salaries -->
             <div class="tab-pane fade" id="player-salaries" role="tabpanel"> 
-              <h4>Regular season</h4>
-              <div class="card card-table">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-sm tablesort table-salaries">
-                      <thead><tr>
-                        <th data-tablesort-type="string">Team</th>
-                        <th data-tablesort-type="int">Year</th>
-                        <th data-tablesort-type="int">Salary</th>
-                      </tr></thead>
-                      <tbody>
-                        <!-- inital spinner -->
-                        <tr><td colspan="3">
-                          <div class="text-center mt-5">
-                            <?php echo Html::getSpinner(); ?>
-                          </div>
-                        </td></tr>
-                      </tbody>
-                      <!-- totals -->
-                      <tfoot></tfoot>
-                    </table>
+              <div class="results-no-data mt-4 d-none">
+                <h1 class="mt-5 text-center">No records 😢</h1>
+              </div>
+
+              <div class="results">
+                <h4>Regular season</h4>
+                <div class="card card-table">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-sm tablesort table-salaries">
+                        <thead><tr>
+                          <th data-tablesort-type="string">Team</th>
+                          <th data-tablesort-type="int">Year</th>
+                          <th data-tablesort-type="int">Salary</th>
+                        </tr></thead>
+                        <tbody>
+                          <!-- inital spinner -->
+                          <tr><td colspan="3">
+                            <div class="text-center mt-5">
+                              <?php echo Html::getSpinner(); ?>
+                            </div>
+                          </td></tr>
+                        </tbody>
+                        <!-- totals -->
+                        <tfoot></tfoot>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>  
         </div>
 
