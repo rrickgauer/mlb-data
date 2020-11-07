@@ -12,7 +12,6 @@ body {
 }
 
 .player-header {
-  background-color: #f0f0f0;
   padding-top: 40px;
 }
 .player-header .player-bio {
@@ -30,20 +29,12 @@ body {
   margin-left: 15px;
 }
 
-.player-body {
-  background-color: #fafbfe;
-}
-
 table {
   white-space: nowrap;
 }
 
 .player-bio-item-label {
   font-weight: bold;
-}
-
-body {
-  margin-bottom: 40px;
 }
 
 .navbar-search {
@@ -60,14 +51,12 @@ body {
 .player-summary {
   margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .player-summary-card {
   margin: 10px;
   width: 170px;
-  background-color: #e83f6f;
-  color: white;
 }
 
 .card {
@@ -105,7 +94,7 @@ body {
   background-color: #fafbfc;
   border: 1px solid #e1e4e8;
   border-radius: 6px;
-  margin-left: 20px;
+  margin: 0px 20px;
 }
 .nav-player .nav-link {
   border-top: 1px solid #eaecef;
@@ -127,9 +116,39 @@ body {
 .card-table .card-header {
   display: flex;
   justify-content: space-between;
+  background-color: #f0f0f0;
 }
 .card-table .card-body {
   padding: 10px;
+}
+
+.tablesort th:hover {
+  cursor: pointer;
+}
+.tablesort .tablesort-asc,
+.tablesort .tablesort-desc {
+  color: red;
+}
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+  .col-nav-player {
+    margin-bottom: 20px;
+  }
+
+  .player-summary-card {
+    width: 100%;
+    margin: 10px 0px;
+  }
+
+  .card-table .card-header {
+    align-items: baseline;
+  }
+  .card-table .card-header h4 {
+    font-size: 1.25em;
+  }
+  .card-table .card-header .nav-link {
+    padding: 8px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
