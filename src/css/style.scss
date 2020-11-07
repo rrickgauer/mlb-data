@@ -111,14 +111,6 @@ body {
   }
 }
 
-.card-chart {
-  height: 534px;
-  width: 1068px;
-}
-
-.card-table .card-body {
-  padding: 10px;
-}
 
 .form-filters {
   .input-group-filter {
@@ -151,17 +143,25 @@ body {
   }
 
   .nav-link.active {
-
     border-left: 3px solid red;
     background-color: #fff;
-  
   }
 }
 
-#player-panels .tab-pane h4 {
-  margin-bottom: 15px;
-}
 
+.card-table {
+
+  margin-bottom: 40px;
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+}
 
 
 
