@@ -3,5 +3,6 @@
 
 // main
 $(document).ready(function() {
-  alert('fielding');
+  
+  console.log('hi');
 });
