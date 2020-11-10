@@ -2,7 +2,7 @@ let globalVariables  = new GlobalVariables();
 const API            = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting' + globalVariables.getUrl();
 let filterColumns    = ["year", "G", "AB", "R", "H", "2B", "3B", "HR", "RBI", "SB", "CS", "BB", "SO", "IBB", "HBP", "SH", "SF", "GIDP"];
 let userFilerColumns = [];
-const filters        = new Filters(globalVariables.filters);
+let filters          = new Filters(globalVariables.filters);
 let emptyRows        = '';
 let pagination       = {
   current: null,
@@ -14,6 +14,9 @@ let pagination       = {
 
 // main
 $(document).ready(function() {
+  
+  $('#modal-filter-batting').modal('show');
+
   setUrlInputValues();
 
   generateBlankRows();
@@ -100,6 +103,17 @@ function setUrlInputValues() {
 
 
   // filters go here
+  console.log(filters);
+  const filterList = filters.filterList;
+
+  // addExistingFilterRow(column, conditional, qualifier)
+
+  for (let count = 0; count < filterList.length; count++) {
+    addNewFilterRow(filterList[count].column, filterList[count].conditional, filterList[count].qualifier);
+  }
+
+
+
 
 }
 
@@ -251,11 +265,11 @@ function getTableRowHtml(data) {
 }
 
 
-function addNewFilterRow() {
+function addNewFilterRow(column, conditional, qualifier) {
   let html = '<div class="input-group input-group-filter">';
 
   // column
-  html += getFilterColumnOptionsHtml();
+  html += getFilterColumnOptionsHtml(column);
 
   // conditional
   html += `
@@ -268,8 +282,15 @@ function addNewFilterRow() {
       <option value="<"><</option>
     </select>`;
 
+    // set the conditional to selected if it is set
+    if (conditional != undefined)
+      $(html).find('.filter-conditional option[value="' + conditional + '"]').prop('selected', true);
+
   // qualifier
-  html += '<input type="text" class="form-control filter-qualifier">';
+  if (qualifier == undefined)
+    html += '<input type="text" class="form-control filter-qualifier">';
+  else
+    html += `<input type="text" class="form-control filter-qualifier" value="${qualifier}">`;
 
   // delete filter button
   html += `
@@ -283,18 +304,19 @@ function addNewFilterRow() {
 }
 
 
-function getFilterColumnOptionsHtml() {
+// TODO: don't need to check for used filters
+function getFilterColumnOptionsHtml(existingColumn) {
   // get a list of already used filters
   let usedFilters = $('.filter-column option:checked').text();
-
-  let html = '<select class="form-control filter-column">';
+  let html        = '<select class="form-control filter-column">';
 
   for (let count = 0; count < filterColumns.length; count++) {
-    // skip over column if it is already used as a filter
-    if (usedFilters.includes(filterColumns[count]))
-      continue;
 
-    html += `<option value="${filterColumns[count]}">${filterColumns[count]}</option>`;
+    if (existingColumn == undefined || existingColumn != filterColumns[count]) {
+      html += `<option value="${filterColumns[count]}">${filterColumns[count]}</option>`;      
+    } else {
+      html += `<option selected value="${filterColumns[count]}">${filterColumns[count]}</option>`;  
+    }
   }
   
   html += '</select>';
@@ -311,6 +333,9 @@ function deleteFilter(btn) {
 
 // Executes when the .btn-filters-apply button is clicked
 function applyFilters() {
+  // reset the filters
+  filters = new Filters();
+
   let filterRows = $('.input-group-filter');
 
   for (let count = 0; count < filterRows.length; count++) {
