@@ -32,6 +32,10 @@ Filters.prototype.addFilter = function(column, conditional, qualifier) {
 
 
 Filters.prototype.getFiltersString = function() {
+  // return null if no filters exist
+  if (this.filterList.length == 0)
+    return null;
+
   let result = '';
 
   for (let count = 0; count < this.filterList.length; count++) {

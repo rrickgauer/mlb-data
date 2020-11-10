@@ -102,22 +102,12 @@ function setUrlInputValues() {
   }
 
 
-  // filters go here
-  console.log(filters);
+  // add existing filters to the modal
   const filterList = filters.filterList;
-
-  // addExistingFilterRow(column, conditional, qualifier)
-
-  for (let count = 0; count < filterList.length; count++) {
+  for (let count = 0; count < filterList.length; count++)
     addNewFilterRow(filterList[count].column, filterList[count].conditional, filterList[count].qualifier);
-  }
-
-
-
 
 }
-
-
 
 
 function showPlayerPopover(link) {
