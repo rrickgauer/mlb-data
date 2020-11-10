@@ -14,9 +14,6 @@ let pagination       = {
 
 // main
 $(document).ready(function() {
-  
-  $('#modal-filter-batting').modal('show');
-
   setUrlInputValues();
 
   generateBlankRows();
