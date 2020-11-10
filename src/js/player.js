@@ -1,11 +1,9 @@
-const urlParams             = new URLSearchParams(window.location.search);
-const playerID              = urlParams.get('playerID');  
-const API                   = 'http://api.mlb-data.ryanrickgauer.com/main.php';
-// const CHART_COLORS = ['red', 'pink', 'purple', 'darkviolet', 'indigo', 'blue', 'lightblue', 'cyan', 'teal', 'green', 'lightgreen', 'lime', 'yellow', 'goldenrod', 'orange', 'tomato', 'brown', 'grey', 'cadetblue', 'thistle', 'yellowgreen'];
+const urlParams = new URLSearchParams(window.location.search);
+const playerID  = urlParams.get('playerID');  
+const API       = 'http://api.mlb-data.ryanrickgauer.com/main.php';
+const player    = new Player(playerID);
 
-const player = new Player(playerID);
-
-const MODULES = {
+const MODULES   = {
   PITCHING         : "pitching",
   BATTING          : "batting",
   FIELDING         : "fielding",
