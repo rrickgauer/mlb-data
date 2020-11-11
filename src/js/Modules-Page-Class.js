@@ -1,11 +1,6 @@
 let globalVariables  = new GlobalVariables();
-const API            = 'https://api.mlb-data.ryanrickgauer.com/main.php/fielding' + globalVariables.getUrl();
-
-let filterColumns = ['year', 'POS', 'G', 'GS',
-                     'InnOuts', 'PO','A','E',
-                     'DP', 'PB', 'WP', 'SB',
-                     'CS', 'ZR'];
-
+const API            = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting' + globalVariables.getUrl();
+let filterColumns    = ["year", "G", "AB", "R", "H", "2B", "3B", "HR", "RBI", "SB", "CS", "BB", "SO", "IBB", "HBP", "SH", "SF", "GIDP"];
 let userFilerColumns = [];
 let filters          = new Filters(globalVariables.filters);
 let emptyRows        = '';
@@ -22,16 +17,16 @@ $(document).ready(function() {
   setUrlInputValues();
 
   generateBlankRows();
-  $('.table-fielding tbody').html(emptyRows);
+  $('.table-batting tbody').html(emptyRows);
   getData(API, loadTableData, updatePagination);
 
   $('.btn-pagination.next').on('click', function() {
-    $('.table-fielding tbody').html(emptyRows);
+    $('.table-batting tbody').html(emptyRows);
     getData(pagination.next, loadTableData, updatePagination);
   });
 
   $('.btn-pagination.previous').on('click', function() {
-    $('.table-fielding tbody').html(emptyRows);
+    $('.table-batting tbody').html(emptyRows);
     getData(pagination.previous, loadTableData, updatePagination);
   });
 
@@ -57,11 +52,11 @@ $(document).ready(function() {
     applyPerPage();
   });
 
-  $('.table-fielding').on('mouseover', '.link-player', function() {
+  $('.table-batting').on('mouseover', '.link-player', function() {
     showPlayerPopover(this);
   });
 
-  $('.table-fielding').on('mouseout', '.link-player', function() {
+  $('.table-batting').on('mouseout', '.link-player', function() {
     removePlayerPopover(this);
   });
 
@@ -113,8 +108,8 @@ function setUrlInputValues() {
 
 
 function showPlayerPopover(link) {
-  $('.table-fielding [data-toggle="popover"]').popover('hide');
-  const playerID = $(link).closest('.table-fielding-row').attr('data-player-id');
+  $('.table-batting [data-toggle="popover"]').popover('hide');
+  const playerID = $(link).closest('.table-batting-row').attr('data-player-id');
   const playerUrl = 'https://api.mlb-data.ryanrickgauer.com/main.php/people/' + playerID;
 
   $.getJSON(playerUrl, function(response) {
@@ -157,7 +152,7 @@ function getPlayerPopoverContent(data) {
 }
 
 function removePlayerPopover(link) {
-  $('.table-fielding [data-toggle="popover"]').popover('hide');
+  $('.table-batting [data-toggle="popover"]').popover('hide');
   // $(link).popover('hide');
 }
 
@@ -219,7 +214,7 @@ function loadTableData(data) {
   for (var count = 0; count < data.length; count++) 
     html += getTableRowHtml(data[count]);
   
-  $('.table-fielding tbody').html(html);
+  $('.table-batting tbody').html(html);
 }
 
 function getTableRowHtml(data) {
@@ -231,22 +226,26 @@ function getTableRowHtml(data) {
    href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
 
   let html = `
-    <tr class="table-fielding-row" data-player-id="${data.playerID}">
+    <tr class="table-batting-row" data-player-id="${data.playerID}">
       <td>${player}</td>
       <td>${data.year}</td>
-      <td>${data.POS}</td>
       <td>${data.G}</td>
-      <td>${data.GS}</td>
-      <td>${data.InnOuts}</td>
-      <td>${data.PO}</td>
-      <td>${data.A}</td>
-      <td>${data.E}</td>
-      <td>${data.DP}</td>
-      <td>${data.PB}</td>
-      <td>${data.WP}</td>
+      <td>${data.AB}</td>
+      <td>${data.R}</td>
+      <td>${data.H}</td>
+      <td>${doubles}</td>
+      <td>${triples}</td>
+      <td>${data.HR}</td>
+      <td>${data.RBI}</td>
       <td>${data.SB}</td>
       <td>${data.CS}</td>
-      <td>${data.ZR}</td>
+      <td>${data.BB}</td>
+      <td>${data.SO}</td>
+      <td>${data.IBB}</td>
+      <td>${data.HBP}</td>
+      <td>${data.SH}</td>
+      <td>${data.SF}</td>
+      <td>${data.GIDP}</td>
     </tr>`;
 
   return html;
