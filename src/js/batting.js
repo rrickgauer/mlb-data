@@ -315,11 +315,20 @@ function getFilterColumnOptionsHtml(existingColumn) {
   let html        = '<select class="form-control filter-column">';
 
   for (let count = 0; count < filterColumns.length; count++) {
+    // text to be displayed in the option
+    let filterColumnDisplay = filterColumns[count];
+
+    // standardize the display text to match the table headers
+    if (filterColumnDisplay == 'year')
+      filterColumnDisplay = 'Year';
+    else if (filterColumnDisplay == 'teamName')
+      filterColumnDisplay = 'Team';
+
 
     if (existingColumn == undefined || existingColumn != filterColumns[count]) {
-      html += `<option value="${filterColumns[count]}">${filterColumns[count]}</option>`;      
+      html += `<option value="${filterColumns[count]}">${filterColumnDisplay}</option>`;      
     } else {
-      html += `<option selected value="${filterColumns[count]}">${filterColumns[count]}</option>`;  
+      html += `<option selected value="${filterColumns[count]}">${filterColumnDisplay}</option>`;  
     }
   }
   
