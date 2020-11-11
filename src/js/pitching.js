@@ -217,13 +217,6 @@ function loadTableData(data) {
   let html = '';
   for (var count = 0; count < data.length; count++) 
     html += getTableRowHtml(data[count]);
-
-
-  
-
-
-  // $(html).find('td:contains("null")').replaceWith('<b>NP NUUULL</b>');
-  
   
   $('.table-pitching tbody').html(html);
 
@@ -231,16 +224,7 @@ function loadTableData(data) {
 }
 
 function getTableRowHtml(data) {
-
-
-  const dataKeys = Object.keys(data);
-  for (let count = 0; count < dataKeys.length; count++) {
-    const thisKey = dataKeys[count];
-
-    if (data[thisKey] == null)
-      data[thisKey] = '-';
-  }
-
+  data = replaceNulls(data, '-');
 
   let player = `<a data-toggle="popover" data-html="true" data-placement="bottom" 
   class="link-player"
@@ -278,6 +262,19 @@ function getTableRowHtml(data) {
     </tr>`;
 
   return html;
+}
+
+
+function replaceNulls(data, newCharacter = '-') {
+  const dataKeys = Object.keys(data);
+  for (let count = 0; count < dataKeys.length; count++) {
+    const thisKey = dataKeys[count];
+
+    if (data[thisKey] == null)
+      data[thisKey] = newCharacter;
+  }
+
+  return data;
 }
 
 
