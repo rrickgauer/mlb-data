@@ -44,6 +44,7 @@
           <table class="table table-sm table-pitching">
             <thead><tr>
               <th>Player</th>
+              <th>Team</th>
               <th>Year</th>
               <th>W</th>
               <th>L</th>
@@ -128,6 +129,7 @@
               <label for="form-sort-column">Column</label>
               <select class="form-control sort-column mb-3" id="form-sort-column">
                 <option value="year">Year</option>
+                <option value="teamName">Team</option>
                 <option value="W">W</option>
                 <option value="L">L</option>
                 <option value="G">G</option>
