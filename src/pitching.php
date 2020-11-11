@@ -191,6 +191,6 @@
   <script src="js/Global-Variables.js"></script>
   <script src="js/Pagination-Class.js"></script>
   <script src="js/Modules-Page-Class.js"></script>
-  <script src="js/pitching2.js"></script>
+  <script src="js/pitching.js"></script>
 </body>
 </html>
