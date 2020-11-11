@@ -186,11 +186,6 @@
 
 
   <?php include('footer.php'); ?>
-
-  <script src="js/Filters.js"></script>
-  <script src="js/Global-Variables.js"></script>
-  <script src="js/Pagination-Class.js"></script>
-  <script src="js/Modules-Page-Class.js"></script>
   <script src="js/pitching.js"></script>
 </body>
 </html>
