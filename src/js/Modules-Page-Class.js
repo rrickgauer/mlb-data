@@ -35,7 +35,6 @@ function Module(tableSelector, baseApiUrl, filterColumns) {
 
 
 Module.prototype.init = function() {
-
   const self = this;
 
   this.setUrlInputValues();
@@ -68,33 +67,31 @@ Module.prototype.init = function() {
 
 
   $('.form-filters').on('click', '.btn-filter-delete', function() {
-    this.deleteFilter(this);
+    self.deleteFilter(this);
   });
 
   $('.btn-filters-apply').on('click', function() {
-    this.applyFilters();
+    self.applyFilters();
   });
 
   $('.btn-sort-apply').on('click', function() {
-    this.applySort();
+    self.applySort();
   });
 
   $('.select-per-page').on('change', function() {
-    this.applyPerPage();
+    self.applyPerPage();
   });
 
   $('.table-fielding').on('mouseover', '.link-player', function(e) {
-    this.showPlayerPopover(this);
+    self.showPlayerPopover(this);
   });
 
   $('.table-fielding').on('mouseout', '.link-player', function() {
-    this.removePlayerPopover(this);
+    self.removePlayerPopover(this);
   });
 
 
 }
-
-
 
 
 Module.prototype.setUrlInputValues = function() {
@@ -246,35 +243,22 @@ Module.prototype.generateBlankRows = function() {
 
 }
 
-
-
 Module.prototype.getTableRowHtml = function(data) {
 
   data = this.replaceNulls(data, '-');
 
-  let player = `<a data-toggle="popover" data-html="true" data-placement="bottom" 
-  class="link-player"
-   href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
+  let player = '<a data-toggle="popover" data-html="true" data-placement="bottom" class="link-player"';
+  player += `href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
+  
+  let html = `<tr class="table-fielding-row" data-player-id="${data.playerID}"><td>${player}</td>`;
 
-  let html = `
-    <tr class="table-fielding-row" data-player-id="${data.playerID}">
-      <td>${player}</td>
-      <td>${data.teamName}</td>
-      <td>${data.year}</td>
-      <td>${data.POS}</td>
-      <td>${data.G}</td>
-      <td>${data.GS}</td>
-      <td>${data.InnOuts}</td>
-      <td>${data.PO}</td>
-      <td>${data.A}</td>
-      <td>${data.E}</td>
-      <td>${data.DP}</td>
-      <td>${data.PB}</td>
-      <td>${data.WP}</td>
-      <td>${data.SB}</td>
-      <td>${data.CS}</td>
-      <td>${data.ZR}</td>
-    </tr>`;
+  // build the rest of the row from the column keys
+  for (let count = 0; count < this.filterColumns.length; count++) {
+    let columnKey = this.filterColumns[count];
+    html += `<td>${data[columnKey]}</td>`;
+  }
+
+  html += '</tr>';
 
   return html;
 }
