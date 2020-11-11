@@ -191,7 +191,7 @@ function generateBlankRows() {
   for (var count = 0; count < globalVariables.perPage; count++) {
     html += `
     <tr>
-      <td colspan="19">
+      <td colspan="15">
         <div class="text-center">
         <div class="spinner-border spinner-border-sm" role="status">
         <span class="sr-only">Loading...</span>
@@ -223,8 +223,6 @@ function loadTableData(data) {
 }
 
 function getTableRowHtml(data) {
-  let doubles = data['2B'];
-  let triples = data['3B'];
 
   let player = `<a data-toggle="popover" data-html="true" data-placement="bottom" 
   class="link-player"
