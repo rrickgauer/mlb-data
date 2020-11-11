@@ -17,7 +17,6 @@
             <a class="dropdown-item" href="batting.php">Batting</a>
             <a class="dropdown-item" href="pitching.php">Pitching</a>
             <a class="dropdown-item" href="fielding.php">Fielding</a>
-            <a class="dropdown-item" href="fielding-of-split.php">Fielding OF</a>
           </div>
         </li>
       </ul>
