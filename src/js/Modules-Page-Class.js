@@ -225,11 +225,13 @@ Module.prototype.updatePagination = function(newPagination) {
 // TODO: need to set the result of this to a instance member
 Module.prototype.generateBlankRows = function() {
   let html = '';
+  
+  const numColumns = $(this.datatable).find('th').length;
 
   for (let count = 0; count < this.globalVariables.perPage; count++) {
     html += `
     <tr>
-      <td colspan="15">
+      <td colspan="${numColumns}">
         <div class="text-center">
         <div class="spinner-border spinner-border-sm" role="status">
         <span class="sr-only">Loading...</span>
