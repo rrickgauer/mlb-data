@@ -224,6 +224,8 @@ function loadTableData(data) {
 
 function getTableRowHtml(data) {
 
+  data = replaceNulls(data, '-');
+
   let player = `<a data-toggle="popover" data-html="true" data-placement="bottom" 
   class="link-player"
    href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
@@ -248,6 +250,18 @@ function getTableRowHtml(data) {
     </tr>`;
 
   return html;
+}
+
+function replaceNulls(data, newCharacter = '-') {
+  const dataKeys = Object.keys(data);
+  for (let count = 0; count < dataKeys.length; count++) {
+    const thisKey = dataKeys[count];
+
+    if (data[thisKey] == null)
+      data[thisKey] = newCharacter;
+  }
+
+  return data;
 }
 
 
