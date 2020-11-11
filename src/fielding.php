@@ -1,4 +1,5 @@
-<?php require_once('HTML-Generator.php'); ?>
+<!-- 
+  scrip srt<?php require_once('HTML-Generator.php'); ?> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -162,9 +163,9 @@
 
 
   <?php include('footer.php'); ?>
-
-  <script src="js/Filters.js"></script>
-  <script src="js/Global-Variables.js"></script>
   <script src="js/fielding.js"></script>
+
+
+
 </body>
 </html>
