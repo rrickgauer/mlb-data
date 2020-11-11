@@ -1,6 +1,6 @@
 let globalVariables  = new GlobalVariables();
 const API            = 'https://api.mlb-data.ryanrickgauer.com/main.php/batting' + globalVariables.getUrl();
-let filterColumns    = ["year", "G", "AB", "R", "H", "2B", "3B", "HR", "RBI", "SB", "CS", "BB", "SO", "IBB", "HBP", "SH", "SF", "GIDP"];
+let filterColumns    = ["year", "teamName", "G", "AB", "R", "H", "2B", "3B", "HR", "RBI", "SB", "CS", "BB", "SO", "IBB", "HBP", "SH", "SF", "GIDP"];
 let userFilerColumns = [];
 let filters          = new Filters(globalVariables.filters);
 let emptyRows        = '';
@@ -202,7 +202,7 @@ function generateBlankRows() {
 function getData(url, actionResults, actionPagination) {
   $.getJSON(url, function(response) {
     actionResults(response.results);
-    actionPagination(response.pagination);    
+    actionPagination(response.pagination);
   })
   .fail(function(response) {
     console.error(response);
@@ -210,6 +210,7 @@ function getData(url, actionResults, actionPagination) {
 }
 
 function loadTableData(data) {
+
   let html = '';
   for (var count = 0; count < data.length; count++) 
     html += getTableRowHtml(data[count]);
@@ -231,6 +232,7 @@ function getTableRowHtml(data) {
   let html = `
     <tr class="table-batting-row" data-player-id="${data.playerID}">
       <td>${player}</td>
+      <td>${data.teamName}</td>
       <td>${data.year}</td>
       <td>${data.G}</td>
       <td>${data.AB}</td>
@@ -313,11 +315,20 @@ function getFilterColumnOptionsHtml(existingColumn) {
   let html        = '<select class="form-control filter-column">';
 
   for (let count = 0; count < filterColumns.length; count++) {
+    // text to be displayed in the option
+    let filterColumnDisplay = filterColumns[count];
+
+    // standardize the display text to match the table headers
+    if (filterColumnDisplay == 'year')
+      filterColumnDisplay = 'Year';
+    else if (filterColumnDisplay == 'teamName')
+      filterColumnDisplay = 'Team';
+
 
     if (existingColumn == undefined || existingColumn != filterColumns[count]) {
-      html += `<option value="${filterColumns[count]}">${filterColumns[count]}</option>`;      
+      html += `<option value="${filterColumns[count]}">${filterColumnDisplay}</option>`;      
     } else {
-      html += `<option selected value="${filterColumns[count]}">${filterColumns[count]}</option>`;  
+      html += `<option selected value="${filterColumns[count]}">${filterColumnDisplay}</option>`;  
     }
   }
   

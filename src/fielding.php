@@ -44,6 +44,7 @@
           <table class="table table-sm table-fielding">
             <thead><tr>
               <th>Player</th>
+              <th>Team</th>
               <th>Year</th>
               <th>POS</th>
               <th>G</th>
@@ -116,6 +117,7 @@
               <label for="form-sort-column">Column</label>
               <select class="form-control sort-column mb-3" id="form-sort-column">
                 <option value="year">Year</option>
+                <option value="teamName">Team</option>
                 <option value="POS">POS</option>
                 <option value="G">G</option>
                 <option value="GS">GS</option>

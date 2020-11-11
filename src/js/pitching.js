@@ -1,7 +1,7 @@
 let globalVariables  = new GlobalVariables();
 const API            = 'https://api.mlb-data.ryanrickgauer.com/main.php/pitching' + globalVariables.getUrl();
 
-let filterColumns = ['year', 'W', 'L', 'G', 'GS', 'CG', 'SHO', 'SV', 'IPouts', 
+let filterColumns = ['year', 'teamName', 'W', 'L', 'G', 'GS', 'CG', 'SHO', 'SV', 'IPouts', 
                     'H', 'ER', 'HR', 'BB', 'SO', 'BAOpp', 'ERA', 'IBB', 'WP', 
                     'HBP', 'BK', 'BFP', 'GF', 'R', 'SH', 'SF', 'GIDP'];
 
@@ -233,6 +233,7 @@ function getTableRowHtml(data) {
   let html = `
     <tr class="table-pitching-row" data-player-id="${data.playerID}">
       <td>${player}</th>
+      <td>${data.teamName}</td>
       <td>${data.year}</th>
       <td>${data.W}</th>
       <td>${data.L}</th>
@@ -325,10 +326,20 @@ function getFilterColumnOptionsHtml(existingColumn) {
 
   for (let count = 0; count < filterColumns.length; count++) {
 
+    // text to be displayed in the option
+    let filterColumnDisplay = filterColumns[count];
+
+    // standardize the display text to match the table headers
+    if (filterColumnDisplay == 'year')
+      filterColumnDisplay = 'Year';
+    else if (filterColumnDisplay == 'teamName')
+      filterColumnDisplay = 'Team';
+
+
     if (existingColumn == undefined || existingColumn != filterColumns[count]) {
-      html += `<option value="${filterColumns[count]}">${filterColumns[count]}</option>`;      
+      html += `<option value="${filterColumns[count]}">${filterColumnDisplay}</option>`;      
     } else {
-      html += `<option selected value="${filterColumns[count]}">${filterColumns[count]}</option>`;  
+      html += `<option selected value="${filterColumns[count]}">${filterColumnDisplay}</option>`;  
     }
   }
   

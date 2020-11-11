@@ -44,6 +44,7 @@
           <table class="table table-sm table-batting">
             <thead><tr>
               <th>Player</th>
+              <th>Team</th>
               <th>Year</th>
               <th>G</th>
               <th>AB</th>
@@ -120,6 +121,7 @@
               <label for="form-sort-column">Column</label>
               <select class="form-control sort-column mb-3" id="form-sort-column">
                 <option value="year">Year</option>
+                <option value="teamName">Team</option>
                 <option value="G">G</option>
                 <option value="AB">AB</option>
                 <option value="R">R</option>
