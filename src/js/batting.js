@@ -218,6 +218,9 @@ function loadTableData(data) {
 }
 
 function getTableRowHtml(data) {
+
+  data = replaceNulls(data, '-');
+
   let doubles = data['2B'];
   let triples = data['3B'];
 
@@ -249,6 +252,18 @@ function getTableRowHtml(data) {
     </tr>`;
 
   return html;
+}
+
+function replaceNulls(data, newCharacter = '-') {
+  const dataKeys = Object.keys(data);
+  for (let count = 0; count < dataKeys.length; count++) {
+    const thisKey = dataKeys[count];
+
+    if (data[thisKey] == null)
+      data[thisKey] = newCharacter;
+  }
+
+  return data;
 }
 
 
