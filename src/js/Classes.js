@@ -1,6 +1,6 @@
 function Player(playerID) {
   this.playerID                  = playerID;
-  this.apiRootUrl                = 'http://api.mlb-data.ryanrickgauer.com/main.php';
+  this.apiRootUrl                = 'https://api.mlb-data.ryanrickgauer.com/main.php';
   this.batting                   = this.apiRootUrl + '/batting/' + playerID;
   this.pitching                  = this.apiRootUrl + '/pitching/' + playerID;
   this.fielding                  = this.apiRootUrl + '/fielding/' + playerID;

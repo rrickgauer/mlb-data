@@ -1,4 +1,4 @@
-const API_SEARCH = 'http://api.mlb-data.ryanrickgauer.com/main.php/search?perPage=20&q=';
+const API_SEARCH = 'https://api.mlb-data.ryanrickgauer.com/main.php/search?perPage=20&q=';
 
 
 // main

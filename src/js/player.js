@@ -1,6 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const playerID  = urlParams.get('playerID');  
-const API       = 'http://api.mlb-data.ryanrickgauer.com/main.php';
+const API       = 'https://api.mlb-data.ryanrickgauer.com/main.php';
 const player    = new Player(playerID);
 
 const MODULES   = {
