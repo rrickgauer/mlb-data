@@ -24,7 +24,6 @@ Module.prototype.init = function() {
 
   $(this.datatable).find('tbody').html(this.emptyRows);
 
-  // this.getData(this.API, this.loadTableData, this.updatePagination);
   this.getData(this.API, this.loadTableData.bind(this), this.updatePagination.bind(this));
 
   $('.btn-pagination.next').on('click', function(e) {
@@ -57,11 +56,11 @@ Module.prototype.init = function() {
     self.applyPerPage();
   });
 
-  $('.table-fielding').on('mouseover', '.link-player', function(e) {
+  $(this.datatable).on('mouseover', '.link-player', function() {
     self.showPlayerPopover(this);
   });
 
-  $('.table-fielding').on('mouseout', '.link-player', function() {
+  $(this.datatable).on('mouseout', '.link-player', function() {
     self.removePlayerPopover(this);
   });
 
@@ -123,7 +122,8 @@ Module.prototype.getData = function(url, actionResults, actionPagination) {
 
 
 Module.prototype.showPlayerPopover = function(link) {
-  // $('.table-fielding [data-toggle="popover"]').popover('hide');
+  const self = this;
+
   $(this.datatable).find('[data-toggle="popover"]').popover('hide');
 
   const playerID = $(link).closest('tr').attr('data-player-id');
@@ -134,7 +134,7 @@ Module.prototype.showPlayerPopover = function(link) {
     if (!$(link).is(':hover'))
       return;
 
-    let content = this.getPlayerPopoverContent(response);
+    let content = self.getPlayerPopoverContent(response);
     $(link).attr('data-content', content);
     $(link).popover('show');
   });
