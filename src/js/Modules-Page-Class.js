@@ -295,11 +295,10 @@ Module.prototype.replaceNulls = function(data, newCharacter = '-') {
 
 
 Module.prototype.addNewFilterRow = function(column, conditional, qualifier) {
-
   let html = '<div class="input-group input-group-filter">';
 
   // column
-  html += getFilterColumnOptionsHtml(column);
+  html += this.getFilterColumnOptionsHtml(column);
 
   // conditional
   html += `
@@ -330,9 +329,7 @@ Module.prototype.addNewFilterRow = function(column, conditional, qualifier) {
 
   html += '</div>';
 
-  $('.form-this.filters').append(html);
-
-
+  $('.form-filters').append(html);
 }
 
 
