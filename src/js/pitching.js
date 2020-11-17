@@ -5,6 +5,6 @@ const filterColumns = ['year', 'teamName', 'W', 'L', 'G', 'GS', 'CG', 'SHO', 'SV
                     'HBP', 'BK', 'BFP', 'GF', 'R', 'SH', 'SF', 'GIDP'];
 
 $(document).ready(function() {
-  let moduleTest = new Module(datatable, baseApiUrl, filterColumns);
-  moduleTest.init();
+  let modulesClass = new Module(datatable, baseApiUrl, filterColumns);
+  modulesClass.init();
 });

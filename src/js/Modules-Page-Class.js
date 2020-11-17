@@ -5,32 +5,14 @@
 // Constructor //
 /////////////////
 function Module(tableSelector, baseApiUrl, filterColumns) {
-
   this.globalVariables  = new GlobalVariables();
-  // const API            = 'https://api.mlb-data.ryanrickgauer.com/main.php/fielding' + globalVariables.getUrl();
-  this.API = baseApiUrl + this.globalVariables.getUrl();
-
-  // let filterColumns = ['year', 'teamName', 'POS', 'G', 'GS',
-  //                      'InnOuts', 'PO','A','E',
-  //                      'DP', 'PB', 'WP', 'SB',
-  //                      'CS', 'ZR'];
-
-  this.filterColumns = filterColumns;
-
+  this.API              = baseApiUrl + this.globalVariables.getUrl();
+  this.filterColumns    = filterColumns;
   this.userFilerColumns = [];
   this.filters          = new Filters(this.globalVariables.filters);
   this.emptyRows        = '';
-
-  this.pagination = new Pagination();
-
-
-  // this.emptyRows = null;
-
-  this.datatable = $(tableSelector);
-
-
-
-
+  this.pagination       = new Pagination();
+  this.datatable        = $(tableSelector);
 }
 
 
@@ -38,17 +20,12 @@ Module.prototype.init = function() {
   const self = this;
 
   this.setUrlInputValues();
-
   this.generateBlankRows();
 
-  // $('.table-fielding tbody').html(emptyRows);
   $(this.datatable).find('tbody').html(this.emptyRows);
-
-  //this.search.bind(this)
 
   // this.getData(this.API, this.loadTableData, this.updatePagination);
   this.getData(this.API, this.loadTableData.bind(this), this.updatePagination.bind(this));
-
 
   $('.btn-pagination.next').on('click', function(e) {
     $(self.datatable).find('tbody').html(self.emptyRows);
@@ -60,11 +37,9 @@ Module.prototype.init = function() {
     self.getData(self.pagination.previous, self.loadTableData.bind(self), self.updatePagination.bind(self));
   });
 
-
   $('.btn-filter-new').on('click', function() {
     self.addNewFilterRow();
   });
-
 
   $('.form-filters').on('click', '.btn-filter-delete', function() {
     self.deleteFilter(this);
@@ -95,7 +70,6 @@ Module.prototype.init = function() {
 
 
 Module.prototype.setUrlInputValues = function() {
-
   // set perPage
   const perPageOptions = $('.select-per-page option');
   for (let count = 0; count < perPageOptions.length; count++) {
@@ -246,7 +220,6 @@ Module.prototype.generateBlankRows = function() {
 }
 
 Module.prototype.getTableRowHtml = function(data) {
-
   data = this.replaceNulls(data, '-');
 
   let player = '<a data-toggle="popover" data-html="true" data-placement="bottom" class="link-player"';
@@ -267,7 +240,6 @@ Module.prototype.getTableRowHtml = function(data) {
 
 
 Module.prototype.loadTableData = function(data) {
-
   const self = this;
 
   let html = ''
@@ -295,11 +267,10 @@ Module.prototype.replaceNulls = function(data, newCharacter = '-') {
 
 
 Module.prototype.addNewFilterRow = function(column, conditional, qualifier) {
-
   let html = '<div class="input-group input-group-filter">';
 
   // column
-  html += getFilterColumnOptionsHtml(column);
+  html += this.getFilterColumnOptionsHtml(column);
 
   // conditional
   html += `
@@ -330,9 +301,7 @@ Module.prototype.addNewFilterRow = function(column, conditional, qualifier) {
 
   html += '</div>';
 
-  $('.form-this.filters').append(html);
-
-
+  $('.form-filters').append(html);
 }
 
 
