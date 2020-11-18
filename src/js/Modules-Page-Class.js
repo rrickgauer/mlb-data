@@ -105,7 +105,7 @@ Module.prototype.setUrlInputValues = function() {
   // add existing this.filters to the modal
   const filterList = this.filters.filterList;
   for (let count = 0; count < filterList.length; count++)
-    addNewFilterRow(filterList[count].column, filterList[count].conditional, filterList[count].qualifier);
+    this.addNewFilterRow(filterList[count].column, filterList[count].conditional, filterList[count].qualifier);
 }
 
 
@@ -342,7 +342,7 @@ Module.prototype.deleteFilter = function(btn) {
 
 Module.prototype.applyFilters = function()   {
   // reset the this.filters
-  this.filters = new filters();
+  this.filters = new Filters();
 
   let filterRows = $('.input-group-filter');
 
