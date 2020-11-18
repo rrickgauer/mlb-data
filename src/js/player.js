@@ -34,7 +34,7 @@ function loadAllPlayerData() {
     loadPositionData(response.results);
     loadAppearancesTableFooter(response.results);
   }, function(response) {
-    console.error(response);
+    // console.error(response);
   });
 
   //////////////
@@ -43,7 +43,7 @@ function loadAllPlayerData() {
   getPlayerData(player.bio, function(response) {
     loadBioData(response.results);
   }, function(response) {
-    console.error(response);
+    // console.error(response);
   });
 
   // // Batting - graph
@@ -60,7 +60,7 @@ function loadAllPlayerData() {
     loadBattingAggregateData(response.results);
     loadBattingTableFooter(response.results);
   }, function(response) {
-    console.error(response);
+    // console.error(response);
   });
 
 
@@ -106,7 +106,7 @@ function loadAllPlayerData() {
     loadPitchingFooter(response.results);
   }, function(response) {
     // hideModule('pitching');
-    console.error(response);
+    // console.error(response);
   });
 
   //////////////////////
@@ -131,7 +131,7 @@ function loadAllPlayerData() {
     // hideModule('pitching');
 
     $('.table-pitching-post').closest('.card-table').remove();
-    console.error(response);
+    // console.error(response);
   });
 
   /////////////////////////////
@@ -141,7 +141,7 @@ function loadAllPlayerData() {
     loadPitchingPostTableFooter(response.results);
   }, function(response) {
     // hideModule('pitching');
-    console.error(response);
+    // console.error(response);
   });
 
   //////////////
@@ -162,7 +162,7 @@ function loadAllPlayerData() {
   getPlayerData(player.fielding_aggregate, function(response) {
     loadFieldingTableFooter(response.results);
   }, function(response) {
-    console.error(response);
+    // console.error(response);
   });
 
   ///////////////////
@@ -182,7 +182,7 @@ function loadAllPlayerData() {
     loadFieldingPostTableFooter(response.results);
   }, function(response) {
     // hideModule('fielding');
-    console.error(response);
+    // console.error(response);
   });  
 
   
@@ -203,7 +203,7 @@ function loadAllPlayerData() {
   getPlayerData(player.fieldingOfSplit_aggregate, function(response) {
     loadFieldingOfSplitTableFooter(response.results);
   }, function(response) {
-    console.error(response);
+    // console.error(response);
   });
 
 
@@ -236,7 +236,7 @@ function loadAllPlayerData() {
     loadSalariesTableFooter(response.results);
   }, function(response) {
     // hideModule('salaries');
-    console.error(response);
+    // console.error(response);
   });
 
 }
