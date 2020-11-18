@@ -18,8 +18,37 @@ const MODULES   = {
 // Main function //
 ///////////////////
 $(document).ready(function() {
+
+  initTableSkeletons();
+
   loadAllPlayerData();
 });
+
+
+
+function initTableSkeletons() {
+  const numColumns = $(this.datatable).find('th').length;
+  let tables = $('.card-table table');
+
+  for (let count = 0; count < tables.length; count++) {
+    let thisTable = tables[count];
+    const numColumns = $(thisTable).find('th').length;
+
+    let html = '';
+
+    for (let i = 0; i < 10; i++) {
+      html += `
+      <tr>
+        <td colspan="${numColumns}">
+          <div class="skeleton-block skeleton-effect-wave">
+         </div>
+        </td>
+      </tr>`;
+    }
+
+    $(thisTable).find('tbody').html(html);
+  }
+}
 
 
 /////////////////////////////////////////////////////////////////
@@ -45,11 +74,6 @@ function loadAllPlayerData() {
   }, function(response) {
     // console.error(response);
   });
-
-  // // Batting - graph
-  // getPlayerBatting(urlBattingAggregate, loadBattingChartData, function() {
-  //   hideModule('batting');
-  // });
 
 
   /////////////////////////
