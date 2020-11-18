@@ -113,6 +113,16 @@ table {
 .card-table {
   margin-bottom: 40px;
 }
+.card-table table {
+  line-height: 1.15;
+}
+.card-table tbody tr:hover {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+.card-table tbody tr.active {
+  background-color: #ee9b66;
+}
 .card-table .card-header {
   display: flex;
   justify-content: space-between;
@@ -122,7 +132,7 @@ table {
   padding: 10px;
 }
 
-.tablesort th:hover {
+.tablesort thead th:hover {
   cursor: pointer;
 }
 .tablesort .tablesort-asc,

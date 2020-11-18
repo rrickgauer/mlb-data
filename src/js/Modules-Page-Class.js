@@ -23,16 +23,19 @@ Module.prototype.init = function() {
   this.generateBlankRows();
 
   $(this.datatable).find('tbody').html(this.emptyRows);
+  this.disablePaginationButtons();
 
   this.getData(this.API, this.loadTableData.bind(this), this.updatePagination.bind(this));
 
   $('.btn-pagination.next').on('click', function(e) {
     $(self.datatable).find('tbody').html(self.emptyRows);
+    self.disablePaginationButtons();
     self.getData(self.pagination.next, self.loadTableData.bind(self), self.updatePagination.bind(self));
   });
 
   $('.btn-pagination.previous').on('click', function() {
     $(self.datatable).find('tbody').html(self.emptyRows);
+    self.disablePaginationButtons();
     self.getData(self.pagination.previous, self.loadTableData.bind(self), self.updatePagination.bind(self));
   });
 
@@ -66,6 +69,13 @@ Module.prototype.init = function() {
 
 
 }
+
+
+Module.prototype.disablePaginationButtons = function() {
+  const html = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>';
+  $('.btn-pagination').html(html).prop('disabled', true);
+}
+
 
 
 Module.prototype.setUrlInputValues = function() {
@@ -187,6 +197,11 @@ Module.prototype.updatePagination = function(newPagination) {
   this.pagination.next     = newPagination.next;
   this.pagination.previous = newPagination.previous;
 
+  // restore arrows
+  $('.btn-pagination.previous').html('<');
+  $('.btn-pagination.next').html('>').prop('disabled', false);  // enable next
+
+  
   // disable the previous button if previous link is null
   if (this.pagination.previous == null) {
     $('.btn-pagination.previous').prop('disabled', true);
@@ -206,10 +221,8 @@ Module.prototype.generateBlankRows = function() {
     html += `
     <tr>
       <td colspan="${numColumns}">
-        <div class="text-center">
-        <div class="spinner-border spinner-border-sm" role="status">
-        <span class="sr-only">Loading...</span>
-        </div></div>
+        <div class="skeleton-block skeleton-effect-wave">
+       </div>
       </td>
     </tr>`;
 

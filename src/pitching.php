@@ -73,9 +73,15 @@
               <th>GIDP</th>
             </tr></thead>
             <tbody>
-              <tr><td colspan="21" rowspan="20">
+<!--               <tr><td colspan="21" rowspan="20">
                 <div class="text-center mt-5 mb-5">
-                  <?php echo Html::getSpinner() ?>
+                  <?php //echo Html::getSpinner() ?>
+                </div>
+              </td></tr> -->
+
+              <tr><td colspan="21" rowspan="20">
+                <div class="skeleton-block skeleton-effect-wave">
+                  
                 </div>
               </td></tr>
             </tbody>
