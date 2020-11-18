@@ -20,8 +20,12 @@ const MODULES   = {
 $(document).ready(function() {
 
   initTableSkeletons();
-
   loadAllPlayerData();
+
+  $('.card-table').on('click', 'table tbody tr', function() {
+    activateTableRow(this);
+  });
+
 });
 
 
@@ -49,7 +53,6 @@ function initTableSkeletons() {
     $(thisTable).find('tbody').html(html);
   }
 }
-
 
 /////////////////////////////////////////////////////////////////
 // Load all the data for the player into the tables and charts //
@@ -1031,5 +1034,8 @@ function loadPitchingFooter(data) {
   </tr>`;
 
   $('.table-pitching tfoot').html(html);
+}
 
+function activateTableRow(row) {
+  $(row).toggleClass('active');
 }

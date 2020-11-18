@@ -146,6 +146,11 @@ table {
 
   tbody tr:hover {
     background-color: $color-white-darker;
+    cursor: pointer;
+  }
+
+  tbody tr.active {
+    background-color: #ee9b66;
   }
 
 
@@ -161,7 +166,7 @@ table {
 }
 
 .tablesort {
-  th:hover {
+  thead th:hover {
     cursor: pointer;
   }
 

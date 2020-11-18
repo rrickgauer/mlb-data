@@ -14,7 +14,7 @@ $(document).ready(function() {
 });
 
 function addEventListeners() {
-  $('body').on('click', '.tablesort th', function() {
+  $('body').on('click', '.tablesort thead th', function() {
     tableSort(this);
   });
 

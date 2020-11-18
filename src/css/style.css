@@ -118,6 +118,10 @@ table {
 }
 .card-table tbody tr:hover {
   background-color: #f0f0f0;
+  cursor: pointer;
+}
+.card-table tbody tr.active {
+  background-color: #ee9b66;
 }
 .card-table .card-header {
   display: flex;
@@ -128,7 +132,7 @@ table {
   padding: 10px;
 }
 
-.tablesort th:hover {
+.tablesort thead th:hover {
   cursor: pointer;
 }
 .tablesort .tablesort-asc,
