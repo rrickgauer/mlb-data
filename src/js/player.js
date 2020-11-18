@@ -34,7 +34,7 @@ function loadAllPlayerData() {
     loadPositionData(response.results);
     loadAppearancesTableFooter(response.results);
   }, function(response) {
-    console.error(response);
+    // console.error(response);
   });
 
   //////////////
@@ -43,7 +43,7 @@ function loadAllPlayerData() {
   getPlayerData(player.bio, function(response) {
     loadBioData(response.results);
   }, function(response) {
-    console.log(response);
+    // console.error(response);
   });
 
   // // Batting - graph
@@ -60,7 +60,7 @@ function loadAllPlayerData() {
     loadBattingAggregateData(response.results);
     loadBattingTableFooter(response.results);
   }, function(response) {
-    console.error(response);
+    // console.error(response);
   });
 
 
@@ -82,8 +82,9 @@ function loadAllPlayerData() {
   getPlayerData(player.battingPost, function(response) {
     loadBattingPostTable(response.results);
     displayChartData(response.results, '#chart-player-batting-post');
-  }, function(repsonse) {
+  }, function(response) {
     console.error(response);
+    $('.table-batting-post').closest('.card-table').remove();
   });
 
   ////////////////////////////
@@ -91,8 +92,8 @@ function loadAllPlayerData() {
   ////////////////////////////
   getPlayerData(player.battingPost_aggregate, function(response) {
     loadBattingPostTableFooter(response.results);
-  }, function(repsonse) {
-    console.error(response);
+  }, function(response) {
+    // console.error(response);
   });
 
 
@@ -105,7 +106,7 @@ function loadAllPlayerData() {
     loadPitchingFooter(response.results);
   }, function(response) {
     // hideModule('pitching');
-    console.error(response);
+    // console.error(response);
   });
 
   //////////////////////
@@ -128,7 +129,9 @@ function loadAllPlayerData() {
     displayChartData(response.results, '#chart-player-pitching-post');
   }, function(response) {
     // hideModule('pitching');
-    console.error(response);
+
+    $('.table-pitching-post').closest('.card-table').remove();
+    // console.error(response);
   });
 
   /////////////////////////////
@@ -138,7 +141,7 @@ function loadAllPlayerData() {
     loadPitchingPostTableFooter(response.results);
   }, function(response) {
     // hideModule('pitching');
-    console.error(response);
+    // console.error(response);
   });
 
   //////////////
@@ -159,7 +162,7 @@ function loadAllPlayerData() {
   getPlayerData(player.fielding_aggregate, function(response) {
     loadFieldingTableFooter(response.results);
   }, function(response) {
-    console.error(response);
+    // console.error(response);
   });
 
   ///////////////////
@@ -169,8 +172,7 @@ function loadAllPlayerData() {
     loadFieldingPostTable(response.results);
     displayChartData(response.results, '#chart-player-fielding-post');
   }, function(response) {
-    // hideModule('fielding');
-    console.error(response);
+    $('.table-fielding-post').closest('.card-table').remove();
   });  
 
   /////////////////////////////
@@ -180,7 +182,7 @@ function loadAllPlayerData() {
     loadFieldingPostTableFooter(response.results);
   }, function(response) {
     // hideModule('fielding');
-    console.error(response);
+    // console.error(response);
   });  
 
   
@@ -201,7 +203,7 @@ function loadAllPlayerData() {
   getPlayerData(player.fieldingOfSplit_aggregate, function(response) {
     loadFieldingOfSplitTableFooter(response.results);
   }, function(response) {
-    console.error(response);
+    // console.error(response);
   });
 
 
@@ -234,7 +236,7 @@ function loadAllPlayerData() {
     loadSalariesTableFooter(response.results);
   }, function(response) {
     // hideModule('salaries');
-    console.error(response);
+    // console.error(response);
   });
 
 }
