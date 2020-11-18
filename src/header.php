@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/external/spinners.css">
 
 <!-- skeleton loaders: https://github.com/nolimits4web/skeleton-elements -->
-<link rel="stylesheet" type="text/css" href="css/external/skeleton/skeleton-elements.css" />
+<link rel="stylesheet" type="text/css" href="css/external/skeleton-elements.css" />
 
 <!-- personal css -->
 <link rel="stylesheet" type="text/css" href="css/style.css" />
