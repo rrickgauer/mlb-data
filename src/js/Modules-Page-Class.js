@@ -206,10 +206,8 @@ Module.prototype.generateBlankRows = function() {
     html += `
     <tr>
       <td colspan="${numColumns}">
-        <div class="text-center">
-        <div class="spinner-border spinner-border-sm" role="status">
-        <span class="sr-only">Loading...</span>
-        </div></div>
+        <div class="skeleton-block skeleton-effect-wave">
+       </div>
       </td>
     </tr>`;
 

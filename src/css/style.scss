@@ -138,6 +138,16 @@ table {
 
 .card-table {
   margin-bottom: 40px;
+  
+
+  table {
+    line-height: 1.15;
+  }
+
+  tbody tr:hover {
+    background-color: $color-white-darker;
+  }
+
 
   .card-header {
     display: flex;
