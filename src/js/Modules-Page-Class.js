@@ -199,9 +199,15 @@ Module.prototype.updatePagination = function(newPagination) {
 
   // restore arrows
   $('.btn-pagination.previous').html('<');
-  $('.btn-pagination.next').html('>').prop('disabled', false);  // enable next
+  $('.btn-pagination.next').html('>');
 
-  
+  // check if the current page is the last page in the dataset
+  if (this.pagination.current == this.pagination.next) {
+    $('.btn-pagination.next').prop('disabled', true);         // disable next
+  } else {
+    $('.btn-pagination.next').prop('disabled', false);        // enable next
+  }
+
   // disable the previous button if previous link is null
   if (this.pagination.previous == null) {
     $('.btn-pagination.previous').prop('disabled', true);
