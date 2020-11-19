@@ -205,6 +205,19 @@ if (!isset($_GET['playerID'])) {
                     <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-batting">
+
+                        <!-- super table dropdown -->
+                        <div class="dropdown dropdown-super-table">
+                          <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                            <i class='bx bx-list-check'></i>
+                          </button>
+                           <div class="dropdown-menu">
+                             <!-- checkboxes to toggle columns -->
+                             <div class="super-table-checkboxes batting"></div>
+                           </div>
+                        </div>
+
+
                         <div class="table-responsive">
                           <table class="table table-sm table-batting tablesort">
                             <thead><tr>
@@ -266,6 +279,18 @@ if (!isset($_GET['playerID'])) {
                     <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-batting-post">
+
+                        <!-- super table dropdown -->
+                        <div class="dropdown dropdown-super-table">
+                          <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                            <i class='bx bx-list-check'></i>
+                          </button>
+                           <div class="dropdown-menu">
+                             <!-- checkboxes to toggle columns -->
+                             <div class="super-table-checkboxes batting-post"></div>
+                           </div>
+                        </div>
+
                         <div class="table-responsive">
                           <table class="table table-sm table-batting-post tablesort">
                             <thead><tr>
@@ -456,6 +481,18 @@ if (!isset($_GET['playerID'])) {
                     <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-pitching-post">
+
+                        <!-- super table dropdown -->
+                        <div class="dropdown dropdown-super-table">
+                          <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                            <i class='bx bx-list-check'></i>
+                          </button>
+                           <div class="dropdown-menu">
+                             <!-- checkboxes to toggle columns -->
+                             <div class="super-table-checkboxes pitching-post"></div>
+                           </div>
+                        </div>
+
                         <div class="table-responsive">
                           <table class="table table-sm tablesort table-pitching-post">
                             <thead><tr>
@@ -534,6 +571,18 @@ if (!isset($_GET['playerID'])) {
                     <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-fielding">
+
+                        <!-- super table dropdown -->
+                        <div class="dropdown dropdown-super-table">
+                          <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                            <i class='bx bx-list-check'></i>
+                          </button>
+                           <div class="dropdown-menu">
+                             <!-- checkboxes to toggle columns -->
+                             <div class="super-table-checkboxes fielding"></div>
+                           </div>
+                        </div>
+
                         <div class="table-responsive">
                           <table class="table table-sm tablesort table-fielding">
                             <thead><tr>
@@ -590,6 +639,18 @@ if (!isset($_GET['playerID'])) {
                     <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-fielding-post">
+
+                        <!-- super table dropdown -->
+                        <div class="dropdown dropdown-super-table">
+                          <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                            <i class='bx bx-list-check'></i>
+                          </button>
+                           <div class="dropdown-menu">
+                             <!-- checkboxes to toggle columns -->
+                             <div class="super-table-checkboxes fielding-post"></div>
+                           </div>
+                        </div>
+
                         <div class="table-responsive">
                           <table class="table table-sm tablesort table-fielding-post">
                             <thead><tr>
@@ -655,6 +716,18 @@ if (!isset($_GET['playerID'])) {
                     <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-fielding-of-split">
+
+                        <!-- super table dropdown -->
+                        <div class="dropdown dropdown-super-table">
+                          <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                            <i class='bx bx-list-check'></i>
+                          </button>
+                           <div class="dropdown-menu">
+                             <!-- checkboxes to toggle columns -->
+                             <div class="super-table-checkboxes fielding-of-split"></div>
+                           </div>
+                        </div>
+
                         <div class="table-responsive">
                           <table class="table table-sm tablesort table-fielding-of-split">
                             <thead><tr>
@@ -720,6 +793,18 @@ if (!isset($_GET['playerID'])) {
                     <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-appearances">
+
+                        <!-- super table dropdown -->
+                        <div class="dropdown dropdown-super-table">
+                          <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                            <i class='bx bx-list-check'></i>
+                          </button>
+                           <div class="dropdown-menu">
+                             <!-- checkboxes to toggle columns -->
+                             <div class="super-table-checkboxes appearances"></div>
+                           </div>
+                        </div>
+
                         <div class="table-responsive">
                           <table class="table table-sm tablesort table-appearances">
                             <thead><tr>
@@ -790,6 +875,18 @@ if (!isset($_GET['playerID'])) {
                     <div class="tab-content">
                       <!-- table -->
                       <div class="tab-pane fade show active" id="nav-table-salaries">
+
+                        <!-- super table dropdown -->
+                        <div class="dropdown dropdown-super-table">
+                          <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                            <i class='bx bx-list-check'></i>
+                          </button>
+                           <div class="dropdown-menu">
+                             <!-- checkboxes to toggle columns -->
+                             <div class="super-table-checkboxes salaries"></div>
+                           </div>
+                        </div>
+
                         <div class="table-responsive">
                           <table class="table table-sm tablesort table-salaries">
                             <thead><tr>

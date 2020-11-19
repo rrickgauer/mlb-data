@@ -38,15 +38,15 @@
             <option value="1000">1000</option>
           </select>
 
-          <!-- Toggle columns -->
-          <div class="dropdown">
-            <button class="btn btn-sm btn-primary" type="button" data-toggle="dropdown">
-              Columns
+          <!-- super table dropdown -->
+          <div class="dropdown dropdown-super-table">
+            <button class="btn btn-primary btn-sm" type="button" data-toggle="dropdown">
+              <i class='bx bx-list-check'></i>
             </button>
-            <div class="dropdown-menu">
-              <!-- checkboxes to toggle columns -->
-              <div class="super-table-checkboxes"></div>
-            </div>
+             <div class="dropdown-menu">
+               <!-- checkboxes to toggle columns -->
+               <div class="super-table-checkboxes"></div>
+             </div>
           </div>
           
           <!-- filters -->
