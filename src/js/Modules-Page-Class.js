@@ -80,6 +80,12 @@ Module.prototype.init = function() {
     self.openDetailsModal(this);
   });
 
+  // if player link is clicked, don't open the details modal
+  $(this.datatable).on('click', 'tbody td a', function(e) {
+    e.stopPropagation(); 
+  });
+
+
   $('.modal-details').on('hidden.bs.modal', function() {
     self.initDetailsModal();
   });
@@ -415,12 +421,12 @@ Module.prototype.generateBlankRows = function() {
   }
 
   this.emptyRows = html;
-
 }
 
 Module.prototype.getTableRowHtml = function(data) {
   data = this.replaceNulls(data, '-');
 
+  // create the player link
   let player = '<a data-toggle="popover" data-html="true" data-placement="bottom" class="link-player"';
   player += `href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
   
