@@ -369,15 +369,25 @@ Module.prototype.deleteFilter = function(btn) {
 
 
 Module.prototype.applyFilters = function()   {
+  // ensure none of the qualifiers are blank
+  const qualifiers = $('.filter-qualifier');
+  for (let count = 0; count < qualifiers.length; count++) {
+    if ($(qualifiers[count]).val() == '') {
+        this.displayAlert('Error! Empty qualifier.');
+        return;
+      }
+  }
+
   // reset the this.filters
   this.filters = new Filters();
 
-  let filterRows = $('.input-group-filter');
-
+  // add all the filters
+  const filterRows = $('.input-group-filter');
   for (let count = 0; count < filterRows.length; count++) {
     let newColumn      = $(filterRows[count]).find('.filter-column option:checked').val();
     let newConditional = $(filterRows[count]).find('.filter-conditional option:checked').val();
     let newQualifier   = $(filterRows[count]).find('.filter-qualifier').val();
+
     this.filters.addFilter(newColumn, newConditional, newQualifier);
   }
 
@@ -401,5 +411,17 @@ Module.prototype.applySort = function()   {
 
 Module.prototype.refreshPage = function() {
   window.location.href = window.location.protocol + window.location.pathname + this.globalVariables.getUrl();
+}
+
+
+// displays an alert on the screen
+Module.prototype.displayAlert = function(text) {
+  $.toast({
+    text: text,
+    position: 'bottom-center',
+    loader: false,
+    bgColor: '#3D3D3D',
+    textColor: 'white'
+  });
 }
 
