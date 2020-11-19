@@ -2,15 +2,6 @@ body {
   background-color: #fafbfe;
 }
 
-#navbar {
-  color: white;
-  background-color: #37404a;
-}
-#navbar .nav-link {
-  color: white;
-  font-weight: bold;
-}
-
 .table {
   white-space: nowrap;
 }
@@ -50,7 +41,7 @@ body {
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .player-header {
-    padding-top: 15px;
+    padding-top: 25px;
   }
 }
 .player-summary {
@@ -82,6 +73,17 @@ body {
   color: black;
 }
 
+#navbar {
+  color: white;
+  background-color: #37404a;
+}
+#navbar .nav-link {
+  color: white;
+  font-weight: bold;
+}
+#navbar .navbar-toggler {
+  color: white;
+}
 #navbar .navbar-collapse-items {
   width: 100%;
   display: flex;
