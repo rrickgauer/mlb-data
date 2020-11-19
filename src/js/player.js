@@ -88,22 +88,23 @@ function initSuperTables() {
 // Load all the data for the player into the tables and charts //
 /////////////////////////////////////////////////////////////////
 function loadAllPlayerData() {
-  
-  //////////////
-  // Position //
-  //////////////
-  getPlayerData(player.appearances_aggregate, function(response) {
-    loadPositionData(response.results);
-    loadAppearancesTableFooter(response.results);
-  }, function(response) {
-    // console.error(response);
-  });
+
 
   //////////////
   // Bio data //
   //////////////
   getPlayerData(player.bio, function(response) {
     loadBioData(response.results);
+  }, function(response) {
+    // console.error(response);
+  });
+
+  //////////////
+  // Position //
+  //////////////
+  getPlayerData(player.appearances_aggregate, function(response) {
+    loadPositionData(response.results);
+    loadAppearancesTableFooter(response.results);
   }, function(response) {
     // console.error(response);
   });

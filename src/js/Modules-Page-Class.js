@@ -145,7 +145,47 @@ Module.prototype.openDetailsModal = function(row) {
   const dataUrl  = this.baseAPI + `/${playerID}?filter=year:=:${year},stint:=:${stint}`;
 
   this.loadDetailsModalBioData(playerID);
+  this.loadDetailsModalPositionData(playerID);
   this.getData(dataUrl, self.loadDetailsModalModuleData.bind(this));
+}
+
+
+Module.prototype.loadDetailsModalPositionData = function(playerID) {
+  const playerUrls = new Player(playerID);
+
+  this.getData(playerUrls.appearances_aggregate, function(data) {
+    const positions = {
+      G_1b: 'First Baseman',
+      G_2b: 'Second Baseman',
+      G_3b: 'Third Baseman',
+      G_ss: 'Shortstop',
+      G_lf: 'Leftfielder',
+      G_rf: 'Rightfielder',
+      G_cf: 'Centerfielder',
+      G_p: 'Pitcher',
+      G_c: 'Catcher',
+    }
+
+    const positionKeys = Object.keys(positions);
+    let dataArray      = Object.entries(data);
+
+    // sort the data
+    let dataSorted = dataArray.sort(function(a, b) {
+      let aValue = a[1];
+      let bValue = b[1];
+
+      return (aValue > bValue) ? -1 : 1;
+    });
+
+    // find the highest sum in the data that is a key in the positions array
+    let count = 0;
+    while (!positionKeys.includes(dataSorted[count][0])) {
+      count++;
+    }
+
+    const positionKey = dataSorted[count][0];
+    $('.player-bio .player-bio-item-data.position').text(positions[positionKey]);
+  });
 }
 
 
