@@ -193,7 +193,7 @@
 
   <!-- table row details modal -->
   <div class="modal fade modal-details" id="modal-details-batting" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Details</h5>
@@ -279,9 +279,6 @@
           <!-- module stats go here -->
           <dl class="modal-details-items"></dl>
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary btn-filters-apply">Apply filters</button>
         </div>
       </div>
     </div>
