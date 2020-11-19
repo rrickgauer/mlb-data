@@ -191,6 +191,43 @@
     </div>
   </div>
 
+  <!-- table row details modal -->
+  <div class="modal fade modal-details" id="modal-details-batting" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+
+          <h3 class="name">Player Name</h3>
+
+          <dl class="modal-details-items">
+
+            <div class="modal-details-item">
+              <dt>Coffee</dt>
+              <dd>Black hot drink</dd>
+            </div>
+
+            <div class="modal-details-item">
+              <dt>Milk</dt>
+              <dd>White cold drink</dd>
+            </div>
+
+          </dl>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-filters-apply">Apply filters</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
 

@@ -4,7 +4,7 @@
 /////////////////
 // Constructor //
 /////////////////
-function Module(tableSelector, baseApiUrl, filterColumns) {
+function Module(tableSelector, baseApiUrl, filterColumns, newModule) {
   this.globalVariables  = new GlobalVariables();
   this.API              = baseApiUrl + this.globalVariables.getUrl();
   this.filterColumns    = filterColumns;
@@ -13,8 +13,12 @@ function Module(tableSelector, baseApiUrl, filterColumns) {
   this.emptyRows        = '';
   this.pagination       = new Pagination();
   this.datatable        = $(tableSelector);
+  this.module           = newModule;
+
+  this.modalDetailsBaseUrl = 'https://api.mlb-data.ryanrickgauer.com/main.php/' + this.module;
 
   this.superTable = new SuperTable('.table', '.super-table-checkboxes');
+  this.initDetailsModal();
 }
 
 
@@ -70,7 +74,76 @@ Module.prototype.init = function() {
   });
 
 
+  $(this.datatable).on('click', 'tbody tr', function() {
+    self.openDetailsModal(this);
+  });
+
 }
+
+
+Module.prototype.initDetailsModal = function() {
+
+  // <div class="modal-details-item">
+  //   <dt>Coffee</dt>
+  //   <dd>Black hot drink</dd>
+  // </div>
+
+  const ignoreColumns = ['year', 'teamName'];
+
+  let html = '';
+
+  for (let count = 0; count < this.filterColumns.length; count++) {
+    const columnName = this.filterColumns[count];
+    
+    // skip if is in ignore columns
+    if (ignoreColumns.includes(columnName))
+      continue;
+
+
+    html += `
+    <div class="modal-details-item">
+      <dt>${columnName}</dt>
+      <dd>none</dd>
+    </div>`;
+  }
+
+
+
+  $('.modal-details-items').html(html);
+
+
+
+}
+
+
+
+Module.prototype.openDetailsModal = function(row) {
+
+  $('.modal-details').modal('show');
+
+  const self = this;
+
+  const playerID = $(row).attr('data-player-id');
+  const year = $(row).attr('data-year');
+  const stint = $(row).attr('data-stint');
+  const dataUrl = this.modalDetailsBaseUrl + `/${playerID}?filter=year:=:${year},stint:=:${stint}`;
+  
+
+  this.getData(dataUrl, self.loadDetailsModalModuleData);
+
+
+}
+
+Module.prototype.loadDetailsModalModuleData = function(data) {
+
+  data = data[0];
+
+
+
+
+
+}
+
 
 
 Module.prototype.disablePaginationButtons = function() {
@@ -127,7 +200,10 @@ Module.prototype.getData = function(url, actionResults, actionPagination, action
     if (actionResultsCount != undefined)
       actionResultsCount(response.resultsCount)
 
-    actionPagination(response.pagination);  
+    if (actionPagination != undefined)
+      actionPagination(response.pagination);
+
+
     actionResults(response.results);
       
   })
@@ -250,7 +326,8 @@ Module.prototype.getTableRowHtml = function(data) {
   let player = '<a data-toggle="popover" data-html="true" data-placement="bottom" class="link-player"';
   player += `href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
   
-  let html = `<tr class="table-fielding-row" data-player-id="${data.playerID}"><td>${player}</td>`;
+  let html = `<tr data-player-id="${data.playerID}" data-year="${data.year}" data-stint=${data.stint}>`;
+  html += `<td>${player}</td>`;
 
   // build the rest of the row from the column keys
   for (let count = 0; count < this.filterColumns.length; count++) {

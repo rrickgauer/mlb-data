@@ -4,6 +4,6 @@ const filterColumns = ["teamName", "year", "G", "AB", "R", "H", "2B", "3B", "HR"
 
 
 $(document).ready(function() {
-  let modulesClass = new Module(datatable, baseApiUrl, filterColumns);
+  let modulesClass = new Module(datatable, baseApiUrl, filterColumns, 'batting');
   modulesClass.init();
 });
