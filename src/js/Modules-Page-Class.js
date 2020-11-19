@@ -13,6 +13,8 @@ function Module(tableSelector, baseApiUrl, filterColumns) {
   this.emptyRows        = '';
   this.pagination       = new Pagination();
   this.datatable        = $(tableSelector);
+
+  this.superTable = new SuperTable('.table', '.super-table-checkboxes');
 }
 
 
@@ -183,7 +185,6 @@ Module.prototype.getPlayerPopoverContent = function(data) {
 
 
 Module.prototype.removePlayerPopover = function(link) {
-  // $('.table-fielding [data-toggle="popover"]').popover('hide');
   $(this.datatable).find('[data-toggle="popover"]').popover('hide');
 }
 
@@ -272,13 +273,14 @@ Module.prototype.loadTableData = function(data) {
   }
 
   $(this.datatable).find('tbody').html(html);
+
+  // hide the previously hidden columns
+  this.superTable.reset();
 }
 
 Module.prototype.loadResultsCount = function(resultsCount) {
   $('.results-count-data').addClass('badge-secondary').html(resultsCount);
 }
-
-
 
 
 Module.prototype.replaceNulls = function(data, newCharacter = '-') {
@@ -398,7 +400,6 @@ Module.prototype.applyFilters = function()   {
 
 }
 
-
 Module.prototype.applySort = function()   {
   let sortColumn       = $('.sort-column option:checked').val();
   let sortType         = $('input[name="form-sort-type"]:checked').val();
@@ -407,7 +408,6 @@ Module.prototype.applySort = function()   {
 
   this.refreshPage();
 }
-
 
 Module.prototype.refreshPage = function() {
   window.location.href = window.location.protocol + window.location.pathname + this.globalVariables.getUrl();

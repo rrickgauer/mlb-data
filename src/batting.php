@@ -27,12 +27,6 @@
         <!-- toolbar -->
         <div class="toolbar">
 
-          <!-- filters -->
-          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-filter-batting">Filters</button>
-
-          <!-- sort -->
-          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-sort-batting">Sort</button>
-
           <!-- per page -->
           <select class="form-control select-per-page">
             <option value="10">10</option>
@@ -41,6 +35,25 @@
             <option value="500">500</option>
             <option value="1000">1000</option>
           </select>
+          
+          <!-- Toggle columns -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-primary" type="button" data-toggle="dropdown">
+              Columns
+            </button>
+            <div class="dropdown-menu dropdown-menu-super-table">
+              <!-- checkboxes to toggle columns -->
+              <div class="super-table-checkboxes"></div>
+            </div>
+          </div>
+
+          <!-- filters -->
+          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-filter-batting">Filters</button>
+
+          <!-- sort -->
+          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-sort-batting">Sort</button>
+
+
 
           <!-- pagination -->
           <div class="btn-group btn-group-sm" role="group">
@@ -156,7 +169,7 @@
               </select>
             </div>
             
-
+            <!-- type -->
             <div class="form-check">
               <input class="form-check-input" type="radio" name="form-sort-type" id="form-sort-type-asc" value="asc">
               <label class="form-check-label" for="form-sort-type-asc">
@@ -169,18 +182,16 @@
                 Descending
               </label>
             </div>
-
-
           </form>
 
           <button type="button" class="btn btn-sm btn-outline-primary form-control mt-3 btn-sort-apply">Sort table</button>
 
-
         </div>
-
       </div>
     </div>
   </div>
+
+
 
 
   <?php include('footer.php'); ?>

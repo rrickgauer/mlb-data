@@ -26,11 +26,6 @@
 
         <!-- toolbar -->
         <div class="toolbar">
-          <!-- filters -->
-          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-filter-pitching">Filters</button>
-
-          <!-- sort -->
-          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-sort-pitching">Sort</button>
 
           <!-- per page -->
           <select class="form-control select-per-page">
@@ -40,6 +35,24 @@
             <option value="500">500</option>
             <option value="1000">1000</option>
           </select>
+
+          <!-- Toggle columns -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-primary" type="button" data-toggle="dropdown">
+              Columns
+            </button>
+            <div class="dropdown-menu">
+              <!-- checkboxes to toggle columns -->
+              <div class="super-table-checkboxes"></div>
+            </div>
+          </div>
+          
+          <!-- filters -->
+          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-filter-pitching">Filters</button>
+
+          <!-- sort -->
+          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-sort-pitching">Sort</button>
+
          
           <!-- pagination -->
           <div class="btn-group btn-group-sm" role="group">
