@@ -92,10 +92,6 @@ Module.prototype.initDetailsModal = function() {
   // bio
   this.showDetailsModalBioSkeletons(true);
 
-
-
-
-
   let html = '';
 
   for (let count = 0; count < this.filterColumns.length; count++) {
@@ -109,10 +105,10 @@ Module.prototype.initDetailsModal = function() {
       columnNameDisplay = 'Year';
 
     html += `
-    <div class="modal-details-item" data-key="${columnName}">
+    <li class="modal-details-item list-group-item" data-key="${columnName}">
       <dt>${columnNameDisplay}</dt>
       <dd><div class="skeleton-text skeleton-effect-wave">156</div></dd>
-    </div>`;
+    </li>`;
   }
 
   $('.modal-details-items').html(html);
@@ -143,7 +139,6 @@ Module.prototype.openDetailsModal = function(row) {
   const dataUrl  = this.baseAPI + `/${playerID}?filter=year:=:${year},stint:=:${stint}`;
 
   this.loadDetailsModalBioData(playerID);
-
   this.getData(dataUrl, self.loadDetailsModalModuleData.bind(this));
 }
 
@@ -154,30 +149,49 @@ Module.prototype.loadDetailsModalBioData = function(playerID) {
 
 
   this.getData(playerUrls.bio, function(data) {
-    let height           = self.inchesToFeet(data.height);
-    let heightDisplay    = height.feet + '-' + height.inches;
-    let birthDateDisplay = self.getDisplayDate(data.birthDate);
-    let debutDateDisplay = self.getDisplayDate(data.debuteDate);
-    let birthCityState   = data.birthCity + ', ' + data.birthState;
-    let nameDisplay      = data.nameFirst + ' ' + data.nameLast;
 
+    // image
     $('.player-bio .player-item-data.image img').attr("src", data.image);
+
+    // name
+    let nameDisplay      = data.nameFirst + ' ' + data.nameLast;
     $('.player-bio .player-bio-item-data.name').text(nameDisplay);
 
-
+    // hof
     if (data.hallOfFame == 'y')
       $('.player-bio .player-bio-item-data.hof').removeClass('d-none');
 
+    // bats
     $('.player-bio .player-bio-item-data.bats').text(data.bats);
+
+    // throws
     $('.player-bio .player-bio-item-data.throws').text(data.throws);
+
+    // height
+    let height = self.inchesToFeet(data.height);
+    let heightDisplay = height.feet + '-' + height.inches;
     $('.player-bio .player-bio-item-data.height').text(heightDisplay);
+
+    // weight
     $('.player-bio .player-bio-item-data.weight').text(data.weight + 'lb');
+
+    // birthday
+    let birthDateDisplay = self.getDisplayDate(data.birthDate);
     $('.player-bio .player-bio-item-data.birth-date').text(birthDateDisplay );
+
+    // birth location - city and state
+    let birthCityState   = data.birthCity + ', ' + data.birthState;
     $('.player-bio .player-bio-item-data.birth-city-state').text(birthCityState);
+    
+    // debut date
+    let debutDateDisplay = self.getDisplayDate(data.debuteDate);
     $('.player-bio .player-bio-item-data.debut-date').text(debutDateDisplay);
-    $('.player-bio .player-bio-item-data.bbref-link').attr("href", data.bbrefLink);
 
+    // link to player's page
+    const playerPage = 'player.php?playerID=' + playerID;
+    $('.player-bio .player-bio-item-data.player-page-link').attr("href", playerPage);
 
+    // hide skeletons
     self.showDetailsModalBioSkeletons(false);
   });
 }

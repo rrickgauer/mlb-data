@@ -192,8 +192,8 @@
   </div>
 
   <!-- table row details modal -->
-  <div class="modal fade modal-details" id="modal-details-batting" tabindex="-1">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+  <div class="modal modal-details" id="modal-details-batting" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Details</h5>
@@ -270,14 +270,14 @@
 
               <!-- baseball reference -->
               <div class="player-bio-item">
-                <a href="#" class="player-bio-item-data bbref-link" target="_blank">Baseball Reference Profile <i class='bx bx-link-external'></i></a>
+                <a href="#" class="player-bio-item-data player-page-link">View profile</a>
               </div>
             </div>
 
           </div>
 
           <!-- module stats go here -->
-          <dl class="modal-details-items"></dl>
+          <ul class="list-group list-group-flush modal-details-items"></ul>
 
         </div>
       </div>
