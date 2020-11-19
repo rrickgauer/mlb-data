@@ -15,15 +15,17 @@ body {
     color: white;
     font-weight: bold;
   }
-
 }
 
-.player-header {
-  padding-top: 40px;
+.table {
+  white-space: nowrap;
+}
 
-  .player-bio {
-    margin-bottom: 40px;
-  }
+
+
+.player-bio {
+  margin-bottom: 40px;
+  display: flex;
 
   .player-item-data.image {
     height: 238px;
@@ -38,16 +40,36 @@ body {
   .player-bio-right {
     margin-left: 15px;
   }
+
+  .player-bio-item-label {
+    font-weight: bold;
+  }
+}
+
+// phones
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+  .player-bio {
+    display: block;
+
+    .player-item-data.image {
+      height: 175px;
+      width: auto;
+      float: right;
+    }
+  }
 }
 
 
-table {
-  white-space: nowrap;
+.player-header {
+  padding-top: 40px;
 }
 
-.player-bio-item-label {
-  font-weight: bold;
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+  .player-header {
+    padding-top: 15px;
+  }
 }
+
 
 
 .player-summary {
@@ -62,9 +84,7 @@ table {
 }
 
 // phones
-@media only screen 
-and (min-device-width: 375px) 
-and (max-device-width: 667px) {
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .player-summary-card {
     width: 150px;
   }
@@ -114,9 +134,7 @@ and (max-device-width: 667px) {
 }
 
 // phones
-@media only screen 
-and (min-device-width: 370px) 
-and (max-device-width: 668px)  { 
+@media only screen and (min-device-width: 370px) and (max-device-width: 668px) {
 
   .navbar-collapse {
     flex-direction: column;
@@ -134,8 +152,8 @@ and (max-device-width: 668px)  {
 
 
 .form-filters .input-group-filter {
-    margin-top: 10px;
-  }
+  margin-top: 10px;
+}
 
 
 
@@ -155,7 +173,7 @@ and (max-device-width: 668px)  {
     color: #24292e;
     padding: 12px 16px;
   }
-  
+
   .nav-link:hover {
     background-color: #f6f8fa;
   }
@@ -169,7 +187,7 @@ and (max-device-width: 668px)  {
 
 .card-table {
   margin-bottom: 40px;
-  
+
 
   table {
     line-height: 1.15;
@@ -201,7 +219,7 @@ and (max-device-width: 668px)  {
     cursor: pointer;
   }
 
-  .tablesort-asc, 
+  .tablesort-asc,
   .tablesort-desc {
     color: red;
   }
@@ -210,15 +228,16 @@ and (max-device-width: 668px)  {
 
 
 // phones
-@media only screen 
-and (min-device-width: 375px) 
-and (max-device-width: 667px)  { 
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .col-nav-player {
     margin-bottom: 20px;
   }
 
   .card-table .card-header {
-    h4 {font-size: 1.25em;}
+    h4 {
+      font-size: 1.25em;
+    }
+
     align-items: baseline;
 
     .nav-link {
@@ -226,23 +245,3 @@ and (max-device-width: 667px)  {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -24,7 +24,7 @@ if (!isset($_GET['playerID'])) {
   <section class="player-header">
     <div class="container-fluid">
       <!-- bio -->
-      <div class="player-bio d-flex">
+      <div class="player-bio">
         <!-- player image -->
         <div class="player-item-data image">
           <img src="https://www.elitefoods.com.au/backend/user_images/avatar.jpg" alt="Player image">
