@@ -82,12 +82,6 @@ Module.prototype.init = function() {
 
 
 Module.prototype.initDetailsModal = function() {
-
-  // <div class="modal-details-item">
-  //   <dt>Coffee</dt>
-  //   <dd>Black hot drink</dd>
-  // </div>
-
   const ignoreColumns = ['year', 'teamName'];
 
   let html = '';
@@ -99,26 +93,20 @@ Module.prototype.initDetailsModal = function() {
     if (ignoreColumns.includes(columnName))
       continue;
 
-
     html += `
-    <div class="modal-details-item">
+    <div class="modal-details-item" data-key="${columnName}">
       <dt>${columnName}</dt>
       <dd>none</dd>
     </div>`;
   }
 
-
-
   $('.modal-details-items').html(html);
-
-
 
 }
 
 
 
 Module.prototype.openDetailsModal = function(row) {
-
   $('.modal-details').modal('show');
 
   const self = this;
@@ -138,10 +126,7 @@ Module.prototype.loadDetailsModalModuleData = function(data) {
 
   data = data[0];
 
-
-
-
-
+  // load each key into the details modal
 }
 
 
