@@ -4,8 +4,9 @@
 /////////////////
 // Constructor //
 /////////////////
-function Module(tableSelector, baseApiUrl, filterColumns, newModule) {
+function Module(tableSelector, baseApiUrl, filterColumns) {
   this.globalVariables  = new GlobalVariables();
+  this.baseAPI = baseApiUrl;
   this.API              = baseApiUrl + this.globalVariables.getUrl();
   this.filterColumns    = filterColumns;
   this.userFilerColumns = [];
@@ -13,12 +14,13 @@ function Module(tableSelector, baseApiUrl, filterColumns, newModule) {
   this.emptyRows        = '';
   this.pagination       = new Pagination();
   this.datatable        = $(tableSelector);
-  this.module           = newModule;
 
-  this.modalDetailsBaseUrl = 'https://api.mlb-data.ryanrickgauer.com/main.php/' + this.module;
 
+  this.detailsModalKeys = this.getDetailsModalKeys(); // get the keys for the details modal
+  this.initDetailsModal();                            // initialize the details modal
+
+  // set up the super table
   this.superTable = new SuperTable('.table', '.super-table-checkboxes');
-  this.initDetailsModal();
 }
 
 
@@ -81,10 +83,9 @@ Module.prototype.init = function() {
 }
 
 
-Module.prototype.initDetailsModal = function() {
+Module.prototype.getDetailsModalKeys = function() {
   const ignoreColumns = ['year', 'teamName'];
-
-  let html = '';
+  let detailsModalKeys = [];
 
   for (let count = 0; count < this.filterColumns.length; count++) {
     const columnName = this.filterColumns[count];
@@ -92,6 +93,19 @@ Module.prototype.initDetailsModal = function() {
     // skip if is in ignore columns
     if (ignoreColumns.includes(columnName))
       continue;
+
+    detailsModalKeys.push(columnName);
+  }
+
+  return detailsModalKeys;
+}
+
+
+Module.prototype.initDetailsModal = function() {
+  let html = '';
+
+  for (let count = 0; count < this.detailsModalKeys.length; count++) {
+    const columnName = this.detailsModalKeys[count];
 
     html += `
     <div class="modal-details-item" data-key="${columnName}">
@@ -101,32 +115,37 @@ Module.prototype.initDetailsModal = function() {
   }
 
   $('.modal-details-items').html(html);
-
+  $('.modal-details').modal('show');
 }
 
 
 
 Module.prototype.openDetailsModal = function(row) {
   $('.modal-details').modal('show');
-
+  
   const self = this;
 
+  // construct the url
   const playerID = $(row).attr('data-player-id');
-  const year = $(row).attr('data-year');
-  const stint = $(row).attr('data-stint');
-  const dataUrl = this.modalDetailsBaseUrl + `/${playerID}?filter=year:=:${year},stint:=:${stint}`;
-  
+  const year     = $(row).attr('data-year');
+  const stint    = $(row).attr('data-stint');
+  const dataUrl  = this.baseAPI + `/${playerID}?filter=year:=:${year},stint:=:${stint}`;
 
-  this.getData(dataUrl, self.loadDetailsModalModuleData);
-
-
+  this.getData(dataUrl, self.loadDetailsModalModuleData.bind(this));
 }
 
 Module.prototype.loadDetailsModalModuleData = function(data) {
-
   data = data[0];
 
   // load each key into the details modal
+  for (let count = 0; count < this.detailsModalKeys.length; count++) {
+    const key = this.detailsModalKeys[count];
+    const value = data[key];
+
+
+    // set the element to the key
+    $(`.modal-details-item[data-key="${key}"] dd`).text(value);
+  }
 }
 
 
