@@ -238,5 +238,14 @@ body {
     padding: 8px;
   }
 }
+.modal-details-items .modal-details-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 6px 20px;
+}
+.modal-details-items .modal-details-item dd {
+  margin-bottom: 0;
+}
 
 /*# sourceMappingURL=style.css.map */

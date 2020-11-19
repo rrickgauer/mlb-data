@@ -6,6 +6,7 @@
 /////////////////
 function Module(tableSelector, baseApiUrl, filterColumns) {
   this.globalVariables  = new GlobalVariables();
+  this.baseAPI = baseApiUrl;
   this.API              = baseApiUrl + this.globalVariables.getUrl();
   this.filterColumns    = filterColumns;
   this.userFilerColumns = [];
@@ -14,6 +15,11 @@ function Module(tableSelector, baseApiUrl, filterColumns) {
   this.pagination       = new Pagination();
   this.datatable        = $(tableSelector);
 
+
+  // initialize the details modal
+  this.initDetailsModal();                            
+
+  // set up the super table
   this.superTable = new SuperTable('.table', '.super-table-checkboxes');
 }
 
@@ -70,7 +76,218 @@ Module.prototype.init = function() {
   });
 
 
+  $(this.datatable).on('click', 'tbody tr', function() {
+    self.openDetailsModal(this);
+  });
+
+  // if player link is clicked, don't open the details modal
+  $(this.datatable).on('click', 'tbody td a', function(e) {
+    e.stopPropagation(); 
+  });
+
+
+  $('.modal-details').on('hidden.bs.modal', function() {
+    self.initDetailsModal();
+  });
+
 }
+
+
+Module.prototype.initDetailsModal = function() {
+
+  // bio
+  this.showDetailsModalBioSkeletons(true);
+
+  let html = '';
+
+  for (let count = 0; count < this.filterColumns.length; count++) {
+    const columnName = this.filterColumns[count];
+
+    let columnNameDisplay = columnName;
+
+    if (columnNameDisplay == 'teamName')
+      columnNameDisplay = 'Team';
+    else if (columnNameDisplay == 'year')
+      columnNameDisplay = 'Year';
+
+    html += `
+    <li class="modal-details-item list-group-item" data-key="${columnName}">
+      <dt>${columnNameDisplay}</dt>
+      <dd><div class="skeleton-text skeleton-effect-wave">156</div></dd>
+    </li>`;
+  }
+
+  $('.modal-details-items').html(html);
+}
+
+Module.prototype.showDetailsModalBioSkeletons = function(showSkeletons = false) {
+
+  if (!showSkeletons) {
+    $('.player-bio .player-bio-item').removeClass('skeleton-text').removeClass('skeleton-effect-wave');
+    $('.player-bio .player-bio-item-data.name').removeClass('skeleton-text').removeClass('skeleton-effect-wave');
+  } else {
+    $('.player-bio .player-bio-item').addClass('skeleton-text').addClass('skeleton-effect-wave');
+    $('.player-bio .player-bio-item-data.name').addClass('skeleton-text').addClass('skeleton-effect-wave');
+    $('.player-bio .player-item-data.image img').attr("src", 'https://www.elitefoods.com.au/backend/user_images/avatar.jpg');
+  }
+
+}
+
+Module.prototype.openDetailsModal = function(row) {
+  $('.modal-details').modal('show');
+  
+  const self = this;
+
+  // construct the url
+  const playerID = $(row).attr('data-player-id');
+  const year     = $(row).attr('data-year');
+  const stint    = $(row).attr('data-stint');
+  const dataUrl  = this.baseAPI + `/${playerID}?filter=year:=:${year},stint:=:${stint}`;
+
+  this.loadDetailsModalBioData(playerID);
+  this.loadDetailsModalPositionData(playerID);
+  this.getData(dataUrl, self.loadDetailsModalModuleData.bind(this));
+}
+
+
+Module.prototype.loadDetailsModalPositionData = function(playerID) {
+  const playerUrls = new Player(playerID);
+
+  this.getData(playerUrls.appearances_aggregate, function(data) {
+    const positions = {
+      G_1b: 'First Baseman',
+      G_2b: 'Second Baseman',
+      G_3b: 'Third Baseman',
+      G_ss: 'Shortstop',
+      G_lf: 'Leftfielder',
+      G_rf: 'Rightfielder',
+      G_cf: 'Centerfielder',
+      G_p: 'Pitcher',
+      G_c: 'Catcher',
+    }
+
+    const positionKeys = Object.keys(positions);
+    let dataArray      = Object.entries(data);
+
+    // sort the data
+    let dataSorted = dataArray.sort(function(a, b) {
+      let aValue = a[1];
+      let bValue = b[1];
+
+      return (aValue > bValue) ? -1 : 1;
+    });
+
+    // find the highest sum in the data that is a key in the positions array
+    let count = 0;
+    while (!positionKeys.includes(dataSorted[count][0])) {
+      count++;
+    }
+
+    const positionKey = dataSorted[count][0];
+    $('.player-bio .player-bio-item-data.position').text(positions[positionKey]);
+  });
+}
+
+
+Module.prototype.loadDetailsModalBioData = function(playerID) {
+  const self = this;
+  const playerUrls = new Player(playerID);
+
+
+  this.getData(playerUrls.bio, function(data) {
+
+    // image
+    $('.player-bio .player-item-data.image img').attr("src", data.image);
+
+    // name
+    let nameDisplay      = data.nameFirst + ' ' + data.nameLast;
+    $('.player-bio .player-bio-item-data.name').text(nameDisplay);
+
+    // hof
+    if (data.hallOfFame == 'y')
+      $('.player-bio .player-bio-item-data.hof').removeClass('d-none');
+
+    // bats
+    $('.player-bio .player-bio-item-data.bats').text(data.bats);
+
+    // throws
+    $('.player-bio .player-bio-item-data.throws').text(data.throws);
+
+    // height
+    let height = self.inchesToFeet(data.height);
+    let heightDisplay = height.feet + '-' + height.inches;
+    $('.player-bio .player-bio-item-data.height').text(heightDisplay);
+
+    // weight
+    $('.player-bio .player-bio-item-data.weight').text(data.weight + 'lb');
+
+    // birthday
+    let birthDateDisplay = self.getDisplayDate(data.birthDate);
+    $('.player-bio .player-bio-item-data.birth-date').text(birthDateDisplay );
+
+    // birth location - city and state
+    let birthCityState   = data.birthCity + ', ' + data.birthState;
+    $('.player-bio .player-bio-item-data.birth-city-state').text(birthCityState);
+    
+    // debut date
+    let debutDateDisplay = self.getDisplayDate(data.debuteDate);
+    $('.player-bio .player-bio-item-data.debut-date').text(debutDateDisplay);
+
+    // link to player's page
+    const playerPage = 'player.php?playerID=' + playerID;
+    $('.player-bio .player-bio-item-data.player-page-link').attr("href", playerPage);
+
+    // hide skeletons
+    self.showDetailsModalBioSkeletons(false);
+  });
+}
+
+
+Module.prototype.inchesToFeet = function(inches) {
+  let result = {
+    feet: 0,
+    inches: 0,
+  }
+
+  if (inches <= 12) {
+    result.inches = inches;
+    return result;
+  }
+
+  let feet = 0;
+  let divisor = inches;
+
+  while (divisor > 12) {
+    feet++;
+    divisor += -12;
+  }
+
+  result.feet = feet;
+  result.inches = divisor;
+
+  return result;
+}
+
+Module.prototype.getDisplayDate = function(date) {
+  let  dateData = date.split("-");
+  let result = dateData[1] + '/' + dateData[2] + '/' + dateData[0];
+  return result;
+}
+
+
+Module.prototype.loadDetailsModalModuleData = function(data) {
+  data = data[0];
+
+  // load each key into the details modal
+  for (let count = 0; count < this.filterColumns.length; count++) {
+    const key = this.filterColumns[count];
+    const value = data[key];
+
+    // set the element to the key
+    $(`.modal-details-item[data-key="${key}"] dd`).text(value);
+  }
+}
+
 
 
 Module.prototype.disablePaginationButtons = function() {
@@ -127,7 +344,10 @@ Module.prototype.getData = function(url, actionResults, actionPagination, action
     if (actionResultsCount != undefined)
       actionResultsCount(response.resultsCount)
 
-    actionPagination(response.pagination);  
+    if (actionPagination != undefined)
+      actionPagination(response.pagination);
+
+
     actionResults(response.results);
       
   })
@@ -241,16 +461,17 @@ Module.prototype.generateBlankRows = function() {
   }
 
   this.emptyRows = html;
-
 }
 
 Module.prototype.getTableRowHtml = function(data) {
   data = this.replaceNulls(data, '-');
 
+  // create the player link
   let player = '<a data-toggle="popover" data-html="true" data-placement="bottom" class="link-player"';
   player += `href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
   
-  let html = `<tr class="table-fielding-row" data-player-id="${data.playerID}"><td>${player}</td>`;
+  let html = `<tr data-player-id="${data.playerID}" data-year="${data.year}" data-stint=${data.stint}>`;
+  html += `<td>${player}</td>`;
 
   // build the rest of the row from the column keys
   for (let count = 0; count < this.filterColumns.length; count++) {
