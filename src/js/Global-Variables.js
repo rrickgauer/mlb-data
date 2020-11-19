@@ -6,7 +6,7 @@ function GlobalVariables() {
   if (urlParams.get('perPage') != null)
     this.perPage = urlParams.get('perPage');
   else
-    this.perPage = 10;
+    this.perPage = 50;
 
   // sort
   this.sort = urlParams.get('sort');

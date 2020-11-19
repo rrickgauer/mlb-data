@@ -12,34 +12,47 @@
   <div class="container">
     <h1 class="text-center mt-5 mb-5">Fielding</h1>
 
-    <!-- toolbar -->
-    <div class="d-flex align-items-center justify-content-start my-3">
-      <!-- pagination -->
-      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-primary btn-pagination previous" disabled><</button>
-        <button type="button" class="btn btn-primary btn-pagination next">></button>
-      </div>
-
-      <!-- filters -->
-      <button type="button" class="btn btn-sm btn-primary ml-2" data-toggle="modal" data-target="#modal-filter-fielding">Filters</button>
-
-      <!-- sort -->
-      <button type="button" class="btn btn-sm btn-primary ml-2" data-toggle="modal" data-target="#modal-sort-fielding">Sort</button>
-
-      <!-- per page -->
-      <div class="ml-2">
-        <select class="form-control select-per-page">
-          <option value="10">10</option>
-          <option value="50">50</option>
-          <option value="100">100</option>
-          <option value="500">500</option>
-          <option value="1000">1000</option>
-        </select>
-      </div>
-    </div>
 
     <!-- data table -->
-    <div class="card card-table mt-3">
+    <div class="card card-table card-module mt-3">
+
+      <div class="card-header">
+        <!-- results count -->
+        <div class="results-count">
+          <span class="h5">Results&nbsp;</span>
+          <span class="results-count-data badge">
+            <div class="spinner-border spinner-border-sm" role="status"></div>
+          </span>
+        </div>
+
+        <!-- toolbar -->
+        <div class="toolbar">
+          <!-- filters -->
+          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-filter-fielding">Filters</button>
+
+          <!-- sort -->
+          <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-sort-fielding">Sort</button>
+
+          <!-- per page -->
+          <select class="form-control select-per-page">
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+          </select>
+          
+
+          <!-- pagination -->
+          <div class="btn-group btn-group-sm" role="group">
+            <button type="button" class="btn btn-primary btn-pagination previous" disabled><</button>
+            <button type="button" class="btn btn-primary btn-pagination next">></button>
+          </div>
+        </div>
+
+      </div>
+
+
       <div class="card-body">
         <div class="table-responsive">
           <table class="table table-sm table-fielding">

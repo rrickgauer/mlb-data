@@ -25,7 +25,7 @@ Module.prototype.init = function() {
   $(this.datatable).find('tbody').html(this.emptyRows);
   this.disablePaginationButtons();
 
-  this.getData(this.API, this.loadTableData.bind(this), this.updatePagination.bind(this));
+  this.getData(this.API, this.loadTableData.bind(this), this.updatePagination.bind(this), this.loadResultsCount);
 
   $('.btn-pagination.next').on('click', function(e) {
     $(self.datatable).find('tbody').html(self.emptyRows);
@@ -119,10 +119,15 @@ Module.prototype.setUrlInputValues = function() {
 }
 
 
-Module.prototype.getData = function(url, actionResults, actionPagination) {
+Module.prototype.getData = function(url, actionResults, actionPagination, actionResultsCount) {
   $.getJSON(url, function(response) {
+
+    if (actionResultsCount != undefined)
+      actionResultsCount(response.resultsCount)
+
+    actionPagination(response.pagination);  
     actionResults(response.results);
-    actionPagination(response.pagination);    
+      
   })
   .fail(function(response) {
     console.error(response);
@@ -199,9 +204,15 @@ Module.prototype.updatePagination = function(newPagination) {
 
   // restore arrows
   $('.btn-pagination.previous').html('<');
-  $('.btn-pagination.next').html('>').prop('disabled', false);  // enable next
+  $('.btn-pagination.next').html('>');
 
-  
+  // check if the current page is the last page in the dataset
+  if (this.pagination.current == this.pagination.next) {
+    $('.btn-pagination.next').prop('disabled', true);         // disable next
+  } else {
+    $('.btn-pagination.next').prop('disabled', false);        // enable next
+  }
+
   // disable the previous button if previous link is null
   if (this.pagination.previous == null) {
     $('.btn-pagination.previous').prop('disabled', true);
@@ -261,6 +272,10 @@ Module.prototype.loadTableData = function(data) {
   }
 
   $(this.datatable).find('tbody').html(html);
+}
+
+Module.prototype.loadResultsCount = function(resultsCount) {
+  $('.results-count-data').addClass('badge-secondary').html(resultsCount);
 }
 
 
@@ -354,15 +369,25 @@ Module.prototype.deleteFilter = function(btn) {
 
 
 Module.prototype.applyFilters = function()   {
+  // ensure none of the qualifiers are blank
+  const qualifiers = $('.filter-qualifier');
+  for (let count = 0; count < qualifiers.length; count++) {
+    if ($(qualifiers[count]).val() == '') {
+        this.displayAlert('Error! Empty qualifier.');
+        return;
+      }
+  }
+
   // reset the this.filters
   this.filters = new Filters();
 
-  let filterRows = $('.input-group-filter');
-
+  // add all the filters
+  const filterRows = $('.input-group-filter');
   for (let count = 0; count < filterRows.length; count++) {
     let newColumn      = $(filterRows[count]).find('.filter-column option:checked').val();
     let newConditional = $(filterRows[count]).find('.filter-conditional option:checked').val();
     let newQualifier   = $(filterRows[count]).find('.filter-qualifier').val();
+
     this.filters.addFilter(newColumn, newConditional, newQualifier);
   }
 
@@ -386,5 +411,17 @@ Module.prototype.applySort = function()   {
 
 Module.prototype.refreshPage = function() {
   window.location.href = window.location.protocol + window.location.pathname + this.globalVariables.getUrl();
+}
+
+
+// displays an alert on the screen
+Module.prototype.displayAlert = function(text) {
+  $.toast({
+    text: text,
+    position: 'bottom-center',
+    loader: false,
+    bgColor: '#3D3D3D',
+    textColor: 'white'
+  });
 }
 

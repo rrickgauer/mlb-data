@@ -18,14 +18,12 @@ const MODULES   = {
 // Main function //
 ///////////////////
 $(document).ready(function() {
-
   initTableSkeletons();
   loadAllPlayerData();
 
   $('.card-table').on('click', 'table tbody tr', function() {
     activateTableRow(this);
   });
-
 });
 
 
