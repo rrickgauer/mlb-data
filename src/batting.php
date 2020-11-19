@@ -11,10 +11,8 @@
   <div class="container">
     <h1 class="text-center mt-5 mb-5">Batting</h1>
 
-
     <!-- data table -->
     <div class="card card-table card-module mt-3">
-
       <div class="card-header">
         <!-- results count -->
         <div class="results-count">
