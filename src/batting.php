@@ -27,6 +27,19 @@
         <!-- toolbar -->
         <div class="toolbar">
 
+          <div class="dropdown">
+            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+              Toggle columns
+            </button>
+            <div class="dropdown-menu">
+
+              <!-- checkboxes to toggle columns -->
+              <div class="table-header-checkboxes">
+                
+              </div>
+            </div>
+          </div>
+
           <!-- filters -->
           <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-filter-batting">Filters</button>
 
@@ -156,7 +169,7 @@
               </select>
             </div>
             
-
+            <!-- type -->
             <div class="form-check">
               <input class="form-check-input" type="radio" name="form-sort-type" id="form-sort-type-asc" value="asc">
               <label class="form-check-label" for="form-sort-type-asc">
@@ -169,18 +182,16 @@
                 Descending
               </label>
             </div>
-
-
           </form>
 
           <button type="button" class="btn btn-sm btn-outline-primary form-control mt-3 btn-sort-apply">Sort table</button>
 
-
         </div>
-
       </div>
     </div>
   </div>
+
+
 
 
   <?php include('footer.php'); ?>
