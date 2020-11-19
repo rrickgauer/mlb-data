@@ -82,9 +82,11 @@ body {
   color: black;
 }
 
-#navbar .navbar-collapse {
+#navbar .navbar-collapse-items {
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 #navbar .navbar-search {
   position: relative;
@@ -105,13 +107,12 @@ body {
 }
 
 @media only screen and (min-device-width: 370px) and (max-device-width: 668px) {
-  .navbar-collapse {
-    flex-direction: column;
+  #navbar .navbar-collapse-items {
+    flex-direction: column-reverse;
     align-items: flex-start;
   }
-
-  .navbar-search {
-    margin: 10px 0px;
+  #navbar .navbar-search {
+    margin: 15px 0px;
     width: 100%;
   }
 }
