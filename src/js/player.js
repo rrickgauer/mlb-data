@@ -20,14 +20,17 @@ const MODULES   = {
 $(document).ready(function() {
   initTableSkeletons();
   loadAllPlayerData();
-
+  
   $('.card-table').on('click', 'table tbody tr', function() {
     activateTableRow(this);
   });
 });
 
 
-
+//////////////////////////////////////////////////////////////////////////
+// Initializes all the skeleton rows for the tables                     //
+// They get removed once the data for that table is completed generated //
+//////////////////////////////////////////////////////////////////////////
 function initTableSkeletons() {
   const numColumns = $(this.datatable).find('th').length;
   let tables = $('.card-table table');
@@ -51,6 +54,34 @@ function initTableSkeletons() {
     $(thisTable).find('tbody').html(html);
   }
 }
+
+/////////////////////////////////////////
+// Initializes all of the super tables //
+/////////////////////////////////////////
+function initSuperTables() {
+  // batting
+  new SuperTable('.table-batting', '.super-table-checkboxes.batting');
+  new SuperTable('.table-batting-post', '.super-table-checkboxes.batting-post');
+
+  // pitching
+  new SuperTable('.table-pitching', '.super-table-checkboxes.pitching');
+  new SuperTable('.table-pitching-post', '.super-table-checkboxes.pitching-post');
+
+  // fielding
+  new SuperTable('.table-fielding', '.super-table-checkboxes.fielding');
+  new SuperTable('.table-fielding-post', '.super-table-checkboxes.fielding-post');
+
+  // fielding of split
+  new SuperTable('.table-fielding-of-split', '.super-table-checkboxes.fielding-of-split');
+
+  // appearances
+  new SuperTable('.table-appearances', '.super-table-checkboxes.appearances');
+
+  // salaries
+  new SuperTable('.table-salaries', '.super-table-checkboxes.salaries');
+}
+
+
 
 /////////////////////////////////////////////////////////////////
 // Load all the data for the player into the tables and charts //

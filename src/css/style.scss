@@ -241,16 +241,19 @@ body {
   }
 }
 
-.dropdown-menu-super-table {
-  height: 300px;
-  overflow-y: auto;
+
+.dropdown-super-table {
+  .dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+  }
 
   .super-table-checkboxes {padding: 10px 15px;}
 }
 
+
 // phones
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
-
   .card-module .card-header {
     .toolbar {
       margin-top: 5px;
@@ -259,8 +262,6 @@ body {
       .select-per-page {margin-top: 15px;}
     }
   }
-
-
 }
 
 

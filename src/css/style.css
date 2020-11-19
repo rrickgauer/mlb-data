@@ -200,11 +200,11 @@ body {
   margin: 0px 3px;
 }
 
-.dropdown-menu-super-table {
-  height: 300px;
+.dropdown-super-table .dropdown-menu {
+  max-height: 300px;
   overflow-y: auto;
 }
-.dropdown-menu-super-table .super-table-checkboxes {
+.dropdown-super-table .super-table-checkboxes {
   padding: 10px 15px;
 }
 
