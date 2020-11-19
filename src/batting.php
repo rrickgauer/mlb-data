@@ -27,14 +27,23 @@
         <!-- toolbar -->
         <div class="toolbar">
 
+          <!-- per page -->
+          <select class="form-control select-per-page">
+            <option value="10">10</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+            <option value="500">500</option>
+            <option value="1000">1000</option>
+          </select>
+          
           <!-- Toggle columns -->
           <div class="dropdown">
             <button class="btn btn-sm btn-primary" type="button" data-toggle="dropdown">
               Columns
             </button>
-            <div class="dropdown-menu">
+            <div class="dropdown-menu dropdown-menu-super-table">
               <!-- checkboxes to toggle columns -->
-              <div class="table-header-checkboxes"></div>
+              <div class="super-table-checkboxes"></div>
             </div>
           </div>
 
@@ -44,14 +53,7 @@
           <!-- sort -->
           <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-sort-batting">Sort</button>
 
-          <!-- per page -->
-          <select class="form-control select-per-page">
-            <option value="10">10</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-            <option value="500">500</option>
-            <option value="1000">1000</option>
-          </select>
+
 
           <!-- pagination -->
           <div class="btn-group btn-group-sm" role="group">

@@ -214,9 +214,12 @@ body {
   }
 }
 
+.super-table-hidden {display: none;}
+
 
 .card-module .card-header {
   align-items: baseline;
+  flex-wrap: wrap;
 
   .results-count {
     display: flex;
@@ -236,11 +239,28 @@ body {
       margin: 0px 3px;
     }
   }
-
 }
 
-.super-table-hidden {
-  display: none;
+.dropdown-menu-super-table {
+  height: 300px;
+  overflow-y: auto;
+
+  .super-table-checkboxes {padding: 10px 15px;}
+}
+
+// phones
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
+
+  .card-module .card-header {
+    .toolbar {
+      margin-top: 5px;
+      flex-wrap: wrap-reverse;
+
+      .select-per-page {margin-top: 15px;}
+    }
+  }
+
+
 }
 
 

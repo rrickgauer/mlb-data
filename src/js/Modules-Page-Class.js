@@ -14,7 +14,7 @@ function Module(tableSelector, baseApiUrl, filterColumns) {
   this.pagination       = new Pagination();
   this.datatable        = $(tableSelector);
 
-  this.superTable = new SuperTable('.table', '.table-header-checkboxes');
+  this.superTable = new SuperTable('.table', '.super-table-checkboxes');
 }
 
 
