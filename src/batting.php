@@ -27,16 +27,14 @@
         <!-- toolbar -->
         <div class="toolbar">
 
+          <!-- Toggle columns -->
           <div class="dropdown">
-            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
-              Toggle columns
+            <button class="btn btn-sm btn-primary" type="button" data-toggle="dropdown">
+              Columns
             </button>
             <div class="dropdown-menu">
-
               <!-- checkboxes to toggle columns -->
-              <div class="table-header-checkboxes">
-                
-              </div>
+              <div class="table-header-checkboxes"></div>
             </div>
           </div>
 
