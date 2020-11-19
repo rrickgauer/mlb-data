@@ -37,17 +37,6 @@ table {
   font-weight: bold;
 }
 
-.navbar-search {
-  position: relative;
-}
-.navbar-search .navbar-search-menu {
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 100%;
-}
-
 .player-summary {
   margin-bottom: 20px;
   display: flex;
@@ -72,16 +61,39 @@ table {
   color: black;
 }
 
-.navbar-search-menu {
+#navbar .navbar-collapse {
+  display: flex;
+  justify-content: space-between;
+}
+#navbar .navbar-search {
+  position: relative;
+}
+#navbar .navbar-search .navbar-search-menu {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 100%;
   z-index: 1000;
   max-height: 300px;
   overflow-x: auto;
 }
-.navbar-search-menu .navbar-search-menu-item {
+#navbar .navbar-search .navbar-search-menu-item {
   background-color: white;
   padding: 5px;
 }
 
+@media only screen and (min-device-width: 370px) and (max-device-width: 668px) {
+  .navbar-collapse {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-search {
+    margin: 10px 0px;
+    width: 100%;
+  }
+}
 .form-filters .input-group-filter {
   margin-top: 10px;
 }
