@@ -80,7 +80,7 @@ Module.prototype.init = function() {
     self.openDetailsModal(this);
   });
 
-  $('.modal-details').on('hide.bs.modal', function() {
+  $('.modal-details').on('hidden.bs.modal', function() {
     self.initDetailsModal();
   });
 
@@ -88,6 +88,14 @@ Module.prototype.init = function() {
 
 
 Module.prototype.initDetailsModal = function() {
+
+  // bio
+  this.showDetailsModalBioSkeletons(true);
+
+
+
+
+
   let html = '';
 
   for (let count = 0; count < this.filterColumns.length; count++) {
@@ -110,7 +118,18 @@ Module.prototype.initDetailsModal = function() {
   $('.modal-details-items').html(html);
 }
 
+Module.prototype.showDetailsModalBioSkeletons = function(showSkeletons = false) {
 
+  if (!showSkeletons) {
+    $('.player-bio .player-bio-item').removeClass('skeleton-text').removeClass('skeleton-effect-wave');
+    $('.player-bio .player-bio-item-data.name').removeClass('skeleton-text').removeClass('skeleton-effect-wave');
+  } else {
+    $('.player-bio .player-bio-item').addClass('skeleton-text').addClass('skeleton-effect-wave');
+    $('.player-bio .player-bio-item-data.name').addClass('skeleton-text').addClass('skeleton-effect-wave');
+    $('.player-bio .player-item-data.image img').attr("src", 'https://www.elitefoods.com.au/backend/user_images/avatar.jpg');
+  }
+
+}
 
 Module.prototype.openDetailsModal = function(row) {
   $('.modal-details').modal('show');
@@ -157,6 +176,9 @@ Module.prototype.loadDetailsModalBioData = function(playerID) {
     $('.player-bio .player-bio-item-data.birth-city-state').text(birthCityState);
     $('.player-bio .player-bio-item-data.debut-date').text(debutDateDisplay);
     $('.player-bio .player-bio-item-data.bbref-link').attr("href", data.bbrefLink);
+
+
+    self.showDetailsModalBioSkeletons(false);
   });
 }
 
