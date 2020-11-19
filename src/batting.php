@@ -210,7 +210,8 @@
 
             <div class="modal-details-item">
               <dt>Coffee</dt>
-              <dd>Black hot drink</dd>
+              <dd></dd>
+              <div class="skeleton-block skeleton-effect-wave"></div>
             </div>
 
             <div class="modal-details-item">

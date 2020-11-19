@@ -80,6 +80,10 @@ Module.prototype.init = function() {
     self.openDetailsModal(this);
   });
 
+  $('.modal-details').on('hide.bs.modal', function() {
+    self.initDetailsModal();
+  });
+
 }
 
 
@@ -110,12 +114,11 @@ Module.prototype.initDetailsModal = function() {
     html += `
     <div class="modal-details-item" data-key="${columnName}">
       <dt>${columnName}</dt>
-      <dd>none</dd>
+      <dd><div class="skeleton-text skeleton-effect-wave">156</div></dd>
     </div>`;
   }
 
   $('.modal-details-items').html(html);
-  $('.modal-details').modal('show');
 }
 
 
