@@ -203,23 +203,81 @@
         </div>
         <div class="modal-body">
 
-
-          <h3 class="name">Player Name</h3>
-
-          <dl class="modal-details-items">
-
-            <div class="modal-details-item">
-              <dt>Coffee</dt>
-              <dd></dd>
-              <div class="skeleton-block skeleton-effect-wave"></div>
+          <!-- player bio -->
+          <div class="player-bio">
+            <!-- player image -->
+            <div class="player-item-data image">
+              <img src="https://www.elitefoods.com.au/backend/user_images/avatar.jpg" alt="Player image">
             </div>
 
-            <div class="modal-details-item">
-              <dt>Milk</dt>
-              <dd>White cold drink</dd>
+            <div class="player-bio-right">
+              <!-- name -->
+              <h2 class="player-bio-item-data name"></h2>
+
+              <!-- hall of fame -->
+              <div class="player-bio-item">
+                <span class="player-bio-item-data hof d-none badge badge-info">Hall of fame</span>
+              </div>
+
+              <!-- position -->
+              <div class="player-bio-item">
+                <span class="player-bio-item-label">Position</span>
+                <span class="player-bio-item-data position"></span>
+              </div>
+
+              <!-- bats and throws -->
+              <div class="d-flex">
+                <!-- bats -->
+                <div class="player-bio-item">
+                  <span class="player-bio-item-label">Bats</span>
+                  <span class="player-bio-item-data bats"></span>
+                </div>
+
+                <span>&nbsp;&bull;&nbsp;</span>
+
+                <!-- throws -->
+                <div class="player-bio-item">
+                  <span class="player-bio-item-label">Throws</span>
+                  <span class="player-bio-item-data throws"></span>
+                </div>
+              </div>
+
+              <!-- height -->
+              <div class="player-bio-item">
+                <span class="player-bio-item-label">Height</span>
+                <span class="player-bio-item-data height"></span>
+              </div>
+
+              <!-- weight -->
+              <div class="player-bio-item">
+                <span class="player-bio-item-label">Weight</span>
+                <span class="player-bio-item-data weight"></span>
+              </div>
+
+              <!-- birth date -->
+              <div class="player-bio-item">
+                <span class="player-bio-item-label">Born </span>
+                <span class="player-bio-item-data birth-date"></span>
+                <span>in</span>
+                <span class="player-bio-item-data birth-city-state"></span>
+              </div>
+
+              <!-- debut date -->
+              <div class="player-bio-item">
+                <span class="player-bio-item-label">Debut date</span>
+                <span class="player-bio-item-data debut-date"></span>
+              </div>
+
+              <!-- baseball reference -->
+              <div class="player-bio-item">
+                <a href="#" class="player-bio-item-data bbref-link" target="_blank">Baseball Reference Profile <i class='bx bx-link-external'></i></a>
+              </div>
             </div>
 
-          </dl>
+          </div>
+
+          <!-- module stats go here -->
+          <dl class="modal-details-items"></dl>
 
         </div>
         <div class="modal-footer">

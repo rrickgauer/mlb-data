@@ -18,7 +18,7 @@
 
 <!-- navbar js -->
 <script src="js/navbar.js"></script>
-
+<script src="js/Classes.js"></script>
 <script src="js/SuperTable.js"></script>
 <script src="js/Filters.js"></script>
 <script src="js/Global-Variables.js"></script>

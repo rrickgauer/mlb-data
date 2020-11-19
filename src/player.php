@@ -927,7 +927,6 @@ if (!isset($_GET['playerID'])) {
   </section>
 
   <?php include('footer.php'); ?>
-  <script src="js/Classes.js"></script>
   <script src="js/player.js"></script>
 </body>
 </html>

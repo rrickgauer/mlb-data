@@ -16,8 +16,8 @@ function Module(tableSelector, baseApiUrl, filterColumns) {
   this.datatable        = $(tableSelector);
 
 
-  this.detailsModalKeys = this.getDetailsModalKeys(); // get the keys for the details modal
-  this.initDetailsModal();                            // initialize the details modal
+  // initialize the details modal
+  this.initDetailsModal();                            
 
   // set up the super table
   this.superTable = new SuperTable('.table', '.super-table-checkboxes');
@@ -87,33 +87,22 @@ Module.prototype.init = function() {
 }
 
 
-Module.prototype.getDetailsModalKeys = function() {
-  const ignoreColumns = ['year', 'teamName'];
-  let detailsModalKeys = [];
-
-  for (let count = 0; count < this.filterColumns.length; count++) {
-    const columnName = this.filterColumns[count];
-    
-    // skip if is in ignore columns
-    if (ignoreColumns.includes(columnName))
-      continue;
-
-    detailsModalKeys.push(columnName);
-  }
-
-  return detailsModalKeys;
-}
-
-
 Module.prototype.initDetailsModal = function() {
   let html = '';
 
-  for (let count = 0; count < this.detailsModalKeys.length; count++) {
-    const columnName = this.detailsModalKeys[count];
+  for (let count = 0; count < this.filterColumns.length; count++) {
+    const columnName = this.filterColumns[count];
+
+    let columnNameDisplay = columnName;
+
+    if (columnNameDisplay == 'teamName')
+      columnNameDisplay = 'Team';
+    else if (columnNameDisplay == 'year')
+      columnNameDisplay = 'Year';
 
     html += `
     <div class="modal-details-item" data-key="${columnName}">
-      <dt>${columnName}</dt>
+      <dt>${columnNameDisplay}</dt>
       <dd><div class="skeleton-text skeleton-effect-wave">156</div></dd>
     </div>`;
   }
@@ -134,17 +123,83 @@ Module.prototype.openDetailsModal = function(row) {
   const stint    = $(row).attr('data-stint');
   const dataUrl  = this.baseAPI + `/${playerID}?filter=year:=:${year},stint:=:${stint}`;
 
+  this.loadDetailsModalBioData(playerID);
+
   this.getData(dataUrl, self.loadDetailsModalModuleData.bind(this));
 }
+
+
+Module.prototype.loadDetailsModalBioData = function(playerID) {
+  const self = this;
+  const playerUrls = new Player(playerID);
+
+
+  this.getData(playerUrls.bio, function(data) {
+    let height           = self.inchesToFeet(data.height);
+    let heightDisplay    = height.feet + '-' + height.inches;
+    let birthDateDisplay = self.getDisplayDate(data.birthDate);
+    let debutDateDisplay = self.getDisplayDate(data.debuteDate);
+    let birthCityState   = data.birthCity + ', ' + data.birthState;
+    let nameDisplay      = data.nameFirst + ' ' + data.nameLast;
+
+    $('.player-bio .player-item-data.image img').attr("src", data.image);
+    $('.player-bio .player-bio-item-data.name').text(nameDisplay);
+
+
+    if (data.hallOfFame == 'y')
+      $('.player-bio .player-bio-item-data.hof').removeClass('d-none');
+
+    $('.player-bio .player-bio-item-data.bats').text(data.bats);
+    $('.player-bio .player-bio-item-data.throws').text(data.throws);
+    $('.player-bio .player-bio-item-data.height').text(heightDisplay);
+    $('.player-bio .player-bio-item-data.weight').text(data.weight + 'lb');
+    $('.player-bio .player-bio-item-data.birth-date').text(birthDateDisplay );
+    $('.player-bio .player-bio-item-data.birth-city-state').text(birthCityState);
+    $('.player-bio .player-bio-item-data.debut-date').text(debutDateDisplay);
+    $('.player-bio .player-bio-item-data.bbref-link').attr("href", data.bbrefLink);
+  });
+}
+
+
+Module.prototype.inchesToFeet = function(inches) {
+  let result = {
+    feet: 0,
+    inches: 0,
+  }
+
+  if (inches <= 12) {
+    result.inches = inches;
+    return result;
+  }
+
+  let feet = 0;
+  let divisor = inches;
+
+  while (divisor > 12) {
+    feet++;
+    divisor += -12;
+  }
+
+  result.feet = feet;
+  result.inches = divisor;
+
+  return result;
+}
+
+Module.prototype.getDisplayDate = function(date) {
+  let  dateData = date.split("-");
+  let result = dateData[1] + '/' + dateData[2] + '/' + dateData[0];
+  return result;
+}
+
 
 Module.prototype.loadDetailsModalModuleData = function(data) {
   data = data[0];
 
   // load each key into the details modal
-  for (let count = 0; count < this.detailsModalKeys.length; count++) {
-    const key = this.detailsModalKeys[count];
+  for (let count = 0; count < this.filterColumns.length; count++) {
+    const key = this.filterColumns[count];
     const value = data[key];
-
 
     // set the element to the key
     $(`.modal-details-item[data-key="${key}"] dd`).text(value);
