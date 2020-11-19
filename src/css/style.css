@@ -200,6 +200,12 @@ body {
   margin: 0px 3px;
 }
 
+.dropdown-super-table button[data-toggle=dropdown] {
+  max-height: 31px;
+}
+.dropdown-super-table button[data-toggle=dropdown] i {
+  font-size: 1.5em;
+}
 .dropdown-super-table .dropdown-menu {
   max-height: 300px;
   overflow-y: auto;

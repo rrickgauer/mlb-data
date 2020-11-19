@@ -243,6 +243,11 @@ body {
 
 
 .dropdown-super-table {
+  button[data-toggle="dropdown"] {
+    max-height: 31px;
+    i {font-size: 1.5em;}
+  }
+
   .dropdown-menu {
     max-height: 300px;
     overflow-y: auto;
