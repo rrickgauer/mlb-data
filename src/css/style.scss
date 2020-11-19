@@ -50,7 +50,6 @@ table {
 }
 
 
-
 .player-summary {
   margin-bottom: 20px;
   display: flex;
@@ -60,6 +59,15 @@ table {
 .player-summary-card {
   margin: 10px;
   width: 170px;
+}
+
+// phones
+@media only screen 
+and (min-device-width: 375px) 
+and (max-device-width: 667px) {
+  .player-summary-card {
+    width: 150px;
+  }
 }
 
 .card {
@@ -207,11 +215,6 @@ and (min-device-width: 375px)
 and (max-device-width: 667px)  { 
   .col-nav-player {
     margin-bottom: 20px;
-  }
-
-  .player-summary-card {
-    width: 100%;
-    margin: 10px 0px;
   }
 
   .card-table .card-header {
