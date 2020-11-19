@@ -176,6 +176,25 @@ body {
   color: red;
 }
 
+.card-module .card-header {
+  align-items: baseline;
+}
+.card-module .card-header .results-count {
+  display: flex;
+  align-items: center;
+}
+.card-module .card-header .results-count .results-count-data {
+  margin-bottom: 5px;
+}
+.card-module .card-header .toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.card-module .card-header .toolbar > * {
+  margin: 0px 3px;
+}
+
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) {
   .col-nav-player {
     margin-bottom: 20px;

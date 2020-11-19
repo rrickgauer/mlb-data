@@ -25,7 +25,7 @@ Module.prototype.init = function() {
   $(this.datatable).find('tbody').html(this.emptyRows);
   this.disablePaginationButtons();
 
-  this.getData(this.API, this.loadTableData.bind(this), this.updatePagination.bind(this));
+  this.getData(this.API, this.loadTableData.bind(this), this.updatePagination.bind(this), this.loadResultsCount);
 
   $('.btn-pagination.next').on('click', function(e) {
     $(self.datatable).find('tbody').html(self.emptyRows);
@@ -119,10 +119,15 @@ Module.prototype.setUrlInputValues = function() {
 }
 
 
-Module.prototype.getData = function(url, actionResults, actionPagination) {
+Module.prototype.getData = function(url, actionResults, actionPagination, actionResultsCount) {
   $.getJSON(url, function(response) {
+
+    if (actionResultsCount != undefined)
+      actionResultsCount(response.resultsCount)
+
+    actionPagination(response.pagination);  
     actionResults(response.results);
-    actionPagination(response.pagination);    
+      
   })
   .fail(function(response) {
     console.error(response);
@@ -267,6 +272,10 @@ Module.prototype.loadTableData = function(data) {
   }
 
   $(this.datatable).find('tbody').html(html);
+}
+
+Module.prototype.loadResultsCount = function(resultsCount) {
+  $('.results-count-data').addClass('badge-secondary').html(resultsCount);
 }
 
 
