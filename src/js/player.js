@@ -19,6 +19,7 @@ const MODULES   = {
 ///////////////////
 $(document).ready(function() {
   initTableSkeletons();
+  initSuperTables();
   loadAllPlayerData();
   
   $('.card-table').on('click', 'table tbody tr', function() {

@@ -66,16 +66,21 @@ SuperTable.prototype.toggleTableColumn = function(check) {
 
   // hide body column
   $(this.table).find('tbody tr').find(`td:eq(${columnIndex})`).toggleClass(this.hiddenClassName);
+
+  // hide footer
+  $(this.table).find(`tfoot th:eq(${columnIndex})`).toggleClass(this.hiddenClassName);
 }
 
 SuperTable.prototype.hideTableColumn = function(index) {
   $(this.table).find(`thead th:eq(${index})`).addClass(this.hiddenClassName);
   $(this.table).find('tbody tr').find(`td:eq(${index})`).addClass(this.hiddenClassName);
+  $(this.table).find(`tfoot th:eq(${index})`).addClass(this.hiddenClassName);
 }
 
 SuperTable.prototype.showTableColumn = function(index) {
   $(this.table).find(`thead th:eq(${index})`).removeClass(this.hiddenClassName);
   $(this.table).find('tbody tr').find(`td:eq(${index})`).removeClass(this.hiddenClassName);
+  $(this.table).find(`tfoot th:eq(${index})`).removeClass(this.hiddenClassName);
 }
 
 SuperTable.prototype.showAllColumns = function() {
@@ -84,6 +89,9 @@ SuperTable.prototype.showAllColumns = function() {
 
   // show body column
   $(this.table).find('tbody td').removeClass(this.hiddenClassName);
+
+  // show footer
+  $(this.table).find(`tfoot th`).removeClass(this.hiddenClassName);
 
   $(this.checkArea).find(this.checkClassName).prop('checked', true);
 }
