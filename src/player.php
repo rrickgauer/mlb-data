@@ -24,7 +24,7 @@ if (!isset($_GET['playerID'])) {
   <section class="player-header">
     <div class="container-fluid">
       <!-- bio -->
-      <div class="player-bio d-flex">
+      <div class="player-bio">
         <!-- player image -->
         <div class="player-item-data image">
           <img src="https://www.elitefoods.com.au/backend/user_images/avatar.jpg" alt="Player image">
@@ -154,7 +154,7 @@ if (!isset($_GET['playerID'])) {
                       <h4 class="card-title data">
                         <?php echo Html::getSpinner(); ?>
                       </h4>
-                      <span class="label">Batting average</span>
+                      <span class="label">Batting Avg.</span>
                     </div>
                   </div>
 
@@ -164,7 +164,7 @@ if (!isset($_GET['playerID'])) {
                       <h4 class="card-title data">
                         <?php echo Html::getSpinner(); ?>
                       </h4>
-                      <span class="label">Home runs</span>
+                      <span class="label">HR</span>
                     </div>
                   </div>
 
@@ -184,7 +184,7 @@ if (!isset($_GET['playerID'])) {
                       <h4 class="card-title data">
                         <?php echo Html::getSpinner(); ?>
                       </h4>
-                      <span class="label">Runs batted in</span>
+                      <span class="label">RBI</span>
                     </div>
                   </div>
                 </div>
@@ -328,7 +328,7 @@ if (!isset($_GET['playerID'])) {
                   <div class="card player-summary-card era">
                     <div class="card-body">
                       <h4 class="card-title data"></h4>
-                      <span class="label">Earned run average</span>
+                      <span class="label">ERA</span>
                     </div>
                   </div>
 
