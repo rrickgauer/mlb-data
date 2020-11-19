@@ -9,9 +9,9 @@
         <div>
           <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" id="nav-item-home" href="home.php">Home</a></li>
-            <li class="nav-item"><a class="nav-link" id="nav-item-batting" href="batting.php">Batting</a></li>
-            <li class="nav-item"><a class="nav-link" id="nav-item-pitching" href="pitching.php">Pitching</a></li>
-            <li class="nav-item"><a class="nav-link" id="nav-item-fielding" href="fielding.php">Fielding</a></li>
+            <li class="nav-item"><a class="nav-link" id="nav-item-batting" href="batting.php?sort=year:desc">Batting</a></li>
+            <li class="nav-item"><a class="nav-link" id="nav-item-pitching" href="pitching.php?sort=year:desc">Pitching</a></li>
+            <li class="nav-item"><a class="nav-link" id="nav-item-fielding" href="fielding.php?sort=year:desc">Fielding</a></li>
           </ul>
         </div>
 
