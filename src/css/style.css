@@ -6,6 +6,10 @@ body {
   white-space: nowrap;
 }
 
+.player-top {
+  display: flex;
+}
+
 .player-bio {
   margin-bottom: 40px;
   display: flex;

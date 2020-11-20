@@ -3,16 +3,6 @@ const playerID  = urlParams.get('playerID');
 const API       = 'https://api.mlb-data.ryanrickgauer.com/main.php';
 const player    = new Player(playerID);
 
-const MODULES   = {
-  PITCHING         : "pitching",
-  BATTING          : "batting",
-  FIELDING         : "fielding",
-  FIELDING_OF      : "fielding-of",
-  FIELDING_OF_SPLIT: "fielding-of-split",
-  APPEARANCES      : "appearances",
-  SALARIES         : "salaries",
-  BIO              : "bio",
-};
 
 ///////////////////
 // Main function //
