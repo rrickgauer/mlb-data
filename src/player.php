@@ -1,4 +1,6 @@
 <?php
+require_once('HTML-Generator.php');
+
 // if no player id is set then exit
 if (!isset($_GET['playerID'])) {
   http_response_code(404);
