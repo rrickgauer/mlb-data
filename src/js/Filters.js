@@ -5,7 +5,6 @@ function Filters(filterUrl) {
   if (filterUrl == undefined || filterUrl == null)
     return;
 
-
   const filterBlocks = filterUrl.split(',');
 
   for (let count = 0; count < filterBlocks.length; count++) {
@@ -49,5 +48,4 @@ Filters.prototype.getFiltersString = function() {
 
   return result;
 }
-
 
