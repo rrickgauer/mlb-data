@@ -1,4 +1,3 @@
-<?php require_once('HTML-Generator.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
