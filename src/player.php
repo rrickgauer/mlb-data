@@ -102,21 +102,28 @@ if (!isset($_GET['playerID'])) {
           <div class="player-top-cards">
 
             <!-- seasons -->
-            <div class="card card-player-bio">
+            <div class="card card-player-bio seasons">
               <div class="card-body">
-                <h4 class="data">15</h4>
+                <h2 class="data">15</h4>
                 <p class="label">Seasons</p>
               </div>
             </div>
 
-            <!-- seasons -->
-            <div class="card card-player-bio">
+            <!-- games -->
+            <div class="card card-player-bio games">
               <div class="card-body">
-                <h4 class="data">15</h4>
-                <p class="label">Seasons</p>
+                <h2 class="data">15</h4>
+                <p class="label">Games</p>
               </div>
             </div>
 
+            <!-- team -->
+            <div class="card card-player-bio team">
+              <div class="card-body">
+                <h2 class="data">15</h4>
+                <p class="label">Latest team</p>
+              </div>
+            </div>
 
           </div>
 

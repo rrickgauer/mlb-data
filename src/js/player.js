@@ -1,5 +1,5 @@
 const urlParams = new URLSearchParams(window.location.search);
-const playerID  = urlParams.get('playerID');  
+const playerID  = urlParams.get('playerID');
 const API       = 'https://api.mlb-data.ryanrickgauer.com/main.php';
 const player    = new Player(playerID);
 
@@ -11,7 +11,7 @@ $(document).ready(function() {
   initTableSkeletons();
   initSuperTables();
   loadAllPlayerData();
-  
+
   $('.card-table').on('click', 'table tbody tr', function() {
     activateTableRow(this);
   });
@@ -78,8 +78,6 @@ function initSuperTables() {
 // Load all the data for the player into the tables and charts //
 /////////////////////////////////////////////////////////////////
 function loadAllPlayerData() {
-
-
   //////////////
   // Bio data //
   //////////////
@@ -87,6 +85,12 @@ function loadAllPlayerData() {
     loadBioData(response.results);
   }, function(response) {
     // console.error(response);
+  });
+
+
+  // load player bio cards
+  getPlayerData(player.appearances, function(response) {
+    loadBioCards(response.results);
   });
 
   //////////////
@@ -201,7 +205,7 @@ function loadAllPlayerData() {
   }, function(response) {
     $('#player-fielding .results').addClass('d-none');
     $('#player-fielding .results-no-data').removeClass('d-none');
-  });  
+  });
 
 
   //////////////////////////
@@ -221,7 +225,7 @@ function loadAllPlayerData() {
     displayChartData(response.results, '#chart-player-fielding-post');
   }, function(response) {
     $('.table-fielding-post').closest('.card-table').remove();
-  });  
+  });
 
   /////////////////////////////
   // Fielding post aggregate //
@@ -231,9 +235,9 @@ function loadAllPlayerData() {
   }, function(response) {
     // hideModule('fielding');
     // console.error(response);
-  });  
+  });
 
-  
+
   ///////////////////////
   // Fielding OF Split //
   ///////////////////////
@@ -290,6 +294,25 @@ function loadAllPlayerData() {
 }
 
 
+function loadBioCards(data) {
+  // seasons
+  let seasons = data.length;
+  $('.card-player-bio.seasons .data').text(seasons);
+
+  // games
+  let games = 0;
+  for (let count = 0; count < data.length; count++) {
+    games += data[count].G_all;
+  }
+
+  $('.card-player-bio.games .data').text(games);
+
+  // team
+  const lastRow = data.pop();
+  const teamName = lastRow.teamName;
+  $('.card-player-bio.team .data').text(teamName);
+}
+
 function displayChartData(data, chartElementName) {
   const newChartData = new ChartData(data);
   const ctz = $(chartElementName);
@@ -311,7 +334,8 @@ function getPlayerData(url, action, actionError) {
     action(response);
   })
   .fail(function(response) {
-    actionError(response);
+    if (actionError != undefined)
+      actionError(response);
   });
 }
 
@@ -345,7 +369,7 @@ function getBattingTableRowHtml(data) {
   let triples = data['3B'];
 
 
-  let row =  
+  let row =
   `<tr class="table-batting-row">
     <td>${data.teamName}</td>
     <td>${data.year}</td>
@@ -469,7 +493,7 @@ function loadBattingPostTableFooter(data) {
     <th>${data.SF}</th>
     <th>${data.GIDP}</th>
   <tr>`;
- 
+
   $('.table-batting-post tfoot').html(html);
 }
 
@@ -486,32 +510,32 @@ function loadPitchingTable(data) {
 function getPitchingRowHtml(pitching) {
   let html = `
   <tr class="table-pitching-row">
-    <td>${pitching.teamName}</td>  
+    <td>${pitching.teamName}</td>
     <td>${pitching.year}</td>
-    <td>${pitching.W}</td> 
+    <td>${pitching.W}</td>
     <td>${pitching.L}</td>
     <td>${pitching.G}</td>
-    <td>${pitching.GS}</td>  
-    <td>${pitching.CG}</td>  
+    <td>${pitching.GS}</td>
+    <td>${pitching.CG}</td>
     <td>${pitching.SHO}</td>
     <td>${pitching.SV}</td>
-    <td>${pitching.IPouts}</td>  
-    <td>${pitching.H}</td> 
-    <td>${pitching.ER}</td>  
-    <td>${pitching.HR}</td>  
-    <td>${pitching.BB}</td>  
-    <td>${pitching.SO}</td>  
-    <td>${pitching.BAOpp}</td> 
-    <td>${pitching.ERA}</td> 
+    <td>${pitching.IPouts}</td>
+    <td>${pitching.H}</td>
+    <td>${pitching.ER}</td>
+    <td>${pitching.HR}</td>
+    <td>${pitching.BB}</td>
+    <td>${pitching.SO}</td>
+    <td>${pitching.BAOpp}</td>
+    <td>${pitching.ERA}</td>
     <td>${pitching.IBB}</td>
-    <td>${pitching.WP}</td>  
-    <td>${pitching.HBP}</td> 
-    <td>${pitching.BK}</td>  
-    <td>${pitching.BFP}</td> 
-    <td>${pitching.GF}</td>  
-    <td>${pitching.R}</td> 
-    <td>${pitching.SH}</td>  
-    <td>${pitching.SF}</td>  
+    <td>${pitching.WP}</td>
+    <td>${pitching.HBP}</td>
+    <td>${pitching.BK}</td>
+    <td>${pitching.BFP}</td>
+    <td>${pitching.GF}</td>
+    <td>${pitching.R}</td>
+    <td>${pitching.SH}</td>
+    <td>${pitching.SF}</td>
     <td>${pitching.GIDP}</td>
   </tr>`;
 
@@ -631,7 +655,7 @@ function getFieldingRowHtml(data) {
 }
 
 function loadFieldingTableFooter(data) {
-  
+
   let html = `
   <tr>
     <th>Total</th>
@@ -775,7 +799,7 @@ function loadFieldingOfSplitTableFooter(data) {
     <th>${data.CS}</th>
     <th>${data.ZR}</th>
   </tr>`;
-  
+
   $('.table-fielding-of-split tfoot').html(html);
 }
 

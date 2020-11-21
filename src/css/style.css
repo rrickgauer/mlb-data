@@ -8,6 +8,21 @@ body {
 
 .player-top {
   display: flex;
+  align-items: flex-start;
+}
+
+.player-top-cards {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 50px;
+}
+.player-top-cards .card-player-bio {
+  min-width: 200px;
+  margin: 0px 20px;
+}
+.player-top-cards .card-player-bio .card-body {
+  padding: 30px;
 }
 
 .player-bio {
