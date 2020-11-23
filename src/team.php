@@ -66,7 +66,7 @@ if(!isset($_GET['teamID'])) {
         <h4 class="ml-4">Modules</h4>
 
         <ul class="nav flex-column nav-player">
-          <li class="nav-item nav-item-player stats"><a class="nav-link active" href="#team-stats" data-toggle="tab" data-module="stats">Pitching</a></li>
+          <li class="nav-item nav-item-player stats"><a class="nav-link active" href="#team-stats" data-toggle="tab" data-module="stats">Stats</a></li>
           <li class="nav-item nav-item-player rosters"><a class="nav-link" href="#team-rosters" data-toggle="tab" data-module="rosters">Rosters</a></li>
         </ul>
       </div>
@@ -76,7 +76,79 @@ if(!isset($_GET['teamID'])) {
         <div class="tab-content" id="team-panels">
           <!-- stats -->
           <div class="tab-pane fade show active" id="team-stats" role="tabpanel">
-            <h3>Stats</h3>
+
+            <!-- regular season -->
+            <div class="card card-table">
+              <div class="card-header">
+                <h4>Regular season</h4>
+
+                <!-- super table dropdown -->
+                <div class="dropright dropdown-super-table">
+                  <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                    <i class='bx bx-list-check'></i>
+                  </button>
+                  <div class="dropdown-menu">
+                    <!-- checkboxes to toggle columns -->
+                    <div class="super-table-checkboxes team"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-body">
+
+                <div class="table-responsive">
+                  <table class="table table-sm table-team tablesort">
+                    <thead>
+                      <tr>
+                        <th data-tablesort-type="int">year</th>
+                        <th data-tablesort-type="int">teamRank</th>
+                        <th data-tablesort-type="int">G</th>
+                        <th data-tablesort-type="int">Ghome</th>
+                        <th data-tablesort-type="int">W</th>
+                        <th data-tablesort-type="int">L</th>
+                        <th data-tablesort-type="int">DivWin</th>
+                        <th data-tablesort-type="int">WCWin</th>
+                        <th data-tablesort-type="int">LgWin</th>
+                        <th data-tablesort-type="int">WSWin</th>
+                        <th data-tablesort-type="int">R</th>
+                        <th data-tablesort-type="int">AB</th>
+                        <th data-tablesort-type="int">H</th>
+                        <th data-tablesort-type="int">2B</th>
+                        <th data-tablesort-type="int">3B</th>
+                        <th data-tablesort-type="int">HR</th>
+                        <th data-tablesort-type="int">BB</th>
+                        <th data-tablesort-type="int">SO</th>
+                        <th data-tablesort-type="int">SB</th>
+                        <th data-tablesort-type="int">CS</th>
+                        <th data-tablesort-type="int">HBP</th>
+                        <th data-tablesort-type="int">SF</th>
+                        <th data-tablesort-type="int">RA</th>
+                        <th data-tablesort-type="int">ER</th>
+                        <th data-tablesort-type="int">ERA</th>
+                        <th data-tablesort-type="int">CG</th>
+                        <th data-tablesort-type="int">SHO</th>
+                        <th data-tablesort-type="int">SV</th>
+                        <th data-tablesort-type="int">IPouts</th>
+                        <th data-tablesort-type="int">HA</th>
+                        <th data-tablesort-type="int">HRA</th>
+                        <th data-tablesort-type="int">BBA</th>
+                        <th data-tablesort-type="int">SOA</th>
+                        <th data-tablesort-type="int">E</th>
+                        <th data-tablesort-type="int">DP</th>
+                        <th data-tablesort-type="int">FP</th>
+                        <th data-tablesort-type="int">attendance</th>
+                        <th data-tablesort-type="int">BPF</th>
+                        <th data-tablesort-type="int">PPF</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                    <!-- total -->
+                    <tfoot></tfoot>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
 
           <!-- rosters -->

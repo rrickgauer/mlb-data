@@ -11,6 +11,7 @@ $(document).ready(function() {
 
 function init() {
   loadMetaData();
+  loadStatsData();
 }
 
 
@@ -72,8 +73,149 @@ function displayTeamNames(teamNames) {
 
 
 
+function loadStatsData() {
+  const url = teamUrls.base + '?perPage=1000&sort=year:desc';
+
+  getData(url, function(response) {
+    const data = response.results;
+
+    let html = '';
+    for (let count = 0; count < data.length; count++) {
+      html += getTeamTableRowHtml(data[count]);
+    }
+
+    $('.table-team tbody').html(html);
+    new SuperTable('.table-team', '.super-table-checkboxes.team');
+
+    getData(teamUrls.aggregate, function(response) {
+      displayTeamsTableFooter(response.results);
+    });
+  });
+}
 
 
+
+function getTeamTableRowHtml(data) {
+  removeNulls(data);
+
+  const doubles = data['2B'];
+  const triples = data['3B'];
+
+  let html = `
+    <tr>
+    <td>${data.year}</td>
+    <td>${data.teamRank}</td>
+    <td>${data.G.toLocaleString()}</td>
+    <td>${data.Ghome.toLocaleString()}</td>
+    <td>${data.W.toLocaleString()}</td>
+    <td>${data.L.toLocaleString()}</td>
+    <td>${data.DivWin}</td>
+    <td>${data.WCWin}</td>
+    <td>${data.LgWin}</td>
+    <td>${data.WSWin}</td>
+    <td>${data.R.toLocaleString()}</td>
+    <td>${data.AB.toLocaleString()}</td>
+    <td>${data.H.toLocaleString()}</td>
+    <td>${doubles.toLocaleString()}</td>
+    <td>${triples.toLocaleString()}</td>
+    <td>${data.HR.toLocaleString()}</td>
+    <td>${data.BB.toLocaleString()}</td>
+    <td>${data.SO.toLocaleString()}</td>
+    <td>${data.SB.toLocaleString()}</td>
+    <td>${data.CS.toLocaleString()}</td>
+    <td>${data.HBP.toLocaleString()}</td>
+    <td>${data.SF.toLocaleString()}</td>
+    <td>${data.RA.toLocaleString()}</td>
+    <td>${data.ER.toLocaleString()}</td>
+    <td>${data.ERA.toLocaleString()}</td>
+    <td>${data.CG.toLocaleString()}</td>
+    <td>${data.SHO.toLocaleString()}</td>
+    <td>${data.SV.toLocaleString()}</td>
+    <td>${data.IPouts.toLocaleString()}</td>
+    <td>${data.HA.toLocaleString()}</td>
+    <td>${data.HRA.toLocaleString()}</td>
+    <td>${data.BBA.toLocaleString()}</td>
+    <td>${data.SOA.toLocaleString()}</td>
+    <td>${data.E.toLocaleString()}</td>
+    <td>${data.DP.toLocaleString()}</td>
+    <td>${data.FP.toLocaleString()}</td>
+    <td>${data.attendance.toLocaleString()}</td>
+    <td>${data.BPF}</td>
+    <td>${data.PPF}</td>
+    </tr>`;
+
+  return html;
+}
+
+
+
+function displayTeamsTableFooter(data) {
+  const doubles = data['2B'];
+  const triples = data['3B'];
+
+
+  let html = `
+  <tr>
+  <th>${data.years.toLocaleString()}</th>
+  <th>-</th>
+  <th>${data.G.toLocaleString()}</th>
+  <th>${data.Ghome.toLocaleString()}</th>
+  <th>${data.W.toLocaleString()}</th>
+  <th>${data.L.toLocaleString()}</th>
+  <th>-</th>
+  <th>-</th>
+  <th>-</th>
+  <th>-</th>
+  <th>${data.R.toLocaleString()}</th>
+  <th>${data.AB.toLocaleString()}</th>
+  <th>${data.H.toLocaleString()}</th>
+  <th>${doubles.toLocaleString()}</th>
+  <th>${triples.toLocaleString()}</th>
+  <th>${data.HR.toLocaleString()}</th>
+  <th>${data.BB.toLocaleString()}</th>
+  <th>${data.SO.toLocaleString()}</th>
+  <th>${data.SB.toLocaleString()}</th>
+  <th>${data.CS.toLocaleString()}</th>
+  <th>${data.HBP.toLocaleString()}</th>
+  <th>${data.SF.toLocaleString()}</th>
+  <th>${data.RA.toLocaleString()}</th>
+  <th>${data.ER.toLocaleString()}</th>
+  <th>${data.ERA.toLocaleString()}</th>
+  <th>${data.CG.toLocaleString()}</th>
+  <th>${data.SHO.toLocaleString()}</th>
+  <th>${data.SV.toLocaleString()}</th>
+  <th>${data.IPouts.toLocaleString()}</th>
+  <th>${data.HA.toLocaleString()}</th>
+  <th>${data.HRA.toLocaleString()}</th>
+  <th>${data.BBA.toLocaleString()}</th>
+  <th>${data.SOA.toLocaleString()}</th>
+  <th>${data.E.toLocaleString()}</th>
+  <th>${data.DP.toLocaleString()}</th>
+  <th>${data.FP.toLocaleString()}</th>
+  <th>${data.attendance.toLocaleString()}</th>
+  <th>${data.BPF.toLocaleString()}</th>
+  <th>${data.PPF.toLocaleString()}</th>
+  </tr>`;
+
+  $('.table-team tfoot').html(html);
+
+}
+
+
+function removeNulls(data) {
+  const keys = Object.keys(data);
+  
+  let results = data;
+
+  for (let count = 0; count < keys.length; count++) {
+    const key = keys[count];
+
+    if (results[key] == null) {
+      results[key] = '-';
+      continue;
+    }
+  }
+}
 
 
 
