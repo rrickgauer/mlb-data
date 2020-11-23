@@ -34,6 +34,9 @@ function loadMetaData() {
     $('.team-bio-item .data.record-w').text(data.W.toLocaleString());
     $('.team-bio-item .data.record-l').text(data.L.toLocaleString());
     $('.team-item-data.image img').attr('src', data.image);
+
+    //https://www.baseball-reference.com/teams//
+    // const bbrefLink = `https://www.baseball-reference.com/teams/${data.}/`
   });
 
 

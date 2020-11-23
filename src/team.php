@@ -52,9 +52,9 @@ if(!isset($_GET['teamID'])) {
 
 
         <!-- baseball reference -->
-        <div class="team-bio-item">
+<!--         <div class="team-bio-item">
           <a href="#" class="team-bio-item-data bbref-link" target="_blank">Baseball Reference Profile <i class='bx bx-link-external'></i></a>
-        </div>
+        </div> -->
       </div>
     </div>
 
