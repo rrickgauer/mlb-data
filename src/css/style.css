@@ -275,4 +275,15 @@ body {
   background-color: #f0f0f0;
 }
 
+.team-bio {
+  margin-bottom: 40px;
+  display: flex;
+}
+.team-bio .team-bio-right {
+  margin-left: 15px;
+}
+.team-bio .team-bio-item .label {
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=style.css.map */

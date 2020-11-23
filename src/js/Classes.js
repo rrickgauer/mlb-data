@@ -89,6 +89,18 @@ function Pagination() {
 }
 
 
+function TeamUrls(teamID) {
+  this.base = 'https://api.mlb-data.ryanrickgauer.com/main.php/teams/' + teamID;
+  this.aggregate = this.base + '?aggregate=true';
+
+
+
+
+
+
+}
+
+
 
 
 

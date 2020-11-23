@@ -329,13 +329,22 @@ body {
   margin-bottom: 40px;
 }
 
-
-// $color-white: #fafbfe;
-// $color-white-darker: #f0f0f0;
-// $color-pink: #e83f6f;
-// $color-black: #37404a;
-
 .card-home {
   background-color: $color-white-darker;
   // color: white;
+}
+
+
+.team-bio {
+  margin-bottom: 40px;
+  display: flex;
+
+
+  .team-bio-right {
+    margin-left: 15px;
+  }
+
+  .team-bio-item .label {
+    font-weight: bold;
+  }
 }
