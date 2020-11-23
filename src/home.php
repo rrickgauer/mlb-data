@@ -71,5 +71,8 @@
   </div>
 
 <?php include('footer.php'); ?>
+<script src="js/home.js"></script>
+
+</script>
 </body>
 </html>
