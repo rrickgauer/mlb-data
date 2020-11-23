@@ -6,6 +6,25 @@ body {
   white-space: nowrap;
 }
 
+.player-top {
+  display: flex;
+  align-items: flex-start;
+}
+
+.player-top-cards {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 50px;
+}
+.player-top-cards .card-player-bio {
+  min-width: 200px;
+  margin: 0px 20px;
+}
+.player-top-cards .card-player-bio .card-body {
+  padding: 30px;
+}
+
 .player-bio {
   margin-bottom: 40px;
   display: flex;
@@ -246,6 +265,14 @@ body {
 }
 .modal-details-items .modal-details-item dd {
   margin-bottom: 0;
+}
+
+.card-deck-home {
+  margin-bottom: 40px;
+}
+
+.card-home {
+  background-color: #f0f0f0;
 }
 
 /*# sourceMappingURL=style.css.map */
