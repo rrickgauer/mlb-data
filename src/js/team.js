@@ -1,7 +1,9 @@
-const urlParams = new URLSearchParams(window.location.search);
-const teamID    = urlParams.get('teamID');
-const API       = 'https://api.mlb-data.ryanrickgauer.com/main.php';
-const teamUrls  = new TeamUrls(teamID);
+const urlParams             = new URLSearchParams(window.location.search);
+const teamID                = urlParams.get('teamID');
+const API                   = 'https://api.mlb-data.ryanrickgauer.com/main.php';
+const teamUrls              = new TeamUrls(teamID);
+let rosterTableSkeletonHtml = null;
+let teamTableSkeletonHtml   = null;
 
 
 $(document).ready(function() {
@@ -10,6 +12,10 @@ $(document).ready(function() {
 
 
 function init() {
+  getTeamTableSkeletonHtml();
+  showRosterTableSkeleton();
+  getRosterTableSkeletonHtml();
+  showRosterTableSkeleton();
   loadMetaData();
   loadStatsData();
   loadRosterData();
@@ -17,6 +23,7 @@ function init() {
   $('.select-year').on('change', function() {
     const year = $('.select-year option:selected').val();
     loadRoster(year);
+    showRosterTableSkeleton();
   });
 }
 
@@ -253,14 +260,10 @@ function loadRosterYearSelectHtml() {
 
 function loadRoster(year) {
   const url = teamUrls.base + `/${year}/players`;
-  // console.log(url);
-
   getData(url, function(response) {
-
     let html = '';
     for (let count = 0; count < response.results.length; count++)
       html += getRosterTableRowHtml(response.results[count]);
-
 
     $('.table-rosters tbody').html(html);
   });
@@ -268,7 +271,6 @@ function loadRoster(year) {
 
 
 function getRosterTableRowHtml(data) {
-
   // create the player link
   let player = '<a data-toggle="popover" data-html="true" data-placement="bottom" class="link-player"';
   player += `href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
@@ -296,9 +298,48 @@ function getRosterTableRowHtml(data) {
   </tr>`;
 
   return html;
+}
 
+function getRosterTableSkeletonHtml(numRows = 50) {
+  const numColumns = $('.table-rosters th').length;
+
+  let html = '';
+  for (let count = 0; count < numRows; count++) {
+    html += `
+    <tr>
+      <td colspan="${numColumns}">
+        <div class="skeleton-block skeleton-effect-wave">
+       </div>
+      </td>
+    </tr>`;
+  }
+
+  rosterTableSkeletonHtml = html;
+}
+
+function showTeamTableSkeleton() {
+  $('.table-rosters tbody').html(rosterTableSkeletonHtml);
 }
 
 
+function getTeamTableSkeletonHtml(numRows = 50) {
+  const numColumns = $('.table-team th').length;
 
+  let html = '';
+  for (let count = 0; count < numRows; count++) {
+    html += `
+    <tr>
+      <td colspan="${numColumns}">
+        <div class="skeleton-block skeleton-effect-wave">
+       </div>
+      </td>
+    </tr>`;
+  }
+
+  teamTableSkeletonHtml = html;
+}
+
+function showRosterTableSkeleton() {
+  $('.table-team tbody').html(teamTableSkeletonHtml);
+}
 

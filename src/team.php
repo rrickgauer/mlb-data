@@ -28,26 +28,26 @@ if(!isset($_GET['teamID'])) {
 
       <div class="team-bio-right">
         <!-- name -->
-        <h2 class="data name">Team name</h2>
+        <h2 class="data name"><span class="skeleton-text skeleton-effect-wave">Team name here</span></h2>
 
         <!-- list of names -->
         <div class="team-bio-item">
           <span class="label">Team names</span>
-          <span class="data names"></span>
+          <span class="data names"><span class="skeleton-text skeleton-effect-wave">jaskdflas dfjkalsdfjalksdf</span></span>
         </div>
 
         <!-- number of seasons -->
         <div class="team-bio-item">
           <span class="label">Seasons</span>
-          <span class="data seasons"></span>
+          <span class="data seasons"><span class="skeleton-text skeleton-effect-wave">Seaons</span></span>
         </div>
 
         <!-- record -->
         <div class="team-bio-item">
           <span class="label">Record</span>
-          <span class="data record-w">45</span>
+          <span class="data record-w"><span class="skeleton-text skeleton-effect-wave">Winning</span></span>
           <span>-</span>
-          <span class="data record-l">355</span>
+          <span class="data record-l"><span class="skeleton-text skeleton-effect-wave">Losing</span></span>
         </div>
 
 
@@ -66,8 +66,8 @@ if(!isset($_GET['teamID'])) {
         <h4 class="ml-4">Modules</h4>
 
         <ul class="nav flex-column nav-player">
-          <li class="nav-item nav-item-player stats"><a class="nav-link" href="#team-stats" data-toggle="tab" data-module="stats">Stats</a></li>
-          <li class="nav-item nav-item-player rosters"><a class="nav-link active" href="#team-rosters" data-toggle="tab" data-module="rosters">Rosters</a></li>
+          <li class="nav-item nav-item-player stats"><a class="nav-link active" href="#team-stats" data-toggle="tab" data-module="stats">Stats</a></li>
+          <li class="nav-item nav-item-player rosters"><a class="nav-link" href="#team-rosters" data-toggle="tab" data-module="rosters">Rosters</a></li>
         </ul>
       </div>
 
@@ -75,7 +75,7 @@ if(!isset($_GET['teamID'])) {
       <div class="col-sm-12 col-md-8 col-lg-9">
         <div class="tab-content" id="team-panels">
           <!-- stats -->
-          <div class="tab-pane fade" id="team-stats" role="tabpanel">
+          <div class="tab-pane fade show active" id="team-stats" role="tabpanel">
 
             <div class="card card-table">
               <div class="card-header">
@@ -151,7 +151,7 @@ if(!isset($_GET['teamID'])) {
           </div>
 
           <!-- rosters -->
-          <div class="tab-pane fade show active" id="team-rosters" role="tabpanel">
+          <div class="tab-pane fade" id="team-rosters" role="tabpanel">
             <!-- regular season -->
             <div class="card card-table">
               <div class="card-header">
@@ -182,8 +182,6 @@ if(!isset($_GET['teamID'])) {
                     </div>
                   </div>
                 </div>
-
-
 
               </div>
 
