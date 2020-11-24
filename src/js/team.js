@@ -13,6 +13,11 @@ function init() {
   loadMetaData();
   loadStatsData();
   loadRosterData();
+
+  $('.select-year').on('change', function() {
+    const year = $('.select-year option:selected').val();
+    loadRoster(year);
+  });
 }
 
 
