@@ -24,7 +24,6 @@ function init() {
     const year = $('.select-year option:selected').val();
     showRosterTableSkeleton();
     loadRoster(year);
-    
   });
 }
 

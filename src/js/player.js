@@ -355,6 +355,14 @@ function hideModule(moduleName) {
   $(element).addClass('d-none');
 }
 
+
+function getTeamTableCellHtml(teamName, teamID) {
+  let result = `<a href="team.php?teamID=${teamID}">`;
+  result += `${teamName}</a>`;
+
+  return result;
+}
+
 function loadBattingTable(batting) {
   let html = '';
 
@@ -367,11 +375,11 @@ function loadBattingTable(batting) {
 function getBattingTableRowHtml(data) {
   let doubles = data['2B'];
   let triples = data['3B'];
-
+  let team = getTeamTableCellHtml(data.teamName, data.teamID);
 
   let row =
   `<tr class="table-batting-row">
-    <td>${data.teamName}</td>
+    <td>${team}</td>
     <td>${data.year}</td>
     <td>${data.G}</td>
     <td>${data.AB}</td>
@@ -435,10 +443,11 @@ function loadBattingPostTable(data) {
   for (let count = 0; count < data.length; count++) {
     const doubles = data[count]['2B'];
     const triples = data[count]['3B'];
+    const team = getTeamTableCellHtml(data[count].teamName, data[count].teamID);
 
     const row = `
     <tr>
-      <td>${data[count].teamName}</td>
+      <td>${team}</td>
       <td>${data[count].year}</td>
       <td>${data[count].G}</td>
       <td>${data[count].AB}</td>
@@ -508,9 +517,12 @@ function loadPitchingTable(data) {
 }
 
 function getPitchingRowHtml(pitching) {
+
+  const team = getTeamTableCellHtml(pitching.teamName, pitching.teamID);
+
   let html = `
   <tr class="table-pitching-row">
-    <td>${pitching.teamName}</td>
+    <td>${team}</td>
     <td>${pitching.year}</td>
     <td>${pitching.W}</td>
     <td>${pitching.L}</td>
@@ -547,9 +559,12 @@ function loadPitchingPostTable(data) {
   let html = '';
 
   for (let count = 0; count < data.length; count++) {
+
+    const team = getTeamTableCellHtml(data[count].teamName, data[count].teamID);
+
     const row = `
     <tr>
-      <td>${data[count].teamName}</td>
+      <td>${team}</td>
       <td>${data[count].year}</td>
       <td>${data[count].W}</td>
       <td>${data[count].L}</td>
@@ -632,9 +647,12 @@ function loadFieldingTable(data) {
 }
 
 function getFieldingRowHtml(data) {
+
+  const team = getTeamTableCellHtml(data.teamName, data.teamID);
+
   let html = `
     <tr class="table-fielding-row">
-      <td>${data.teamName}</td>
+      <td>${team}</td>
       <td>${data.year}</td>
       <td>${data.POS}</td>
       <td>${data.G}</td>
@@ -683,9 +701,12 @@ function loadFieldingPostTable(data) {
   let html = '';
 
   for (let count = 0; count < data.length; count++) {
+
+    const team = getTeamTableCellHtml(data[count].teamName, data[count].teamID);
+
     const row = `
     <tr>
-      <td>${data[count].teamName}</td>
+      <td>${team}</td>
       <td>${data[count].year}</td>
       <td>${data[count].POS}</td>
       <td>${data[count].G}</td>
@@ -758,9 +779,12 @@ function loadFieldingOfSplitTable(data) {
 }
 
 function getFieldingOfSplitRowHtml(data) {
+
+  const team = getTeamTableCellHtml(data.teamName, data.teamID);
+
   let html = `
     <tr class="table-fielding-of-split">
-      <td>${data.teamName}</td>
+      <td>${team}</td>
       <td>${data.year}</td>
       <td>${data.POS}</td>
       <td>${data.G}</td>
@@ -813,9 +837,12 @@ function loadAppearancesTable(data) {
 }
 
 function getAppearancesRowHtml(data) {
+
+  const team = getTeamTableCellHtml(data.teamName, data.teamID);
+
   let html = `
     <tr class="table-appearances-row">
-      <td>${data.teamName}</td>
+      <td>${team}</td>
       <td>${data.year}</td>
       <td>${data.G_all}</td>
       <td>${data.GS}</td>
@@ -879,10 +906,11 @@ function loadSalariesTable(data) {
 function getSalariesRowHtml(data) {
 
   let salaryDisplay = formatCurrency(data.salary);
+  const team = getTeamTableCellHtml(data.teamName, data.teamID);
 
   let html = `
     <tr class="table-salaries-row">
-      <td>${data.teamName}</td>
+      <td>${team}</td>
       <td>${data.year}</td>
       <td>${salaryDisplay}</td>
     </tr>`;
