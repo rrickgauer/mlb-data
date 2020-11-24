@@ -275,4 +275,23 @@ body {
   background-color: #f0f0f0;
 }
 
+.team-bio {
+  margin-bottom: 40px;
+  display: flex;
+}
+.team-bio .team-bio-right {
+  margin-left: 15px;
+}
+.team-bio .team-bio-item .label {
+  font-weight: bold;
+}
+
+.table-rosters td {
+  text-align: right;
+}
+
+.table-rosters td:nth-child(1) {
+  text-align: left;
+}
+
 /*# sourceMappingURL=style.css.map */

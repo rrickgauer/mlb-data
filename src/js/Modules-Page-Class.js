@@ -476,12 +476,27 @@ Module.prototype.getTableRowHtml = function(data) {
   // build the rest of the row from the column keys
   for (let count = 0; count < this.filterColumns.length; count++) {
     let columnKey = this.filterColumns[count];
-    html += `<td>${data[columnKey]}</td>`;
+
+    if (columnKey != 'teamName') {
+      html += `<td>${data[columnKey]}</td>`;
+    }
+    else {
+      let display = this.getTableCellTeamHtml(data);
+      html += `<td>${display}</td>`;
+    }
   }
 
   html += '</tr>';
 
   return html;
+}
+
+
+Module.prototype.getTableCellTeamHtml = function(data) {
+  let result = `<a href="team.php?teamID=${data.teamID}">`;
+  result += `${data.teamName}</a>`;
+
+  return result;
 }
 
 
