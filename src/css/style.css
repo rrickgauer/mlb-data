@@ -286,4 +286,12 @@ body {
   font-weight: bold;
 }
 
+.table-rosters td {
+  text-align: right;
+}
+
+.table-rosters td:nth-child(1) {
+  text-align: left;
+}
+
 /*# sourceMappingURL=style.css.map */

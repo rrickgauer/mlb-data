@@ -73,13 +73,13 @@ if(!isset($_GET['teamID'])) {
 
       <!-- sub panels -->
       <div class="col-sm-12 col-md-8 col-lg-9">
-        <div class="tab-content" id="team-panels">
+        <div class="tab-content mt-5" id="team-panels">
           <!-- stats -->
           <div class="tab-pane fade show active" id="team-stats" role="tabpanel">
 
             <div class="card card-table">
               <div class="card-header">
-                <h4>Regular season</h4>
+                <h4>Stats</h4>
 
                 <!-- super table dropdown -->
                 <div class="dropright dropdown-super-table">
@@ -161,25 +161,8 @@ if(!isset($_GET['teamID'])) {
 
                   <!-- year filter -->
                   <div class="d-flex mr-3 align-items-center">
-                    <b>Year</b>
-                    <select class="form-control select-year">
-                      <option value="2019">2019</option>
-                      <option value="2018">2018</option>
-                      <option value="2017">2017</option>
-                    </select>
-                  </div>
-                  
-
-
-                  <!-- super table dropdown -->
-                  <div class="dropright dropdown-super-table">
-                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
-                      <i class='bx bx-list-check'></i>
-                    </button>
-                    <div class="dropdown-menu">
-                      <!-- checkboxes to toggle columns -->
-                      <div class="super-table-checkboxes rosters"></div>
-                    </div>
+                    <b class="mr-2">Year</b>
+                    <select class="form-control select-year"></select>
                   </div>
                 </div>
 

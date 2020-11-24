@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 function init() {
   getTeamTableSkeletonHtml();
-  showRosterTableSkeleton();
+  showTeamTableSkeleton();
   getRosterTableSkeletonHtml();
   showRosterTableSkeleton();
   loadMetaData();
@@ -22,8 +22,9 @@ function init() {
 
   $('.select-year').on('change', function() {
     const year = $('.select-year option:selected').val();
-    loadRoster(year);
     showRosterTableSkeleton();
+    loadRoster(year);
+    
   });
 }
 
@@ -317,7 +318,7 @@ function getRosterTableSkeletonHtml(numRows = 50) {
   rosterTableSkeletonHtml = html;
 }
 
-function showTeamTableSkeleton() {
+function showRosterTableSkeleton() {
   $('.table-rosters tbody').html(rosterTableSkeletonHtml);
 }
 
@@ -339,7 +340,7 @@ function getTeamTableSkeletonHtml(numRows = 50) {
   teamTableSkeletonHtml = html;
 }
 
-function showRosterTableSkeleton() {
+function showTeamTableSkeleton() {
   $('.table-team tbody').html(teamTableSkeletonHtml);
 }
 
