@@ -12,6 +12,7 @@ $(document).ready(function() {
 function init() {
   loadMetaData();
   loadStatsData();
+  loadRosterData();
 }
 
 
@@ -219,9 +220,79 @@ function removeNulls(data) {
 
 
 
+function loadRosterData() {
+  loadRosterYearSelectHtml();
+}
+
+function loadRosterYearSelectHtml() {
+  // setup filter options
+  const url = teamUrls.base + '?sort=year:desc&perPage=250';
+  getData(url, function(response) {
+    let yearList = [];
+    const numYears = response.resultsCount;
+
+    for (let count = 0; count < numYears; count++)
+      yearList.push(response.results[count].year);
+
+    let html = '';
+    for (let count = 0; count < yearList.length; count++)
+      html += `<option value="${yearList[count]}">${yearList[count]}</option>`;
+
+    $('.select-year').html(html);
+
+    // load the first year
+    loadRoster(yearList[0]);
+  });
+}
 
 
+function loadRoster(year) {
+  const url = teamUrls.base + `/${year}/players`;
+  // console.log(url);
 
+  getData(url, function(response) {
+
+    let html = '';
+    for (let count = 0; count < response.results.length; count++)
+      html += getRosterTableRowHtml(response.results[count]);
+
+
+    $('.table-rosters tbody').html(html);
+  });
+}
+
+
+function getRosterTableRowHtml(data) {
+
+  // create the player link
+  let player = '<a data-toggle="popover" data-html="true" data-placement="bottom" class="link-player"';
+  player += `href="player.php?playerID=${data.playerID}">${data.nameFirst} ${data.nameLast}</a>`;
+
+  let html = `
+  <tr>
+  <td>${player}</td>
+  <td>${data.G_all}</td>
+  <td>${data.GS}</td>
+  <td>${data.G_batting}</td>
+  <td>${data.G_defense}</td>
+  <td>${data.G_p}</td>
+  <td>${data.G_c}</td>
+  <td>${data.G_1b}</td>
+  <td>${data.G_2b}</td>
+  <td>${data.G_3b}</td>
+  <td>${data.G_ss}</td>
+  <td>${data.G_lf}</td>
+  <td>${data.G_cf}</td>
+  <td>${data.G_rf}</td>
+  <td>${data.G_of}</td>
+  <td>${data.G_dh}</td>
+  <td>${data.G_ph}</td>
+  <td>${data.G_pr}</td>
+  </tr>`;
+
+  return html;
+
+}
 
 
 

@@ -66,8 +66,8 @@ if(!isset($_GET['teamID'])) {
         <h4 class="ml-4">Modules</h4>
 
         <ul class="nav flex-column nav-player">
-          <li class="nav-item nav-item-player stats"><a class="nav-link active" href="#team-stats" data-toggle="tab" data-module="stats">Stats</a></li>
-          <li class="nav-item nav-item-player rosters"><a class="nav-link" href="#team-rosters" data-toggle="tab" data-module="rosters">Rosters</a></li>
+          <li class="nav-item nav-item-player stats"><a class="nav-link" href="#team-stats" data-toggle="tab" data-module="stats">Stats</a></li>
+          <li class="nav-item nav-item-player rosters"><a class="nav-link active" href="#team-rosters" data-toggle="tab" data-module="rosters">Rosters</a></li>
         </ul>
       </div>
 
@@ -75,9 +75,8 @@ if(!isset($_GET['teamID'])) {
       <div class="col-sm-12 col-md-8 col-lg-9">
         <div class="tab-content" id="team-panels">
           <!-- stats -->
-          <div class="tab-pane fade show active" id="team-stats" role="tabpanel">
+          <div class="tab-pane fade" id="team-stats" role="tabpanel">
 
-            <!-- regular season -->
             <div class="card card-table">
               <div class="card-header">
                 <h4>Regular season</h4>
@@ -152,8 +151,74 @@ if(!isset($_GET['teamID'])) {
           </div>
 
           <!-- rosters -->
-          <div class="tab-pane fade" id="team-rosters" role="tabpanel">
-            <h3>rosters</h3>
+          <div class="tab-pane fade show active" id="team-rosters" role="tabpanel">
+            <!-- regular season -->
+            <div class="card card-table">
+              <div class="card-header">
+                <h4>Roster</h4>
+
+                <div class="d-flex">
+
+                  <!-- year filter -->
+                  <div class="d-flex mr-3 align-items-center">
+                    <b>Year</b>
+                    <select class="form-control select-year">
+                      <option value="2019">2019</option>
+                      <option value="2018">2018</option>
+                      <option value="2017">2017</option>
+                    </select>
+                  </div>
+                  
+
+
+                  <!-- super table dropdown -->
+                  <div class="dropright dropdown-super-table">
+                    <button class="btn btn-light btn-sm" type="button" data-toggle="dropdown">
+                      <i class='bx bx-list-check'></i>
+                    </button>
+                    <div class="dropdown-menu">
+                      <!-- checkboxes to toggle columns -->
+                      <div class="super-table-checkboxes rosters"></div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div>
+
+              <div class="card-body">
+
+                <div class="table-responsive">
+                  <table class="table table-sm table-rosters tablesort">
+                    <thead>
+                      <tr>
+                        <th>Player</th>
+                        <th data-tablesort-type="int">G_all</th>
+                        <th data-tablesort-type="int">GS</th>
+                        <th data-tablesort-type="int">G_batting</th>
+                        <th data-tablesort-type="int">G_defense</th>
+                        <th data-tablesort-type="int">G_p</th>
+                        <th data-tablesort-type="int">G_c</th>
+                        <th data-tablesort-type="int">G_1b</th>
+                        <th data-tablesort-type="int">G_2b</th>
+                        <th data-tablesort-type="int">G_3b</th>
+                        <th data-tablesort-type="int">G_ss</th>
+                        <th data-tablesort-type="int">G_lf</th>
+                        <th data-tablesort-type="int">G_cf</th>
+                        <th data-tablesort-type="int">G_rf</th>
+                        <th data-tablesort-type="int">G_of</th>
+                        <th data-tablesort-type="int">G_dh</th>
+                        <th data-tablesort-type="int">G_ph</th>
+                        <th data-tablesort-type="int">G_pr</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
